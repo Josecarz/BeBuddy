@@ -1,17 +1,46 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Home</ion-title>
-  </ion-navbar>
+  <!--<ion-navbar color="dark">-->
+    <!--<ion-title class="title">Bebuddy</ion-title>-->
+  <!--</ion-navbar>-->
 </ion-header>
 
-<ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+<ion-content id="dark">
+  <div class="card-background-page">
+    <ion-card>
+      <img src="assets/imgs/fondobuscador.jpg"/>
+      <div class="title">Bebuddy</div>
+      <div class="card-title">¿Cuál es tu destino?</div>
+      <div class="searchbar"><ion-searchbar placeholder="Berlín, Tailandia, Wroclaw..." [(ngModel)]="searchTerm" [formControl]="searchControl" (ionInput)="onSearchInput()"></ion-searchbar></div>
+      <div *ngIf="searching" class="spinner-container">
+        <ion-spinner name="bubbles"></ion-spinner>
+      </div>
+      <!--<div class="card-subtitle">41 Listings</div>-->
+    </ion-card>
+  </div>
+
+
+
+  <ion-card class="destino" *ngFor="let item of items" (click)="navTrip(item)">
+    <!--<img src="{{item.img}}"/>-->
+    <p>{{item.name}}</p>
+    <!--<p>{{item.code}}</p>-->
+  </ion-card>
+
+  <ion-card-content>
+    <ion-card-title>
+      <div><span style="float:right">Ver todo</span>Tours</div>
+      <hr>
+    </ion-card-title>
+    <ion-scroll scrollX="true" style="white-space:nowrap; height: 150px;">
+      <img class="tours" src="assets/imgs/furgoneta.jpg"/>
+      <img class="tours" src="assets/imgs/furgoneta.jpg"/>
+      <img class="tours" src="assets/imgs/furgoneta.jpg"/>
+      <img class="tours" src="assets/imgs/furgoneta.jpg"/>
+      <!--<img src="assets/imgs/furgoneta.jpg"/>-->
+      <!--<img src="assets/imgs/furgoneta.jpg"/>-->
+      <!--<img src="assets/imgs/furgoneta.jpg"/>-->
+    </ion-scroll>
+  </ion-card-content>
+
+
 </ion-content>
