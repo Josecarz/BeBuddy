@@ -25,7 +25,7 @@
     <p>{{item.name}}</p>
     <!--<p>{{item.code}}</p>-->
   </ion-card>
-
+  <ion-card  *ngFor="let item of recipes" >{{item.name}}</ion-card>
   <ion-card-content>
     <ion-card-title>
       <div><span style="float:right">Ver todo</span>Tours</div>
