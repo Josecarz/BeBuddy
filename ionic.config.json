@@ -1,6 +1,6 @@
 {
   "name": "BeBuddy",
-  "app_id": "",
+  "app_id": "6778fadb",
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}
