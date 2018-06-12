@@ -13,7 +13,7 @@
 </ion-header>
 
 
-<ion-content>
+<ion-content *ngIf="!usuario" >
 
   <h1>Bebuddy</h1>
 
@@ -31,7 +31,7 @@
   <!--<button ion-button (click)="goHome()">Iniciar sesión</button>-->
   <div padding>
     <button ion-button round full color="dark" (click)="login(user)">Iniciar sesión</button><br>
-    <button ion-button round full color="primary" (click)="login(user)">Iniciar sesión con Facebook</button><br>
+    <!--<button ion-button round full color="primary" (click)="login(user)">Iniciar sesión con Facebook</button><br>-->
     <div>
 
       <p><span>O </span><span (click)="SignUp()" style="font-weight: bold">crea una cuenta de Bebbudy</span></p>

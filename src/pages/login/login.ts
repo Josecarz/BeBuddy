@@ -3,6 +3,7 @@ import {AlertController, IonicPage, Loading, LoadingController, NavController, N
 import {AngularFireAuth} from "angularfire2/auth";
 import {User} from "../../models/user";
 import {RegisterPage} from "../register/register";
+import {HomePage} from "../home/home";
 
 /**
  * Generated class for the LoginPage page.
@@ -56,6 +57,7 @@ export class LoginPage {
       dismissOnPageChange: true,
     });
     this.loading.present();
+    // this.navCtrl.push(HomePage);
   }
 
 

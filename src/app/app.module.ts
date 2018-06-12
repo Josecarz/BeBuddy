@@ -13,10 +13,12 @@ import {BuddiesPage} from '../pages/buddies/buddies';
 import {PerfilPage} from "../pages/perfil/perfil";
 import {IonicStorageModule} from "@ionic/storage";
 import {HttpClientModule} from "@angular/common/http";
+
 import {AngularFireStorageModule} from 'angularfire2/storage';
 import {AngularFireModule} from "angularfire2";
 import {AngularFireAuthModule} from "angularfire2/auth/auth.module";
 import {AngularFireDatabase, AngularFireDatabaseModule} from 'angularfire2/database'
+
 import {LoginPage} from "../pages/login/login";
 import {RegisterPage} from "../pages/register/register";
 import {DbApiService} from "../shared/db-api.service";
