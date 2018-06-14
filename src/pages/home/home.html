@@ -31,13 +31,7 @@
       <hr>
     </ion-card-title>
     <ion-scroll scrollX="true" style="white-space:nowrap; height: 150px;">
-      <img class="tours" src="assets/imgs/furgoneta.jpg"/>
-      <img class="tours" src="assets/imgs/furgoneta.jpg"/>
-      <img class="tours" src="assets/imgs/furgoneta.jpg"/>
-      <img class="tours" src="assets/imgs/furgoneta.jpg"/>
-      <!--<img src="assets/imgs/furgoneta.jpg"/>-->
-      <!--<img src="assets/imgs/furgoneta.jpg"/>-->
-      <!--<img src="assets/imgs/furgoneta.jpg"/>-->
+      <img *ngFor="let item of tours"  class="tours" src="{{item.img}}"/>
     </ion-scroll>
   </ion-card-content>
 

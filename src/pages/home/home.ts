@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import {NavController, NavParams} from 'ionic-angular';
-import {DbApiService} from "../../shared/db-api.service";
+import {NavController, NavParams, ToastController} from 'ionic-angular';
+import {DbApiService} from "../../providers/db-api.service";
 import {AngularFireAuth} from "angularfire2/auth";
 import {FormControl} from "@angular/forms";
-import {DataProvider} from "../../shared/data";
+import {DataProvider} from "../../providers/data";
 import {TripdetailPage} from "../tripdetail/tripdetail";
+import {CountrydetailPage} from "../countrydetail/countrydetail";
 
 @Component({
   selector: 'page-home',
@@ -12,8 +13,11 @@ import {TripdetailPage} from "../tripdetail/tripdetail";
 })
 export class HomePage {
 
-  recipes = [];
+  sites = [];
+  sites2=[];
   usuario = {};
+  cities =[];
+  tours = [];
   user: string = '';
 
   searchTerm: string = '';
@@ -23,6 +27,7 @@ export class HomePage {
 
   constructor(private afAuth: AngularFireAuth,
               public navCtrl: NavController,
+              private toast : ToastController,
               public navParams: NavParams,
               private dbapi: DbApiService,
               private dataService: DataProvider,
@@ -35,14 +40,39 @@ export class HomePage {
 
   ionViewDidLoad() {
 
-    this.dbapi.getDestino().subscribe(
+    this.afAuth.authState.subscribe(data => {
+      this.usuario = data;
+      // console.log(data.email);
+      if (data && data.email && data.uid) {
+
+        this.toast.create({
+          message: `Welcome to Bebuddy, ${data.email}`,
+          duration: 1500
+        }).present();
+      }
+    });
+
+    this.dbapi.getCountry().subscribe(
       (data) => {
-        this.recipes = data;
-        console.log(this.recipes);
+        this.sites = data;
+        console.log(this.sites);
         this.setFilteredItems();
       }
     );
-    console.log('SADFJGFJKSDAGLFJKDSAGF' + this.recipes);
+    this.dbapi.getCity().subscribe(
+      (data) => {
+        this.sites2 = data;
+        console.log(this.sites2);
+        this.setFilteredItems();
+      }
+    );
+
+
+    this.dbapi.getTours().subscribe(
+      (data) => {
+        this.tours = data;
+      }
+    );
 
     this.setFilteredItems();
     this.searchControl.valueChanges.subscribe(search  => {
@@ -56,12 +86,19 @@ export class HomePage {
   }
 
   setFilteredItems() {
-    this.items = this.dataService.filterItems(this.searchTerm, this.recipes);
+    let possibleItems = [].concat(this.sites).concat(this.sites2);
+    this.items = this.dataService.filterItems(this.searchTerm, possibleItems);
   }
 
   navTrip(destino){
-    console.log('SADFJGFJKSDAGLFJKDSAGF' + destino);
-    this.navCtrl.push(TripdetailPage, {'destino': destino});
+    this.dbapi.getCities(destino.id).subscribe(
+      (data) => {
+        this.cities = data;
+        console.log(this.cities);
+        this.setFilteredItems();
+      }
+    );
+    this.navCtrl.push(CountrydetailPage, destino);
   }
 }
 

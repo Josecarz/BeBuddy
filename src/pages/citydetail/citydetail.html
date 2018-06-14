@@ -1,0 +1,54 @@
+<!--
+  Generated template for the CitydetailPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+<ion-header>
+
+  <ion-navbar color="dark" >
+    <ion-title style="font-family: Neon; text-align: center; margin-right: 50px ">{{infoCity.name}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <div class="card-background-page">
+    <ion-card>
+      <img src="{{infoCity.img}}"/>
+      <ion-buttons class="buttons" end>
+        <button ion-button round small>
+          <ion-icon name="md-add-circle">Añadir a mis planes</ion-icon>
+        </button>
+        <button>
+          <ion-icon name="contact"></ion-icon>
+        </button>
+        <button>
+          <ion-icon name="log-out"></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-card>
+  </div>
+
+  <ion-card>Andorra, oficialmente Principado de Andorra, es un pequeño país soberano del suroeste de Europa. Constituido en Estado independiente, de derecho, democrático y social, ​ cuya forma de gobierno es el coprincipado parlamentario.​ </ion-card>
+
+  <!--<ion-card class="destino" *ngFor="let city of cities" (click)="navTrip(item)">-->
+    <!--&lt;!&ndash;<img src="{{item.img}}"/>&ndash;&gt;-->
+    <!--<p>{{city.name}}</p>-->
+  <!--</ion-card>-->
+
+  <ion-card-content>
+    <ion-card-title>
+      <!--<div><span style="float:right">Ver todo</span>Tours en {{infoCity.name}}</div>-->
+      <hr>
+    </ion-card-title>
+    <ion-scroll scrollX="true" style="white-space:nowrap; height: 150px;">
+      <img class="tours" src="assets/imgs/furgoneta.jpg"/>
+      <img class="tours" src="assets/imgs/furgoneta.jpg"/>
+      <img class="tours" src="assets/imgs/furgoneta.jpg"/>
+      <img class="tours" src="assets/imgs/furgoneta.jpg"/>
+    </ion-scroll>
+  </ion-card-content>
+</ion-content>

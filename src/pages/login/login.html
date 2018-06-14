@@ -13,29 +13,43 @@
 </ion-header>
 
 
-<ion-content *ngIf="!usuario" >
+<ion-content >
 
-  <h1>Bebuddy</h1>
+  <div  *ngIf="!usuario">
+    <h1>Bebuddy</h1>
 
-  <ion-item>
-    <ion-label floating>Usuario:</ion-label>
-    <ion-input type="text" [(ngModel)]="user.email"></ion-input>
-  </ion-item>
+    <ion-item>
+      <ion-label floating>Usuario:</ion-label>
+      <ion-input type="text" [(ngModel)]="user.email"></ion-input>
+    </ion-item>
 
-  <ion-item>
-    <ion-label floating>Contraseña:</ion-label>
-    <ion-input type="password" [(ngModel)]="user.password"></ion-input>
-  </ion-item>
+    <ion-item>
+      <ion-label floating>Contraseña:</ion-label>
+      <ion-input type="password" [(ngModel)]="user.password"></ion-input>
+    </ion-item>
 
 
-  <!--<button ion-button (click)="goHome()">Iniciar sesión</button>-->
-  <div padding>
-    <button ion-button round full color="dark" (click)="login(user)">Iniciar sesión</button><br>
-    <!--<button ion-button round full color="primary" (click)="login(user)">Iniciar sesión con Facebook</button><br>-->
-    <div>
+    <div padding>
+      <button ion-button round full color="dark" (click)="login(user)">Iniciar sesión</button><br>
+      <!--<button ion-button round full color="primary" (click)="login(user)">Iniciar sesión con Facebook</button><br>-->
+      <div>
 
-      <p><span>O </span><span (click)="SignUp()" style="font-weight: bold">crea una cuenta de Bebbudy</span></p>
+        <p><span>O </span><span (click)="SignUp()" style="font-weight: bold">crea una cuenta de Bebbudy</span></p>
+      </div>
     </div>
-      <!--<button ion-button round color="dark" (click)="SignUp()">Registrarse</button>-->
   </div>
+
+
+  <ion-card *ngIf="usuario">
+    <img src="img/nin-live.png"/>
+    <ion-card-content>
+      <ion-card-title>
+      {{userData?.email}}
+      </ion-card-title>
+      <p>
+        The most popular industrial group ever, and largely
+        responsible for bringing the music to a mass audience.
+      </p>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

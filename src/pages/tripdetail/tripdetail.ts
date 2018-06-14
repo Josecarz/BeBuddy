@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {DbApiService} from "../../shared/db-api.service";
+import {DbApiService} from "../../providers/db-api.service";
 
 /**
  * Generated class for the TripdetailPage page.
@@ -20,18 +20,18 @@ export class TripdetailPage {
   cities = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,  private dbapi: DbApiService,) {
-    this.destino=this.navParams.get('destino');
+    this.destino = this.navParams.data;
     // console.log('ionViewDidLoad ' + this.destino);
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad TripdetailPage');
+    console.log('ionViewDidLoad TripdetailPage' + this.destino.id);
 
 
     this.dbapi.getCities(this.destino.id).subscribe(
       (data) => {
         this.cities = data;
-        console.log(this.cities);
+        // console.log('hola' + this.cities);
       }
     );
 

@@ -21,11 +21,14 @@ import {AngularFireDatabase, AngularFireDatabaseModule} from 'angularfire2/datab
 
 import {LoginPage} from "../pages/login/login";
 import {RegisterPage} from "../pages/register/register";
-import {DbApiService} from "../shared/db-api.service";
-import {CustomerSearchFilter} from "../shared/filter-pipe.pipe";
-import {DataProvider} from "../shared/data";
+import {DbApiService} from "../providers/db-api.service";
+import {CustomerSearchFilter} from "../providers/filter-pipe.pipe";
+import {DataProvider} from "../providers/data";
 import {HttpModule} from "@angular/http";
 import {TripdetailPage} from "../pages/tripdetail/tripdetail";
+import {UserService} from "../providers/user-service";
+import {CountrydetailPage} from "../pages/countrydetail/countrydetail";
+import {CitydetailPage} from "../pages/citydetail/citydetail";
 
 
 
@@ -49,7 +52,9 @@ export const FirebaseConfig = {
     LoginPage,
     RegisterPage,
     CustomerSearchFilter,
-    TripdetailPage
+    TripdetailPage,
+    CountrydetailPage,
+    CitydetailPage
   ],
   imports: [
     BrowserModule,
@@ -73,12 +78,15 @@ export const FirebaseConfig = {
     PerfilPage,
     LoginPage,
     RegisterPage,
-    TripdetailPage
+    TripdetailPage,
+    CountrydetailPage,
+    CitydetailPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     DbApiService,
+    UserService,
     AngularFireDatabase,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     DataProvider

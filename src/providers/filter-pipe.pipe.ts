@@ -8,7 +8,7 @@ import {HomePage} from "../pages/home/home";
 @Injectable()
 export class CustomerSearchFilter implements PipeTransform {
   hola: string = '';
-  transform(recipes: HomePage[], args: string): any {
+  transform(sites: HomePage[], args: string): any {
 /*
     return recipes.filter(item =>{
        console.log(item);
@@ -18,7 +18,7 @@ export class CustomerSearchFilter implements PipeTransform {
     ) ;
 */
 console.log(args);
-     return recipes.filter(item => {
+     return sites.filter(item => {
        if (!item.user){
          return false
        } else {

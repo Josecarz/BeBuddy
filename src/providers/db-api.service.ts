@@ -9,6 +9,7 @@ import {AngularFireDatabase} from "angularfire2/database";
 @Injectable()
 export class DbApiService {
   // currentTourney: any = [];
+  sites: any [];
 
   constructor(private fb: AngularFireDatabase,  private afDB: AngularFireDatabase) {
 
@@ -18,22 +19,30 @@ export class DbApiService {
     return this.fb.list('alimentos/0/fruits').valueChanges();
   }
 
-  getUsers(): Observable<any> {
-    return this.fb.list('users').valueChanges();
-
-  }
-
   getTours(): Observable<any> {
     return this.fb.list('tours').valueChanges();
   }
 
-  getDestino(): Observable<any> {
-    return this.fb.list('paises').valueChanges();
+  getCountry(): Observable<any> {
+    return this.fb.list('countries').valueChanges();
   }
 
-  getCities(id): Observable<any> {
-    return this.fb.list('paises/'+id+'/ciudades/').valueChanges();
+  getCity(): Observable<any> {
+    return this.fb.list('cities').valueChanges();
   }
+
+  // getCity(): Observable<any> {
+  //   return this.fb.list('cities/').valueChanges();
+  // }
+
+  getCities(id): Observable<any> {
+    return this.fb.list(`countries/${id}/ciudades`).valueChanges();
+  }
+
+  getInfoCity(id): Observable<any> {
+    return this.fb.object("cities/" + id).valueChanges();
+  }
+
 
   getComments(id): Observable<any> {
     return this.fb.list('recipes/'+id+'/comments/').valueChanges();
