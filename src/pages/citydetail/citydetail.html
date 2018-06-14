@@ -18,26 +18,69 @@
   <div class="card-background-page">
     <ion-card>
       <img src="{{infoCity.img}}"/>
-      <ion-buttons class="buttons" end>
-        <button ion-button round small>
-          <ion-icon name="md-add-circle">Añadir a mis planes</ion-icon>
-        </button>
-        <button>
-          <ion-icon name="contact"></ion-icon>
-        </button>
-        <button>
-          <ion-icon name="log-out"></ion-icon>
-        </button>
-      </ion-buttons>
     </ion-card>
   </div>
-
-  <ion-card>Andorra, oficialmente Principado de Andorra, es un pequeño país soberano del suroeste de Europa. Constituido en Estado independiente, de derecho, democrático y social, ​ cuya forma de gobierno es el coprincipado parlamentario.​ </ion-card>
 
   <!--<ion-card class="destino" *ngFor="let city of cities" (click)="navTrip(item)">-->
     <!--&lt;!&ndash;<img src="{{item.img}}"/>&ndash;&gt;-->
     <!--<p>{{city.name}}</p>-->
   <!--</ion-card>-->
+
+  <!--<div class="card-background-page" style="margin: 10px" *ngFor="let item of tours">-->
+    <!--<ion-card>-->
+      <!--<img src="{{item.img}}"/>-->
+      <!--<ion-buttons class="buttons" end>-->
+        <!--<p>gfdsafdfads</p>-->
+        <!--<button ion-button round small>-->
+          <!--<ion-icon name="md-add-circle">Añadir a mis planes</ion-icon>-->
+        <!--</button>-->
+        <!--<button>-->
+          <!--<ion-icon name="contact"></ion-icon>-->
+        <!--</button>-->
+        <!--<button>-->
+          <!--<ion-icon name="log-out"></ion-icon>-->
+        <!--</button>-->
+      <!--</ion-buttons>-->
+    <!--</ion-card>-->
+  <!--</div>-->
+  <!--<h2>Buddies en {{infoCity.name}}</h2>-->
+
+  <ion-card-content>
+    <ion-card-title>
+      <div>Buddies en {{infoCity.name}}</div>
+      <hr>
+    </ion-card-title>
+    <ion-scroll scrollX="true" style="white-space:nowrap; height: 50px;">
+      <span class = "col" *ngFor="let item of tours"><img class="avatar" src="{{item.img}}"/></span>
+    </ion-scroll>
+  </ion-card-content>
+
+
+  <ion-list>
+    <ion-item  *ngFor="let item of tours">
+      <img item-start class="miniimg" src="{{item.img}}">
+      <!--<div><span style="float:right"> <img item-start class="avatar" src="{{item.img}}"></span><h2>{{item.name}}</h2></div>-->
+      <!--<h2>{{item.name}}</h2>-->
+      <div class = "row">
+        <span class = "col"><h2>{{item.name}}</h2></span>
+
+        <div end><img item-start class="avatar" src="{{item.img}}"></div>
+      </div>
+
+      <!--<div class = "row">-->
+        <!--<div class = "col">col 1</div>-->
+        <!--<div class = "col">col 2</div>-->
+        <!--<div class = "col">col 3</div>-->
+      <!--</div>-->
+      <ion-buttons class="buttons" end>
+        <button ion-button small>
+          <ion-icon name="md-add-circle">Añadir a mis planes</ion-icon>
+        </button>
+      </ion-buttons>
+
+    </ion-item>
+
+  </ion-list>
 
   <ion-card-content>
     <ion-card-title>

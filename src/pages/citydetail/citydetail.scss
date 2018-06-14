@@ -44,4 +44,43 @@ page-citydetail {
     }
   }
 
+  .tours{
+    height: 150px;
+
+    .buttons {
+      //background-color: #222222;
+      font-family: "Neon";
+      position: absolute;
+      bottom: 5%;
+      font-size: 2.0em;
+      width: 100%;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .card-title {
+      //background-color: #222222;
+      font-family: "Neon";
+      opacity: 1;
+      position: absolute;
+      bottom: 30%;
+      font-size: 2.0em;
+      width: 100%;
+      font-weight: bold;
+      color: #fff;
+    }
+  }
+
+
+  .miniimg {
+    width: 110px;
+    height: 110px;
+  }
+
+  .avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+
+  }
 }

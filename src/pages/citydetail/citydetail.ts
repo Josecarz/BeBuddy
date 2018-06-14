@@ -18,21 +18,21 @@ export class CitydetailPage {
 
   // city: any;
   infoCity: any;
+  tours: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,  private dbapi: DbApiService) {
     this.infoCity = this.navParams.data;
     console.log(this.infoCity);
   }
 
-  // ionViewDidLoad() {
-  //   // this.dbapi.getInfoCity(this.city.id).subscribe(
-  //   //   (data) => {
-  //   //     this.infoCity = data;
-  //   //     console.log('ionViewDidLoad INFOCITY' + this.infoCity);
-  //   //   }
-  //   // );
-  //
-  // }
+  ionViewDidLoad() {
+    this.dbapi.getTours().subscribe(
+      (data) => {
+        this.tours = data;
+      }
+    );
+
+  }
 
 
 }
