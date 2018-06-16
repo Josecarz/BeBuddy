@@ -29,6 +29,7 @@ import {TripdetailPage} from "../pages/tripdetail/tripdetail";
 import {UserService} from "../providers/user-service";
 import {CountrydetailPage} from "../pages/countrydetail/countrydetail";
 import {CitydetailPage} from "../pages/citydetail/citydetail";
+import {Ionic2RatingModule} from "ionic2-rating";
 
 
 
@@ -63,7 +64,7 @@ export const FirebaseConfig = {
     AngularFireStorageModule,
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    // Ionic2RatingModule,
+    Ionic2RatingModule,
     IonicStorageModule.forRoot(),
     HttpClientModule,
     HttpModule

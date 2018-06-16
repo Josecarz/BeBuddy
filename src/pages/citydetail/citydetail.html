@@ -46,36 +46,37 @@
   <!--<h2>Buddies en {{infoCity.name}}</h2>-->
 
   <ion-card-content>
-    <ion-card-title>
+    <div>
       <div>Buddies en {{infoCity.name}}</div>
       <hr>
-    </ion-card-title>
-    <ion-scroll scrollX="true" style="white-space:nowrap; height: 50px;">
-      <span class = "col" *ngFor="let item of tours"><img class="avatar" src="{{item.img}}"/></span>
+    </div>
+    <ion-scroll scrollX="true" style="white-space:nowrap; height: 68px;">
+      <div style="display: inline-block; text-align: center; margin-right: 10px" *ngFor="let item of tours">
+        <img class="avatar" src="{{item.img}}"/><br>
+        <span>{{item.buddy}}</span>
+      </div>
     </ion-scroll>
   </ion-card-content>
-
+  <hr>
 
   <ion-list>
     <ion-item  *ngFor="let item of tours">
       <img item-start class="miniimg" src="{{item.img}}">
       <!--<div><span style="float:right"> <img item-start class="avatar" src="{{item.img}}"></span><h2>{{item.name}}</h2></div>-->
       <!--<h2>{{item.name}}</h2>-->
-      <div class = "row">
-        <span class = "col"><h2>{{item.name}}</h2></span>
-
-        <div end><img item-start class="avatar" src="{{item.img}}"></div>
-      </div>
-
-      <!--<div class = "row">-->
-        <!--<div class = "col">col 1</div>-->
-        <!--<div class = "col">col 2</div>-->
-        <!--<div class = "col">col 3</div>-->
-      <!--</div>-->
+      <ion-grid>
+        <ion-row>
+          <ion-col col-9>
+            <h2>{{item.name}}</h2>
+            <rating class="rating" [(ngModel)]="item.rate" (ngModelChange)="onModelChange($event, recipe)" readOnly="{{lock}}"></rating>
+          </ion-col>
+          <ion-col col-3>
+             <img item-start class="avatar" src="{{item.img}}">
+          </ion-col>
+        </ion-row>
+      </ion-grid>
       <ion-buttons class="buttons" end>
-        <button ion-button small>
-          <ion-icon name="md-add-circle">Añadir a mis planes</ion-icon>
-        </button>
+        <button ion-button small round>Ver más</button>
       </ion-buttons>
 
     </ion-item>

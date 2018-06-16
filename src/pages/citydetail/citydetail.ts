@@ -29,6 +29,8 @@ export class CitydetailPage {
     this.dbapi.getTours().subscribe(
       (data) => {
         this.tours = data;
+        console.log(this.tours);
+
       }
     );
 
