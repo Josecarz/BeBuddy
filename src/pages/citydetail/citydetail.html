@@ -60,7 +60,7 @@
   <hr>
 
   <ion-list>
-    <ion-item  *ngFor="let item of tours">
+    <ion-item  *ngFor="let item of tours" (click)="navTour(item)">
       <img item-start class="miniimg" src="{{item.img}}">
       <!--<div><span style="float:right"> <img item-start class="avatar" src="{{item.img}}"></span><h2>{{item.name}}</h2></div>-->
       <!--<h2>{{item.name}}</h2>-->

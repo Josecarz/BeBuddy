@@ -14,7 +14,7 @@ page-citydetail {
       //background-color: #222222;
       font-family: "Neon";
       position: absolute;
-      bottom: 5%;
+      bottom: 20%;
       font-size: 2.0em;
       width: 100%;
       font-weight: bold;
@@ -99,5 +99,9 @@ page-citydetail {
         }
       }
     }
+  }
+
+  .label-md {
+    margin: 0;
   }
 }

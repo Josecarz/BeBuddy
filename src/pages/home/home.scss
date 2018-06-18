@@ -25,10 +25,11 @@ page-home {
     }
 
     .title{
-      font-family: "Neon";
+      //font-family: "Neon";
+      padding: 90px;
       opacity: 1;
       position: absolute;
-      top: 5%;
+      top: -10%;
       font-size: 2.0em;
       width: 100%;
       font-weight: bold;
@@ -40,7 +41,7 @@ page-home {
       font-family: "Neon";
       opacity: 1;
       position: absolute;
-      bottom: 60%;
+      bottom: 40%;
       font-size: 2.0em;
       width: 100%;
       font-weight: bold;
@@ -52,7 +53,7 @@ page-home {
       font-family: "Neon";
       opacity: 0.7;
       position: absolute;
-      bottom: 40%;
+      bottom: 20%;
       font-size: 2.0em;
       width: 100%;
       font-weight: bold;
@@ -61,7 +62,7 @@ page-home {
 
     .spinner-container{
       position: absolute;
-      bottom: 20%;
+      bottom: 2%;
       font-size: 10em;
       width: 100%;
       font-weight: bold;

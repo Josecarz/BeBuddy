@@ -16,24 +16,19 @@ import {DbApiService} from "../../providers/db-api.service";
 })
 export class TripdetailPage {
 
-  destino: any;
+  tour: any;
   cities = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,  private dbapi: DbApiService,) {
-    this.destino = this.navParams.data;
+    this.tour = this.navParams.data;
     // console.log('ionViewDidLoad ' + this.destino);
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad TripdetailPage' + this.destino.id);
+    console.log('ionViewDidLoad TripdetailPage' + this.tour.id);
 
 
-    this.dbapi.getCities(this.destino.id).subscribe(
-      (data) => {
-        this.cities = data;
-        // console.log('hola' + this.cities);
-      }
-    );
+
 
   }
 

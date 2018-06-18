@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {DbApiService} from "../../providers/db-api.service";
+import {TripdetailPage} from "../tripdetail/tripdetail";
 
 /**
  * Generated class for the CitydetailPage page.
@@ -34,6 +35,10 @@ export class CitydetailPage {
       }
     );
 
+  }
+
+  navTour(tour){
+    this.navCtrl.push(TripdetailPage, tour);
   }
 
 

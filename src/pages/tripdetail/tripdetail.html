@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar color="dark" >
-    <ion-title style="font-family: Neon; text-align: center; margin-right: 50px ">{{destino.name}}</ion-title>
+    <ion-title style="font-family: Neon; text-align: center; margin-right: 50px ">{{tour.name}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -16,43 +16,45 @@
 <ion-content>
   <div class="card-background-page">
     <ion-card>
-      <img src="assets/imgs/andorra2.jpg"/>
-
-      <!--<div class="title">Bebuddy</div>-->
-      <!--<div class="card-title">¿Cuál es tu destino?</div>-->
-      <!--<div class="searchbar"><ion-searchbar placeholder="Berlín, Tailandia, Wroclaw..." [(ngModel)]="searchTerm" [formControl]="searchControl" (ionInput)="onSearchInput()"></ion-searchbar></div>-->
-      <!--<div *ngIf="searching" class="spinner-container">-->
-        <!--<ion-spinner name="bubbles"></ion-spinner>-->
-      <!--</div>-->
-      <!--<div class="card-subtitle">41 Listings</div>-->
+      <img src="{{tour.img}}"/>
+      <ion-buttons class="buttons" end>
+          <button ion-button small round>Añadir a mis planes</button>
+      </ion-buttons>
     </ion-card>
-
-    <ion-buttons end>
-      <button ion-button round small>
-        <ion-icon name="md-add-circle">Añadir a mis planes</ion-icon>
-      </button>
-      <button>
-        <ion-icon name="contact"></ion-icon>
-      </button>
-      <button>
-        <ion-icon name="log-out"></ion-icon>
-      </button>
-    </ion-buttons>
-
   </div>
 
-
-
-  <ion-card>Andorra, oficialmente Principado de Andorra, es un pequeño país soberano del suroeste de Europa. Constituido en Estado independiente, de derecho, democrático y social, ​ cuya forma de gobierno es el coprincipado parlamentario.​ </ion-card>
-
-  <ion-card class="destino" *ngFor="let city of cities" (click)="navTrip(item)">
-    <!--<img src="{{item.img}}"/>-->
-    <p>{{city.name}}</p>
-  </ion-card>
-
+  <ion-grid style="padding: 0">
+    <ion-row>
+      <ion-col col-7>
+        <rating class="rating" [(ngModel)]="tour.rate" (ngModelChange)="onModelChange($event, recipe)" readOnly="{{lock}}"></rating>
+        <div><p style="margin-left: 12px">{{tour.votes}} Valoraciones</p></div>
+      </ion-col>
+      <ion-col col-5>
+        <button ion-button round small full>Ver opiniones</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <hr style="margin: 0px">
+  <p style="margin: 5px">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sed nunc aliquam, dapibus arcu quis, scelerisque sem. Duis tristique quis sapien nec laoreet. </p>
+  <hr style="margin: 0px">
+  <ion-grid>
+    <ion-row>
+      <ion-col col-3 style="text-align: center">
+        <img class="avatar" src="{{tour.img}}"/><br>
+        <span>{{tour.buddy}}</span>
+      </ion-col>
+      <ion-col col-9>
+        <ion-buttons class="buttons" end>
+          <button ion-button small round>Enviar mensaje</button>
+          <button ion-button small round>Seguir</button>
+        </ion-buttons>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <hr style="margin: 0px">
   <ion-card-content>
     <ion-card-title>
-      <div><span style="float:right">Ver todo</span>Tours en {{destino.name}}</div>
+      <div><span style="float:right">Ver todo</span>Otros tours de {{tour.buddy}}</div>
       <hr>
     </ion-card-title>
     <ion-scroll scrollX="true" style="white-space:nowrap; height: 150px;">
@@ -62,4 +64,3 @@
       <img class="tours" src="assets/imgs/furgoneta.jpg"/>
     </ion-scroll>
   </ion-card-content>
-</ion-content>
