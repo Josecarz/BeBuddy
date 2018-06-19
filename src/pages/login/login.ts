@@ -4,13 +4,10 @@ import {
   ToastController
 } from 'ionic-angular';
 import {AngularFireAuth} from "angularfire2/auth";
-import {User} from "../../models/user";
 import {RegisterPage} from "../register/register";
-import {HomePage} from "../home/home";
-import {FormGroup, Validators, FormBuilder} from "@angular/forms";
-import * as firebase from "firebase";
-import {Login} from "../../models/models";
+import {Login, UserInfo} from "../../models/models";
 import {UserService} from "../../providers/user-service";
+import {DbApiService} from "../../providers/db-api.service";
 
 /**
  * Generated class for the LoginPage page.
@@ -30,15 +27,26 @@ export class LoginPage {
   emailPattern: RegExp = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
   userLogin: Login = { email: '', password: '' };
   loader: Loading;
-  usuario = {};
-
-  constructor(public navCtrl: NavController, private profile: UserService, private loadingCtrl: LoadingController, private auth: AngularFireAuth) {
+  usuario: any;
+  // userInfo: UserInfo = { id: '', name: '', email: '', img: '', role: ''}
+  userInfo: any;
+  constructor(public navCtrl: NavController, private dbapi: DbApiService,  private profile: UserService, private loadingCtrl: LoadingController, private auth: AngularFireAuth) {
   }
 
-  ionWiewDidLoad(){
+  ionViewDidLoad(){
     this.auth.authState.subscribe(data => {
       this.usuario = data;
+      console.log("USUARIO   " + this.usuario.uid);
+      this.profile.getUserProfileInfo(this.usuario.uid).subscribe(
+        (data) => {
+          this.userInfo = data;
+          console.log("USUARIO INFO   " + this.userInfo.name);
+        }
+      );
     });
+
+
+
   }
 
   login(): void {
@@ -52,10 +60,12 @@ export class LoginPage {
         console.log(err);
         this.loader.dismiss();
       })
+
   }
 
   logout(){
     this.profile.userLogout();
+    this.navCtrl.push(LoginPage);
   }
 
   SignUp(): void {

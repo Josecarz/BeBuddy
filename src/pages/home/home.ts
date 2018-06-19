@@ -6,6 +6,7 @@ import {FormControl} from "@angular/forms";
 import {DataProvider} from "../../providers/data";
 import {TripdetailPage} from "../tripdetail/tripdetail";
 import {CountrydetailPage} from "../countrydetail/countrydetail";
+import {UserService} from "../../providers/user-service";
 
 @Component({
   selector: 'page-home',
@@ -24,6 +25,7 @@ export class HomePage {
   searchControl: FormControl;
   items: any;
   searching: any = false;
+  userInfo: any;
 
   constructor(private afAuth: AngularFireAuth,
               public navCtrl: NavController,
@@ -31,6 +33,7 @@ export class HomePage {
               public navParams: NavParams,
               private dbapi: DbApiService,
               private dataService: DataProvider,
+              private profile: UserService
               // private socialsharing: SocialSharing
               ) {
     this.searchControl = new FormControl();

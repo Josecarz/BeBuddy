@@ -7,7 +7,8 @@
 <ion-header>
 
   <ion-navbar color="dark">
-    <ion-title>login</ion-title>
+    <ion-title *ngIf="!usuario">login</ion-title>
+    <ion-title *ngIf="usuario">Perfil</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -38,18 +39,19 @@
     </div>
   </div>
 
+</ion-content>
 
-  <!--<ion-card *ngIf="usuario">-->
-    <!--<img src="img/nin-live.png"/>-->
-    <!--<ion-card-content>-->
-      <!--<ion-card-title >-->
-      <!--{{userData?.email}}-->
-      <!--</ion-card-title>-->
-      <!--<p>-->
-        <!--The most popular industrial group ever, and largely-->
-        <!--responsible for bringing the music to a mass audience.-->
-      <!--</p>-->
-    <!--</ion-card-content>-->
-  <!--</ion-card>-->
+<ion-content *ngIf="usuario">
+  <div>
+    <ion-card>
+
+      <img src="{{userInfo.img}}"/>
+      <!--<img src="assets/imgs/logoblanco.png" class="title"/>-->
+      <!--<div class="card-subtitle">41 Listings</div>-->
+    </ion-card>
+  </div>
+  <button ion-button round full color="primary" (tap)="logout()">Cerrar sesión</button><br>
+
+
 </ion-content>
 

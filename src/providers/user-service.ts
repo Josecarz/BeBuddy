@@ -44,10 +44,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { BehaviorSubject } from 'rxjs'
-import { Subject } from 'rxjs/Subject';
-import { Observable } from 'rxjs/Observable';
 import {NewUser, UserInfo} from "../models/models";
+import {Observable} from "rxjs/Observable";
 
 
 @Injectable()
@@ -66,29 +64,23 @@ export class UserService {
     });
   }
 
-  public userLogout(): Promise<any> {
-    return new Promise((resolve, reject) => {
-      this.auth.auth.signOut().then(() => {
-        resolve();
-      }).catch(err => reject(err));
-    });
+  public userLogout(){
+    this.auth.auth.signOut();
   }
 
-  public getUserProfileInfo(userId: string): Promise<UserInfo> {
+  public getUserProfileInfo(userId: string):  Observable <any>{
     return this.db.object(`/users/${userId}/profile`)
       .valueChanges()
-      .first()
-      .toPromise() as Promise<UserInfo>;
   }
 
   public createAccount(user: NewUser): Promise<any> {
     return new Promise((resolve, reject) => {
       this.auth.auth.createUserAndRetrieveDataWithEmailAndPassword(user.email, user.password).then(success => {
         delete user.password;
-        user.img = "assets/imgs/electric-guitar.png";
+        user.img = "assets/imgs/furgoneta.jpg";
         let userCopy = Object.assign(user);
         userCopy.id = success.user.uid;
-        this.addUserToDatabase(success.user.uid, userCopy)
+        this.addUserToDatabase(userCopy.id, userCopy)
       })
         .catch(err => reject(err.code));
     });
