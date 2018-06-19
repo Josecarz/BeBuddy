@@ -1,3 +1,37 @@
 page-register {
 
+  .title {
+    position: relative;
+    text-align: center;
+    font-family: "Neon";
+  }
+
+  h1{
+    font-size: 80px;
+    text-align: center;
+    color: #fff;
+    font-family: "Neon";
+
+  }
+
+  ion-content {
+    background-image: url("../../assets/imgs/fondologin.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    position: relative;
+    border: none;
+
+    ion-item{
+      opacity: 0.8;
+    }
+
+
+    p{
+      text-align: center;
+      color: #fff;
+    }
+  }
+
 }

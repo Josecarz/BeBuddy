@@ -9,6 +9,8 @@ import {RegisterPage} from "../register/register";
 import {HomePage} from "../home/home";
 import {FormGroup, Validators, FormBuilder} from "@angular/forms";
 import * as firebase from "firebase";
+import {Login} from "../../models/models";
+import {UserService} from "../../providers/user-service";
 
 /**
  * Generated class for the LoginPage page.
@@ -24,89 +26,39 @@ import * as firebase from "firebase";
 })
 export class LoginPage {
 
-  myForm: FormGroup;
-  user = {} as User;
+
+  emailPattern: RegExp = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+  userLogin: Login = { email: '', password: '' };
+  loader: Loading;
   usuario = {};
-  public loading: Loading;
-  user1: any;
-  userData: any;
-  public email: string;
 
-  constructor(public navCtrl: NavController,
-              public navParams: NavParams,
-              private toast : ToastController,
-              public formBuilder: FormBuilder,
-              private afAuth: AngularFireAuth,
-              public alertCtrl: AlertController,
-              public loadingCtrl: LoadingController) {
-
-    this.myForm = this.formBuilder.group({
-      email: ['', Validators.required],
-      password: ['', Validators.required]
-    });
-
-
+  constructor(public navCtrl: NavController, private profile: UserService, private loadingCtrl: LoadingController, private auth: AngularFireAuth) {
   }
 
-  ionViewDidLoad() {
-    this.afAuth.authState.subscribe(data => {
+  ionWiewDidLoad(){
+    this.auth.authState.subscribe(data => {
       this.usuario = data;
-      // console.log(data.email);
-      if (data && data.email && data.uid) {
-
-        this.toast.create({
-          message: `Welcome to GC_Diet, ${data.email}`,
-          duration: 3000
-        }).present();
-      }
     });
-
-    this.user1 = firebase.auth().currentUser;
-    console.log("Emai,,,,,,,,,,,,l:" + this.user1.email);
-    if (this.user1 != null) {
-    //   name =  this.user1.displayName;
-      this.userData.email =  this.user1.email;
-    //   photoUrl =  this.user1.photoURL;
-    //   emailVerified =  this.user1.emailVerified;
-    //   uid =  this.user1.uid;
-    }
   }
 
-  login(user: User) {
-
-    console.log("Email:" + user.email);
-    console.log("Password:" + user.password);
-
-    this.afAuth.auth.signInWithEmailAndPassword(user.email, user.password).then(() => {
-      this.navCtrl.push(HomePage);
-    }, (err) => {
-      this.loading.dismiss().then( ()=>{
-        let alert = this.alertCtrl.create({
-          message: err.message,
-          buttons: [
-            {
-              text: "OK",
-              role: 'cancel'
-            }
-          ]
-        });
-        alert.present();
-      });
-    });
-
-    this.loading = this.loadingCtrl.create({
-      dismissOnPageChange: true,
-    });
-    this.loading.present();
+  login(): void {
+    this.loader = this.loadingCtrl.create({ content: 'Espere un momento...' });
+    this.loader.present();
+    this.profile.userLogin(this.userLogin.email, this.userLogin.password)
+      .then(() => {
+        this.loader.dismiss();
+      })
+      .catch(err => {
+        console.log(err);
+        this.loader.dismiss();
+      })
   }
 
-
-  logout() {
-    this.afAuth.auth.signOut();
-
+  logout(){
+    this.profile.userLogout();
   }
 
-  SignUp() {
+  SignUp(): void {
     this.navCtrl.push(RegisterPage);
   }
 
