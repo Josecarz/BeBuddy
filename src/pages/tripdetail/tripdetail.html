@@ -17,8 +17,14 @@
   <div class="card-background-page">
     <ion-card>
       <img src="{{tour.img}}"/>
-      <ion-buttons class="buttons" end>
-          <button ion-button small round>Añadir a mis planes</button>
+      <ion-buttons end class="buttons">
+        <button ion-button round (click)="favoriteTour(tour)" *ngIf="!favorite">
+          <ion-icon name="star" padding-right=""></ion-icon>
+          Añadir a mis planes
+        </button>
+        <button ion-button round (click)="unfavoriteTour(tour)" *ngIf="favorite">
+          <ion-icon name="star"></ion-icon>
+        </button>
       </ion-buttons>
     </ion-card>
   </div>

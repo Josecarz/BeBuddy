@@ -30,6 +30,7 @@ import {UserService} from "../providers/user-service";
 import {CountrydetailPage} from "../pages/countrydetail/countrydetail";
 import {CitydetailPage} from "../pages/citydetail/citydetail";
 import {Ionic2RatingModule} from "ionic2-rating";
+import {MyTravelsPage} from "../pages/my-travels/my-travels";
 
 
 
@@ -55,7 +56,8 @@ export const FirebaseConfig = {
     CustomerSearchFilter,
     TripdetailPage,
     CountrydetailPage,
-    CitydetailPage
+    CitydetailPage,
+    MyTravelsPage
   ],
   imports: [
     BrowserModule,
@@ -81,7 +83,8 @@ export const FirebaseConfig = {
     RegisterPage,
     TripdetailPage,
     CountrydetailPage,
-    CitydetailPage
+    CitydetailPage,
+    MyTravelsPage
   ],
   providers: [
     StatusBar,

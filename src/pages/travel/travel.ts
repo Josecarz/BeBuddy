@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
 
 /**
  * Generated class for the TravelPage page.
@@ -15,11 +16,20 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class TravelPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  myTours = [];
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage) {
+  }
+  //
+  // ionViewDidLoad() {
+  //   console.log('ionViewDidLoad TravelPage');
+  // }
+
+  ionViewWillLoad(){
+    this.storage.forEach( (value, key, index) => {
+      this.myTours.push(value);
+    })
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad TravelPage');
-  }
 
 }

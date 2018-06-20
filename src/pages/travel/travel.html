@@ -15,17 +15,25 @@
 
 <ion-content>
   <ion-list>
-    <ion-item>
-        <img item-start class="miniimg" src="assets/imgs/fondobuscador.jpg">
-      <h2>Paseo por el parque</h2>
-      <h3>NOMBRE DEL BUDDY</h3>
-      <p>Zaragoza</p>
-    </ion-item>
-    <ion-item>
-      <img item-start class="miniimg" src="assets/imgs/fondobuscador.jpg">
-      <h2>Paseo por el parque</h2>
-      <h3>NOMBRE DEL BUDDY</h3>
-      <p>Zaragoza</p>
+    <ion-item  *ngFor="let item of myTours" (click)="navTour(item)">
+      <img item-start class="miniimg" src="{{item.img}}">
+      <!--<div><span style="float:right"> <img item-start class="avatar" src="{{item.img}}"></span><h2>{{item.name}}</h2></div>-->
+      <!--<h2>{{item.name}}</h2>-->
+      <ion-grid>
+        <ion-row>
+          <ion-col col-9>
+            <h2>{{item.name}}</h2>
+            <rating class="rating" [(ngModel)]="item.rate" (ngModelChange)="onModelChange($event, recipe)" readOnly="{{lock}}"></rating>
+          </ion-col>
+          <ion-col col-3>
+            <img item-start class="avatar" src="{{item.img}}">
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-buttons class="buttons" end>
+        <button ion-button small round>Ver más</button>
+      </ion-buttons>
+
     </ion-item>
 
   </ion-list>

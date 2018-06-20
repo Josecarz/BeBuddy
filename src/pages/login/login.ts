@@ -36,13 +36,15 @@ export class LoginPage {
   ionViewDidLoad(){
     this.auth.authState.subscribe(data => {
       this.usuario = data;
-      console.log("USUARIO   " + this.usuario.uid);
-      this.profile.getUserProfileInfo(this.usuario.uid).subscribe(
-        (data) => {
-          this.userInfo = data;
-          console.log("USUARIO INFO   " + this.userInfo.name);
-        }
-      );
+      if (this.usuario != null) {
+        console.log("USUARIO   " + this.usuario.uid);
+        this.profile.getUserProfileInfo(this.usuario.uid).subscribe(
+          (data) => {
+            this.userInfo = data;
+            console.log("USUARIO INFO   " + this.userInfo.name);
+          }
+        );
+      }
     });
 
 
@@ -54,6 +56,7 @@ export class LoginPage {
     this.loader.present();
     this.profile.userLogin(this.userLogin.email, this.userLogin.password)
       .then(() => {
+        this.navCtrl.setRoot(LoginPage);
         this.loader.dismiss();
       })
       .catch(err => {
@@ -65,7 +68,7 @@ export class LoginPage {
 
   logout(){
     this.profile.userLogout();
-    this.navCtrl.push(LoginPage);
+    this.navCtrl.setRoot(LoginPage);
   }
 
   SignUp(): void {
