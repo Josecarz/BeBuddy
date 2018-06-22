@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {Events, IonicPage, NavController, NavParams} from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+import {FavouritesService} from "../../providers/favourites-service";
 
 /**
  * Generated class for the TravelPage page.
@@ -16,20 +17,20 @@ import { Storage } from '@ionic/storage';
 })
 export class TravelPage {
 
-  myTours = [];
+  favourites = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage,  private fav: FavouritesService, private events: Events) {
   }
-  //
-  // ionViewDidLoad() {
-  //   console.log('ionViewDidLoad TravelPage');
-  // }
 
-  ionViewWillLoad(){
-    this.storage.forEach( (value, key, index) => {
-      this.myTours.push(value);
-    })
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad MyTeamsPage');
+    this.favourites = this.fav.getAllFavourites();
+    this.events.subscribe('favourites:changed',(item)=>
+      this.favourites=this.fav.getAllFavourites());
   }
+
+
 
 
 }

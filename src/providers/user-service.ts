@@ -91,4 +91,9 @@ export class UserService {
       .set(user);
   }
 
+  private addUserToFollow(userId: string, userFollow: string){
+    return this.db.object(`/users/${userId}/follows`)
+      .set(userFollow);
+  }
+
 }

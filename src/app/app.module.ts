@@ -31,6 +31,7 @@ import {CountrydetailPage} from "../pages/countrydetail/countrydetail";
 import {CitydetailPage} from "../pages/citydetail/citydetail";
 import {Ionic2RatingModule} from "ionic2-rating";
 import {MyTravelsPage} from "../pages/my-travels/my-travels";
+import {FavouritesService} from "../providers/favourites-service";
 
 
 
@@ -93,7 +94,8 @@ export const FirebaseConfig = {
     UserService,
     AngularFireDatabase,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    DataProvider
+    DataProvider,
+    FavouritesService
 
   ]
 })

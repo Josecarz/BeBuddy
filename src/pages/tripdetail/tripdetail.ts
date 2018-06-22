@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {DbApiService} from "../../providers/db-api.service";
 import { Storage } from '@ionic/storage';
+import {FavouritesService} from "../../providers/favourites-service";
 
 /**
  * Generated class for the TripdetailPage page.
@@ -19,45 +20,30 @@ export class TripdetailPage {
 
   tour: any;
   cities = [];
-  favorite: boolean;
+  favourite: boolean;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,  private dbapi: DbApiService,  public storage: Storage) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,  private fav: FavouritesService,  public storage: Storage) {
     this.tour = this.navParams.data;
     // console.log('ionViewDidLoad ' + this.destino);
   }
 
-  ionViewDidLoad() {
+  ionViewWillEnter() {
     console.log('ionViewDidLoad TripdetailPage' + this.tour.id);
+    this.fav.isFav(this.tour.id).then(value => this.favourite = value);
 
   }
 
   ionViewWillLoad(){
-    this.isFav(this.tour);
+    this.fav.isFav(this.tour);
   }
 
-  favoriteTour(tour){
-    this.storage.set(tour.id.toString(), tour);
-    this.favorite=true;
-    this.getFavorite(tour);
-  }
+  changeFollow(tour){
+    this.favourite = !this.favourite;
 
-  unfavoriteTour(tour){
-    this.storage.remove(tour.id.toString());
-    this.favorite=false;
-    this.getFavorite(tour);
-  }
-
-  getFavorite(tour){
-    this.storage.get(tour.id.toString()).then((val) => {
-      console.log("value is: " , val);
-    });
-    console.log(tour);
-  }
-
-  isFav(tour) {
-    this.storage.get(tour.id.toString()).then((value) => {
-      value ? this.favorite = true : this.favorite = false
-    }).catch(() => this.favorite = false);
+    if(this.favourite)
+      this.fav.favoriteTour(tour)
+    else
+      this.fav.unfavoriteTour(tour);
   }
 
 }
