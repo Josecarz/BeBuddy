@@ -8,11 +8,11 @@ export type UserInfo = {
 }
 
 export type NewUser = {
-  name: string;
-  password: string;
-  email: string;
+  name?: string;
+  password?: string;
+  email?: string;
   img?: string;
-  role: string;
+  city?: string;
 }
 
 export type Login = {

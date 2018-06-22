@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {DbApiService} from "../../providers/db-api.service";
 import { Storage } from '@ionic/storage';
 import {FavouritesService} from "../../providers/favourites-service";
+import {RatingService} from "../../providers/rating-service";
 
 /**
  * Generated class for the TripdetailPage page.
@@ -21,8 +22,9 @@ export class TripdetailPage {
   tour: any;
   cities = [];
   favourite: boolean;
+  lock: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,  private fav: FavouritesService,  public storage: Storage) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,  private fav: FavouritesService,  public storage: Storage, private dbapi: DbApiService, private rating: RatingService) {
     this.tour = this.navParams.data;
     // console.log('ionViewDidLoad ' + this.destino);
   }
@@ -44,6 +46,10 @@ export class TripdetailPage {
       this.fav.favoriteTour(tour)
     else
       this.fav.unfavoriteTour(tour);
+  }
+
+  rate($event, tour){
+    this.rating.onModelChange($event, tour, 'tour');
   }
 
 }

@@ -32,7 +32,7 @@
   <ion-grid style="padding: 0">
     <ion-row>
       <ion-col col-7>
-        <rating class="rating" [(ngModel)]="tour.rate" (ngModelChange)="onModelChange($event, recipe)" readOnly="{{lock}}"></rating>
+        <rating class="rating" [(ngModel)]="tour.rate" (ngModelChange)="rate($event, tour)" readOnly="{{lock}}"></rating>
         <div><p style="margin-left: 12px">{{tour.votes}} Valoraciones</p></div>
       </ion-col>
       <ion-col col-5>

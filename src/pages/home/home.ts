@@ -34,7 +34,6 @@ export class HomePage {
               private dbapi: DbApiService,
               private dataService: DataProvider,
               private profile: UserService
-              // private socialsharing: SocialSharing
               ) {
     this.searchControl = new FormControl();
 

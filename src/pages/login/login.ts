@@ -8,6 +8,8 @@ import {RegisterPage} from "../register/register";
 import {Login, UserInfo} from "../../models/models";
 import {UserService} from "../../providers/user-service";
 import {DbApiService} from "../../providers/db-api.service";
+import {EditPerfilComponent} from "../../components/edit-perfil/edit-perfil";
+import {RatingService} from "../../providers/rating-service";
 
 /**
  * Generated class for the LoginPage page.
@@ -30,10 +32,13 @@ export class LoginPage {
   usuario: any;
   // userInfo: UserInfo = { id: '', name: '', email: '', img: '', role: ''}
   userInfo: any;
-  constructor(public navCtrl: NavController, private dbapi: DbApiService,  private profile: UserService, private loadingCtrl: LoadingController, private auth: AngularFireAuth) {
+  ratingInfo: any;
+  lock: any;
+  constructor(public navCtrl: NavController, private dbapi: DbApiService,  private profile: UserService, private loadingCtrl: LoadingController, private auth: AngularFireAuth,
+              private rating: RatingService) {
   }
 
-  ionViewDidLoad(){
+  ionViewWillEnter(){
     this.auth.authState.subscribe(data => {
       this.usuario = data;
       if (this.usuario != null) {
@@ -42,6 +47,12 @@ export class LoginPage {
           (data) => {
             this.userInfo = data;
             console.log("USUARIO INFO   " + this.userInfo.name);
+          }
+        );
+        this.profile.getUserRatingInfo(this.usuario.uid).subscribe(
+          (data) => {
+            this.ratingInfo = data;
+            console.log("RATING " + this.ratingInfo.rate)
           }
         );
       }
@@ -75,4 +86,12 @@ export class LoginPage {
     this.navCtrl.push(RegisterPage);
   }
 
+  navEdit(){
+    this.navCtrl.push(EditPerfilComponent, this.userInfo);
+  }
+
+  rate($event, rating){
+    rating.id = this.userInfo.id;
+    this.rating.onModelChange($event, rating, 'user');
+  }
 }

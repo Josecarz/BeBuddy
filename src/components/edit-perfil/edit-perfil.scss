@@ -1,0 +1,22 @@
+edit-perfil {
+  .destino {
+    background-image: url("../../assets/imgs/fondologin.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    //width: 100%;
+    height: 50px;
+    position: relative;
+    border: none;
+
+    p{
+      font-family: "Neon";
+      font-size: 18px;
+      text-align: center;
+      position: relative;
+      top: 25%;
+      font-weight: bold;
+      color: #fff;
+    }
+  }
+}

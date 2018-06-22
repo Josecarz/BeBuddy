@@ -30,8 +30,9 @@ import {UserService} from "../providers/user-service";
 import {CountrydetailPage} from "../pages/countrydetail/countrydetail";
 import {CitydetailPage} from "../pages/citydetail/citydetail";
 import {Ionic2RatingModule} from "ionic2-rating";
-import {MyTravelsPage} from "../pages/my-travels/my-travels";
 import {FavouritesService} from "../providers/favourites-service";
+import {EditPerfilComponent} from "../components/edit-perfil/edit-perfil";
+import {RatingService} from "../providers/rating-service";
 
 
 
@@ -58,7 +59,7 @@ export const FirebaseConfig = {
     TripdetailPage,
     CountrydetailPage,
     CitydetailPage,
-    MyTravelsPage
+    EditPerfilComponent
   ],
   imports: [
     BrowserModule,
@@ -85,7 +86,7 @@ export const FirebaseConfig = {
     TripdetailPage,
     CountrydetailPage,
     CitydetailPage,
-    MyTravelsPage
+    EditPerfilComponent
   ],
   providers: [
     StatusBar,
@@ -95,7 +96,8 @@ export const FirebaseConfig = {
     AngularFireDatabase,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     DataProvider,
-    FavouritesService
+    FavouritesService,
+    RatingService
 
   ]
 })

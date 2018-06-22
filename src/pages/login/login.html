@@ -8,7 +8,12 @@
 
   <ion-navbar color="dark">
     <ion-title *ngIf="!usuario">login</ion-title>
-    <ion-title *ngIf="usuario">Perfil</ion-title>
+    <ion-title *ngIf="usuario" style="text-align: center; margin-left: 40px ">Perfil</ion-title>
+
+
+    <ion-buttons end *ngIf="usuario">
+      <button ion-button icon-only (click)="navEdit()"><ion-icon name="md-settings" ></ion-icon></button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -32,7 +37,6 @@
 
     <div padding>
       <button ion-button round full color="primary" [disabled]="!userLogin.email || !emailPattern.test(userLogin.email) || !userLogin.password" (tap)="login()">Iniciar sesión</button><br>
-      <!--<button ion-button round full color="primary" (click)="login(user)">Iniciar sesión con Facebook</button><br>-->
       <div>
         <p><span>O </span><span (click)="SignUp()" style="font-weight: bold">crea una cuenta de Bebbudy</span></p>
       </div>
@@ -42,16 +46,28 @@
 </ion-content>
 
 <ion-content *ngIf="usuario">
-  <div>
+  <div class="card-background-page">
     <ion-card>
-
       <img src="{{userInfo?.img}}"/>
-      <!--<img src="assets/imgs/logoblanco.png" class="title"/>-->
-      <!--<div class="card-subtitle">41 Listings</div>-->
+      <div class="card-title">{{userInfo?.name}}</div>
     </ion-card>
   </div>
-  <button ion-button round full color="primary" (tap)="logout()">Cerrar sesión</button><br>
 
+  <ion-grid style="padding: 0" >
+    <ion-row>
+      <ion-col col-7 *ngIf="ratingInfo">
+        <rating class="rating" [(ngModel)]="ratingInfo.rate" (ngModelChange)="rate($event, ratingInfo)" readOnly="{{lock}}"></rating>
+        <div><p style="margin-left: 12px">{{ratingInfo.votes}} Valoraciones</p></div>
+      </ion-col>
+      <ion-col col-5>
+        <button ion-button round small full>Ver opiniones</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <div padding>
+    <button ion-button round full color="primary" (tap)="logout()">Cerrar sesión</button><br>
+  </div>
 
 </ion-content>
 

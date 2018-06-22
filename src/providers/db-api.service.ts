@@ -15,10 +15,6 @@ export class DbApiService {
 
   }
 
-  getFruits(): Observable<any> {
-    return this.fb.list('alimentos/0/fruits').valueChanges();
-  }
-
   getTours(): Observable<any> {
     return this.fb.list('tours').valueChanges();
   }
@@ -65,8 +61,13 @@ export class DbApiService {
     return this.fb.list('recipes').valueChanges();
   }
 
-  pushRecipe(recipe) {
-    this.afDB.database.ref('recipes/' + recipe.id).set(recipe);
+  pushTour(tour) {
+    this.afDB.database.ref('tours/' + tour.id).set(tour);
+  }
+
+  pushUserRating(userId, rate) {
+    console.log(rate);
+    this.afDB.database.ref(`/users/${userId}/rating/`).set(rate);
   }
 
 

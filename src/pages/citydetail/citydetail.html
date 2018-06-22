@@ -60,7 +60,7 @@
   <hr>
 
   <ion-list>
-    <ion-item  *ngFor="let item of tours" (click)="navTour(item)">
+    <ion-item  *ngFor="let item of tours">
       <img item-start class="miniimg" src="{{item.img}}">
       <!--<div><span style="float:right"> <img item-start class="avatar" src="{{item.img}}"></span><h2>{{item.name}}</h2></div>-->
       <!--<h2>{{item.name}}</h2>-->
@@ -68,7 +68,7 @@
         <ion-row>
           <ion-col col-9>
             <h2>{{item.name}}</h2>
-            <rating class="rating" [(ngModel)]="item.rate" (ngModelChange)="onModelChange($event, recipe)" readOnly="{{lock}}"></rating>
+            <rating class="rating" [(ngModel)]="item.rate" (ngModelChange)="onModelChange($event, item)" readOnly="{{lock}}"></rating>
           </ion-col>
           <ion-col col-3>
              <img item-start class="avatar" src="{{item.img}}">
@@ -76,7 +76,7 @@
         </ion-row>
       </ion-grid>
       <ion-buttons class="buttons" end>
-        <button ion-button small round>Ver más</button>
+        <button ion-button small round (click)="navTour(item)">Ver más</button>
       </ion-buttons>
 
     </ion-item>

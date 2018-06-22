@@ -20,7 +20,7 @@ import {UserService} from "../../providers/user-service";
 })
 export class RegisterPage {
 
-  newUser: NewUser = { name: '', email: '', role: '', password: '' };
+  newUser: NewUser = { name: '', email: '', password: '' };
   passwordVisible: boolean = false;
   emailPattern: RegExp = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
@@ -42,6 +42,7 @@ export class RegisterPage {
       loader.dismiss();
     });
   }
+
 
 
 }
