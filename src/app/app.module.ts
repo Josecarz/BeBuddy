@@ -36,6 +36,7 @@ import {RatingService} from "../providers/rating-service";
 import {CreateTourComponent} from "../components/create-tour/create-tour";
 import {CameraService} from "../providers/camera-service";
 import {Camera} from "@ionic-native/camera";
+import {TourService} from "../providers/tour-service";
 
 
 
@@ -104,7 +105,8 @@ export const FirebaseConfig = {
     FavouritesService,
     RatingService,
     CameraService,
-    Camera
+    Camera,
+    TourService
 
   ]
 })

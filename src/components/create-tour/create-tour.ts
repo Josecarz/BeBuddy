@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { ActionSheetController, NavController, LoadingController, Loading } from 'ionic-angular';
 import { AngularFireDatabase } from 'angularfire2/database';
-import { Event } from '../../models/models';
+import { Tour } from '../../models/models';
 import {CameraService} from "../../providers/camera-service";
+import {TourService} from "../../providers/tour-service";
 
 
 @Component({
@@ -13,7 +14,7 @@ export class CreateTourComponent {
 
   imageSrc: string;
   imageUploaded: boolean;
-  event: Event;
+  tour: Tour;
   now: number;
   dateString: string;
   loader: Loading;
@@ -24,10 +25,11 @@ export class CreateTourComponent {
     private actionSheet: ActionSheetController,
     private db: AngularFireDatabase,
     private loadingCtrl: LoadingController,
-    private cam: CameraService
+    private cam: CameraService,
+    private tourService: TourService
   ) {
     this.dateString = '';
-    this.event = {
+    this.tour = {
       title: '',
       description: '',
       image: '',
@@ -53,7 +55,7 @@ export class CreateTourComponent {
 
   selectImage() {
     this.cam.getImage().then(imageData => {
-      this.event.image = imageData;
+      this.tour.image = imageData;
       this.imageSrc = imageData;
       this.imageUploaded = true;
     })
@@ -62,16 +64,16 @@ export class CreateTourComponent {
 
 
 
-  // createEvent() {
-  //   this.loader.present();
-  //   this.eventsProvider.createEvent(this.event)
-  //     .then(() => {
-  //       this.loader.dismiss();
-  //       this.navCtrl.pop();
-  //       this.toast.eventCreated();
-  //     })
-  //     .catch(err => console.log(err));
-  // }
+  createTour() {
+    this.loader.present();
+    this.tourService.createTour(this.tour)
+      .then(() => {
+        this.loader.dismiss();
+        this.navCtrl.pop();
+        // this.toast.eventCreated();
+      })
+      .catch(err => console.log(err));
+  }
 
 
 }

@@ -20,7 +20,7 @@ export type Login = {
   password: string;
 }
 
-export type Event = {
+export type Tour = {
   title: string;
   description: string;
   date: number;

@@ -14,7 +14,7 @@
       <ion-icon name="close"></ion-icon>
     </button>
   </div>
-  <form (ngSubmit)="createEvent()" #eventForm="ngForm">
+  <form (ngSubmit)="createTour()" #eventForm="ngForm">
     <div class="img-container" (tap)="selectImage()" [ngStyle]="{'background-image': 'url(' + imageSrc + ')'}">
       <img *ngIf="!imageUploaded" src="assets/imgs/upload_image.png" />
     </div>
@@ -25,7 +25,7 @@
       <ion-label>
         <ion-icon name="md-create"></ion-icon>
       </ion-label>
-      <ion-input required [(ngModel)]="event.title" name="title" placeholder="Título"></ion-input>
+      <ion-input required [(ngModel)]="tour.title" name="title" placeholder="Título"></ion-input>
     </ion-item>
     <!--<ion-item (tap)="chooseDate()">-->
       <!--<ion-label>-->
@@ -37,17 +37,17 @@
       <ion-label>
         <ion-icon name="md-create"></ion-icon>
       </ion-label>
-      <ion-textarea required [(ngModel)]="event.description" name="description" placeholder="Descripción"></ion-textarea>
+      <ion-textarea required [(ngModel)]="tour.description" name="description" placeholder="Descripción"></ion-textarea>
     </ion-item>
     <ion-item>
       <ion-label>
         <ion-icon name="md-time"></ion-icon>
       </ion-label>
-      <ion-input required [(ngModel)]="event.time" name="time" placeholder="Tiempo"></ion-input>
+      <ion-input required [(ngModel)]="tour.time" name="time" placeholder="Tiempo"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label><ion-icon name="md-calendar"></ion-icon> Días disponibles</ion-label>
-      <ion-select [(ngModel)]="event.days" multiple="true" [ngModelOptions]="{standalone: true}">
+      <ion-select [(ngModel)]="tour.days" multiple="true" [ngModelOptions]="{standalone: true}">
         <ion-option>Lunes</ion-option>
         <ion-option>Martes</ion-option>
         <ion-option>Miércoles</ion-option>
@@ -57,7 +57,7 @@
         <ion-option>Domingo</ion-option>
       </ion-select>
     </ion-item>
-    <button [disabled]="!eventForm.form.valid || (event.image.length == 0)" type="submit" ion-button full class="button-blue">
+    <button [disabled]="!eventForm.form.valid || (tour.image.length == 0)" type="submit" ion-button full class="button-blue">
       Crear evento
     </button>
   </form>
