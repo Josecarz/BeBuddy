@@ -50,6 +50,13 @@
     <ion-card>
       <img src="{{userInfo?.img}}"/>
       <div class="card-title">{{userInfo?.name}}</div>
+
+      <ion-buttons end class="buttons">
+        <button ion-button round small (click)="navCreate()">
+          Crear tour
+        </button>
+
+      </ion-buttons>
     </ion-card>
   </div>
 

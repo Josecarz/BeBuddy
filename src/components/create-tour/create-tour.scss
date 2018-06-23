@@ -1,3 +1,61 @@
 create-tour {
+  .positions-absolute{
+    position: absolute;
+    bottom: 0;
+  }
+  .close-button-div {
+    width: 100%;
+    background-color:  #222;
+    text-align: right;
 
+    button{
+      color: white;
+    }
+  }
+  .img-container {
+    height: 200px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(128, 128, 128, 0.2);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    img {
+      height: 90px;
+      margin-bottom: 15px;
+    }
+  }
+  textarea{
+    height: 100px;
+  }
+  .create-title {
+    text-align: center;
+    margin-top: 30px;
+    p {
+      margin-bottom: 0;
+      font-family: 'Avenir Black';
+      font-size: 16px;
+    }
+  }
+  .margin-top {
+    margin-top: 20px;
+  }
+  .date-input{
+    .text-input[disabled] {
+      opacity: 1;
+    }
+  }
+  .create-button {
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 0;
+  }
+  .button-blue{
+    margin-top: 10px;
+    .item-inner{
+      border: 0 !important;
+    }
+  }
 }

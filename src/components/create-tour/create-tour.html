@@ -1,4 +1,64 @@
 <!-- Generated template for the CreateTourComponent component -->
-<div>
-  {{text}}
-</div>
+
+<!--<ion-header>-->
+
+  <!--<ion-navbar color="dark" >-->
+    <!--<ion-title style="font-family: Neon; text-align: center; margin-right: 50px ">Crear tour</ion-title>-->
+  <!--</ion-navbar>-->
+
+<!--</ion-header>-->
+
+<ion-content class="positions-absolute">
+  <div class="close-button-div">
+    <button (tap)="closePage()" ion-button icon-only clear>
+      <ion-icon name="close"></ion-icon>
+    </button>
+  </div>
+  <form (ngSubmit)="createEvent()" #eventForm="ngForm">
+    <div class="img-container" (tap)="selectImage()" [ngStyle]="{'background-image': 'url(' + imageSrc + ')'}">
+      <img *ngIf="!imageUploaded" src="assets/imgs/upload_image.png" />
+    </div>
+    <div>
+      <p>Información del Tour:</p>
+    </div>
+    <ion-item>
+      <ion-label>
+        <ion-icon name="md-create"></ion-icon>
+      </ion-label>
+      <ion-input required [(ngModel)]="event.title" name="title" placeholder="Título"></ion-input>
+    </ion-item>
+    <!--<ion-item (tap)="chooseDate()">-->
+      <!--<ion-label>-->
+        <!--<ion-icon name="md-calendar"></ion-icon>-->
+      <!--</ion-label>-->
+      <!--<ion-input required [(ngModel)]="dateString" name="dateString" class="date-input" placeholder="Fecha"></ion-input>-->
+    <!--</ion-item>-->
+    <ion-item>
+      <ion-label>
+        <ion-icon name="md-create"></ion-icon>
+      </ion-label>
+      <ion-textarea required [(ngModel)]="event.description" name="description" placeholder="Descripción"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        <ion-icon name="md-time"></ion-icon>
+      </ion-label>
+      <ion-input required [(ngModel)]="event.time" name="time" placeholder="Tiempo"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label><ion-icon name="md-calendar"></ion-icon> Días disponibles</ion-label>
+      <ion-select [(ngModel)]="event.days" multiple="true" [ngModelOptions]="{standalone: true}">
+        <ion-option>Lunes</ion-option>
+        <ion-option>Martes</ion-option>
+        <ion-option>Miércoles</ion-option>
+        <ion-option>Jueves</ion-option>
+        <ion-option>Viernes</ion-option>
+        <ion-option>Sábado</ion-option>
+        <ion-option>Domingo</ion-option>
+      </ion-select>
+    </ion-item>
+    <button [disabled]="!eventForm.form.valid || (event.image.length == 0)" type="submit" ion-button full class="button-blue">
+      Crear evento
+    </button>
+  </form>
+</ion-content>

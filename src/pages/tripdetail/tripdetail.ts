@@ -52,4 +52,5 @@ export class TripdetailPage {
     this.rating.onModelChange($event, tour, 'tour');
   }
 
+
 }

@@ -10,6 +10,7 @@ import {UserService} from "../../providers/user-service";
 import {DbApiService} from "../../providers/db-api.service";
 import {EditPerfilComponent} from "../../components/edit-perfil/edit-perfil";
 import {RatingService} from "../../providers/rating-service";
+import {CreateTourComponent} from "../../components/create-tour/create-tour";
 
 /**
  * Generated class for the LoginPage page.
@@ -93,5 +94,9 @@ export class LoginPage {
   rate($event, rating){
     rating.id = this.userInfo.id;
     this.rating.onModelChange($event, rating, 'user');
+  }
+
+  navCreate(){
+    this.navCtrl.push(CreateTourComponent);
   }
 }

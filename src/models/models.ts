@@ -19,3 +19,12 @@ export type Login = {
   email: string;
   password: string;
 }
+
+export type Event = {
+  title: string;
+  description: string;
+  date: number;
+  image: string;
+  imageUrl?: string;
+  days: [''];
+}

@@ -33,6 +33,9 @@ import {Ionic2RatingModule} from "ionic2-rating";
 import {FavouritesService} from "../providers/favourites-service";
 import {EditPerfilComponent} from "../components/edit-perfil/edit-perfil";
 import {RatingService} from "../providers/rating-service";
+import {CreateTourComponent} from "../components/create-tour/create-tour";
+import {CameraService} from "../providers/camera-service";
+import {Camera} from "@ionic-native/camera";
 
 
 
@@ -59,7 +62,8 @@ export const FirebaseConfig = {
     TripdetailPage,
     CountrydetailPage,
     CitydetailPage,
-    EditPerfilComponent
+    EditPerfilComponent,
+    CreateTourComponent
   ],
   imports: [
     BrowserModule,
@@ -86,7 +90,8 @@ export const FirebaseConfig = {
     TripdetailPage,
     CountrydetailPage,
     CitydetailPage,
-    EditPerfilComponent
+    EditPerfilComponent,
+    CreateTourComponent
   ],
   providers: [
     StatusBar,
@@ -97,7 +102,9 @@ export const FirebaseConfig = {
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     DataProvider,
     FavouritesService,
-    RatingService
+    RatingService,
+    CameraService,
+    Camera
 
   ]
 })

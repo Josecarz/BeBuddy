@@ -24,7 +24,7 @@ export class RatingService {
     this.lock=true;
     //hay que subirlo a firebase
     if(selector == 'tour') {
-      this.dbapi.pushTour(item);
+      this.dbapi.pushTourRating(item);
     }
 
     if(selector == 'user') {
