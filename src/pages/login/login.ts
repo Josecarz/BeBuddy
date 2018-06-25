@@ -5,12 +5,13 @@ import {
 } from 'ionic-angular';
 import {AngularFireAuth} from "angularfire2/auth";
 import {RegisterPage} from "../register/register";
-import {Login, UserInfo} from "../../models/models";
+import {Login, NewUser, Rating, UserInfo} from "../../models/models";
 import {UserService} from "../../providers/user-service";
 import {DbApiService} from "../../providers/db-api.service";
 import {EditPerfilComponent} from "../../components/edit-perfil/edit-perfil";
 import {RatingService} from "../../providers/rating-service";
 import {CreateTourComponent} from "../../components/create-tour/create-tour";
+import {CommentsComponent} from "../../components/comments/comments";
 
 /**
  * Generated class for the LoginPage page.
@@ -35,6 +36,7 @@ export class LoginPage {
   userInfo: any;
   ratingInfo: any;
   lock: any;
+  ratingUser: Rating = { rate: 0, votes: 0, points: 0 };
   constructor(public navCtrl: NavController, private dbapi: DbApiService,  private profile: UserService, private loadingCtrl: LoadingController, private auth: AngularFireAuth,
               private rating: RatingService) {
   }
@@ -53,7 +55,10 @@ export class LoginPage {
         this.profile.getUserRatingInfo(this.usuario.uid).subscribe(
           (data) => {
             this.ratingInfo = data;
-            console.log("RATING " + this.ratingInfo.rate)
+            if(this.ratingInfo == null){
+              this.profile.addRatingToUser(this.usuario.uid, this.ratingUser);
+            }
+            console.log("RATING " + this.ratingInfo)
           }
         );
       }
@@ -98,5 +103,9 @@ export class LoginPage {
 
   navCreate(){
     this.navCtrl.push(CreateTourComponent);
+  }
+
+  navComment(tour){
+    this.navCtrl.push(CommentsComponent, {'tour': tour, 'usuario': this.userInfo});
   }
 }

@@ -38,7 +38,7 @@
     </ion-list>
   </div>
   <div padding>
-    <button ion-button round full color="primary" [disabled]="!newUser.name || !newUser.email || !emailPattern.test(newUser.email) || !newUser.password || !newUser.role"
+    <button ion-button round full color="primary" [disabled]="!newUser.name || !newUser.email || !emailPattern.test(newUser.email) || !newUser.password"
           (click)="createAccount()">Crear cuenta</button>
   </div>
 

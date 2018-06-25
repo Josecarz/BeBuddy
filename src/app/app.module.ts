@@ -22,7 +22,6 @@ import {AngularFireDatabase, AngularFireDatabaseModule} from 'angularfire2/datab
 import {LoginPage} from "../pages/login/login";
 import {RegisterPage} from "../pages/register/register";
 import {DbApiService} from "../providers/db-api.service";
-import {CustomerSearchFilter} from "../providers/filter-pipe.pipe";
 import {DataProvider} from "../providers/data";
 import {HttpModule} from "@angular/http";
 import {TripdetailPage} from "../pages/tripdetail/tripdetail";
@@ -34,9 +33,11 @@ import {FavouritesService} from "../providers/favourites-service";
 import {EditPerfilComponent} from "../components/edit-perfil/edit-perfil";
 import {RatingService} from "../providers/rating-service";
 import {CreateTourComponent} from "../components/create-tour/create-tour";
+// import {CommentsComponent} from "../components/comments/comments";
 import {CameraService} from "../providers/camera-service";
 import {Camera} from "@ionic-native/camera";
 import {TourService} from "../providers/tour-service";
+import {CommentsComponent} from "../components/comments/comments";
 
 
 
@@ -59,12 +60,12 @@ export const FirebaseConfig = {
     PerfilPage,
     LoginPage,
     RegisterPage,
-    CustomerSearchFilter,
     TripdetailPage,
     CountrydetailPage,
     CitydetailPage,
     EditPerfilComponent,
-    CreateTourComponent
+    CreateTourComponent,
+    CommentsComponent
   ],
   imports: [
     BrowserModule,
@@ -92,7 +93,8 @@ export const FirebaseConfig = {
     CountrydetailPage,
     CitydetailPage,
     EditPerfilComponent,
-    CreateTourComponent
+    CreateTourComponent,
+    CommentsComponent
   ],
   providers: [
     StatusBar,

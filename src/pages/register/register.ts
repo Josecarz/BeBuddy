@@ -5,6 +5,8 @@ import {User} from "../../models/user";
 import {AngularFireAuth} from "angularfire2/auth";
 import {NewUser} from "../../models/models";
 import {UserService} from "../../providers/user-service";
+import {HomePage} from "../home/home";
+import {LoginPage} from "../login/login";
 
 /**
  * Generated class for the RegisterPage page.
@@ -34,13 +36,17 @@ export class RegisterPage {
   createAccount(): void {
     let loader = this.loadingCtrl.create({ content: 'Creando cuenta' });
     loader.present();
-    this.profile.createAccount(this.newUser).then(() => {
+
+    setTimeout(() => {
+      this.navCtrl.pop();
       loader.dismiss();
-      // this.navCtrl.push(MenuPage);
+    }, 2000);
+    this.profile.createAccount(this.newUser).then(() => {
     }).catch(err => {
       console.log(err);
-      loader.dismiss();
+
     });
+    console.log("jkdlgagfdajgfjshkgfdahskfgdajhkfgdjhaf0");
   }
 
 

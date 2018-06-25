@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
-import {NewUser, UserInfo} from "../models/models";
+import {NewUser, Rating, UserInfo} from "../models/models";
 import {Observable} from "rxjs/Observable";
 
 
 @Injectable()
 export class UserService {
   usuario: any;
-
+  rating: any;
   constructor(private db: AngularFireDatabase, private auth: AngularFireAuth) {
   }
 
@@ -43,7 +43,7 @@ export class UserService {
         user.img = "assets/imgs/furgoneta.jpg";
         let userCopy = Object.assign(user);
         userCopy.id = success.user.uid;
-        this.addUserToDatabase(userCopy.id, userCopy)
+        this.addUserToDatabase(userCopy.id, userCopy);
       })
         .catch(err => reject(err.code));
     });
@@ -56,9 +56,19 @@ export class UserService {
     // this.addUserToDatabase(id, userCopy)
   }
 
+  public updateCity(city, id){
+    // let userCopy = Object.assign(user);
+    this.db.object(`/users/${id}/city`)
+      .set(city);
+  }
+
   private addUserToDatabase(userId: string, user: NewUser) {
-    return this.db.object(`/users/${userId}/profile`)
-      .set(user);
+      return this.db.object(`/users/${userId}/profile`).set(user);
+  }
+
+  public addRatingToUser(userId: string, rating: Rating) {
+
+    this.db.object(`/users/${userId}/rating`).set(rating);
   }
 
   private addUserToFollow(userId: string, userFollow: string){

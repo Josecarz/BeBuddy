@@ -4,6 +4,8 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { Tour } from '../../models/models';
 import {CameraService} from "../../providers/camera-service";
 import {TourService} from "../../providers/tour-service";
+import {UserService} from "../../providers/user-service";
+import {AngularFireAuth} from "angularfire2/auth";
 
 
 @Component({
@@ -19,6 +21,8 @@ export class CreateTourComponent {
   dateString: string;
   loader: Loading;
   autocomplete: any;
+  usuario: any;
+  userInfo: any;
 
   constructor(
     private navCtrl: NavController,
@@ -26,7 +30,9 @@ export class CreateTourComponent {
     private db: AngularFireDatabase,
     private loadingCtrl: LoadingController,
     private cam: CameraService,
-    private tourService: TourService
+    private tourService: TourService,
+    private userService: UserService,
+    private auth: AngularFireAuth
   ) {
     this.dateString = '';
     this.tour = {
@@ -34,7 +40,10 @@ export class CreateTourComponent {
       description: '',
       image: '',
       date: 0,
-      days: ['']
+      days: [''],
+      buddy: '',
+      city: '',
+      time: '',
     }
 
     ;
@@ -43,8 +52,21 @@ export class CreateTourComponent {
   }
 
 
+  ionViewWillEnter(){
+    this.auth.authState.subscribe(data => {
+      this.usuario = data;
+      if (this.usuario != null) {
+        console.log("USUARIO   " + this.usuario.uid);
+        this.userService.getUserProfileInfo(this.usuario.uid).subscribe(
+          (data) => {
+            this.userInfo = data;
+            console.log("USUARIO INFO   " + this.userInfo.name);
+          }
+        );
+      }
+    });
 
-  ionViewDidEnter() {
+
 
   }
 
@@ -65,6 +87,8 @@ export class CreateTourComponent {
 
 
   createTour() {
+    this.tour.buddy = this.userInfo.id;
+    this.tour.city = this.userInfo.city;
     this.loader.present();
     this.tourService.createTour(this.tour)
       .then(() => {

@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar color="dark" >
-    <ion-title style="font-family: Neon; text-align: center; margin-right: 50px ">{{tour.name}}</ion-title>
+    <ion-title style="font-family: Neon; text-align: center; margin-right: 50px ">{{tour.title}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -36,18 +36,18 @@
         <div><p style="margin-left: 12px">{{tour.votes}} Valoraciones</p></div>
       </ion-col>
       <ion-col col-5>
-        <button ion-button round small full>Ver opiniones</button>
+        <button ion-button round small full (click)="navComment(tour)">Ver opiniones</button>
       </ion-col>
     </ion-row>
   </ion-grid>
   <hr style="margin: 0px">
-  <p style="margin: 5px">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sed nunc aliquam, dapibus arcu quis, scelerisque sem. Duis tristique quis sapien nec laoreet. </p>
+  <p style="margin: 5px">{{tour.description}} </p>
   <hr style="margin: 0px">
   <ion-grid>
-    <ion-row>
+    <ion-row *ngIf="user">
       <ion-col col-3 style="text-align: center">
-        <img class="avatar" src="{{tour.img}}"/><br>
-        <span>{{tour.buddy}}</span>
+        <img class="avatar" src="{{user.img}}"/><br>
+        <span>{{user.name}}</span>
       </ion-col>
       <ion-col col-9>
         <ion-buttons class="buttons" end>
@@ -57,10 +57,21 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+  <div style="text-align: center">
+    <ng-container *ngFor="let day of days">
+        <div *ngIf="tour.days.includes(day)"
+             style="display: inline-block; width: 30px; height: 30px; border: 1px; border-radius: 50px; margin: 2px; color: white; text-align: center; line-height: 30px; background-color: #32db64"
+        >{{day.charAt(0)}}</div>
+      <div *ngIf="!tour.days.includes(day)"
+           style="display: inline-block; width: 30px; height: 30px; border: 1px; border-radius: 50px; margin: 2px; color: white; text-align: center; line-height: 30px; background-color: #f53d3d"
+      >{{day.charAt(0)}}</div>
+
+    </ng-container>
+  </div>
   <hr style="margin: 0px">
   <ion-card-content>
-    <ion-card-title>
-      <div><span style="float:right">Ver todo</span>Otros tours de {{tour.buddy}}</div>
+    <ion-card-title *ngIf="user" >
+      <div><span style="float:right">Ver todo</span>Otros tours de {{user.name}}</div>
       <hr>
     </ion-card-title>
     <ion-scroll scrollX="true" style="white-space:nowrap; height: 150px;">

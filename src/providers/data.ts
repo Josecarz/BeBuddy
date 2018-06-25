@@ -26,9 +26,37 @@ export class DataProvider {
       return item.name.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1;
     }
     });
+  }
 
+  filterByCity(id, tours){
+    if (id==''){
+      return [];
+    }
+    return tours.filter((item) => {
 
+      return item.city == id;
+      // console.log(item);
+      // if (!item.city) {
+      //   return false
+      // } else {
+      //   return item.city.toLowerCase().indexOf(id.toLowerCase()) !== -1;
+      // }
+    });
+  }
+  filterByCityBuddy(id, tours){
+    if (id==''){
+      return [];
+    }
+    return tours.filter((item) => {
 
+      return item.profile.city == id;
+      // console.log(item);
+      // if (!item.city) {
+      //   return false
+      // } else {
+      //   return item.city.toLowerCase().indexOf(id.toLowerCase()) !== -1;
+      // }
+    });
   }
 
 }

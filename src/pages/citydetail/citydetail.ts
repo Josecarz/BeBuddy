@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {DbApiService} from "../../providers/db-api.service";
 import {TripdetailPage} from "../tripdetail/tripdetail";
+import {DataProvider} from "../../providers/data";
 
 /**
  * Generated class for the CitydetailPage page.
@@ -19,11 +20,18 @@ export class CitydetailPage {
 
   // city: any;
   infoCity: any;
-  tours: any;
+  tours = [];
+  buddy = [];
+  finalTours: any;
+  finalBuddies: any;
   lock: any;
+  param: '';
+  city: string ='';
+  buddies: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,  private dbapi: DbApiService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,  private dbapi: DbApiService,  private dataService: DataProvider) {
     this.infoCity = this.navParams.data;
+    this.param = this.infoCity.id;
     console.log(this.infoCity);
   }
 
@@ -32,33 +40,29 @@ export class CitydetailPage {
       (data) => {
         this.tours = data;
         console.log(this.tours);
-
+        this.setFilteredItems()
       }
     );
 
+    this.dbapi.getBuddies().subscribe(
+      (data) => {
+        this.buddy = data;
+        console.log(this.buddy);
+        this.setFilteredItems()
+      }
+    );
+  }
 
+  setFilteredItems() {
+    this.finalTours = this.dataService.filterByCity(this.param, this.tours);
+
+
+    this.buddies = this.dataService.filterByCityBuddy(this.param, this.buddy);
+    console.log(this.buddies);
   }
 
   navTour(tour){
     this.navCtrl.push(TripdetailPage, tour);
-  }
-
-
-  onModelChange($event, tour){
-    if(!tour.votes){
-      tour.votes = 1;
-      tour.points = tour.rate;
-      tour.rate = tour.rate;
-    }else{
-      tour.votes++;
-      tour.points += tour.rate;
-      tour.rate = tour.points/tour.votes;
-
-    }
-    this.lock=true;
-    //hay que subirlo a firebase
-    this.dbapi.pushTour(tour);
-    // this.dbapi.pushRecipe(recipe);
   }
 
 }

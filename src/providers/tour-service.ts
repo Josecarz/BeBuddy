@@ -3,7 +3,8 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 import { AngularFireStorage } from 'angularfire2/storage';
-import { Tour } from '../../models/models';
+import {Tour} from "../models/models";
+
 
 
 @Injectable()
@@ -26,16 +27,25 @@ export class TourService {
             title: tour.title,
             description: tour.description,
             id: success.key,
-            imageUrl: snapshot.downloadURL,
+            img: snapshot.downloadURL,
             days: tour.days,
             time: tour.time,
-          })
-            .then(() => resolve())
+            buddy: tour.buddy,
+            city: tour.city,
+          }).then(snapshot=>{
+            this.addTourToCity(tour, success.key);
+          }).then(() => resolve())
             .catch(err => reject(err.code));
         })
           .catch(err => reject(err.code));
       }, err => reject(err.code));
     });
+  }
+
+
+  public addTourToCity(tour: Tour, id) {
+    this.db.object(`cities/${tour.city}/tours/${id}`).set(id);
+
   }
 
 }

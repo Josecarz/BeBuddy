@@ -25,6 +25,15 @@ export type Tour = {
   description: string;
   date: number;
   image: string;
-  imageUrl?: string;
+  img?: string;
   days: [''];
+  buddy: string;
+  city: string;
+  time: string;
+}
+
+export type Rating = {
+  votes: number;
+  rate: number;
+  points: number;
 }

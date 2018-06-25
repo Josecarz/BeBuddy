@@ -21,29 +21,6 @@
     </ion-card>
   </div>
 
-  <!--<ion-card class="destino" *ngFor="let city of cities" (click)="navTrip(item)">-->
-    <!--&lt;!&ndash;<img src="{{item.img}}"/>&ndash;&gt;-->
-    <!--<p>{{city.name}}</p>-->
-  <!--</ion-card>-->
-
-  <!--<div class="card-background-page" style="margin: 10px" *ngFor="let item of tours">-->
-    <!--<ion-card>-->
-      <!--<img src="{{item.img}}"/>-->
-      <!--<ion-buttons class="buttons" end>-->
-        <!--<p>gfdsafdfads</p>-->
-        <!--<button ion-button round small>-->
-          <!--<ion-icon name="md-add-circle">Añadir a mis planes</ion-icon>-->
-        <!--</button>-->
-        <!--<button>-->
-          <!--<ion-icon name="contact"></ion-icon>-->
-        <!--</button>-->
-        <!--<button>-->
-          <!--<ion-icon name="log-out"></ion-icon>-->
-        <!--</button>-->
-      <!--</ion-buttons>-->
-    <!--</ion-card>-->
-  <!--</div>-->
-  <!--<h2>Buddies en {{infoCity.name}}</h2>-->
 
   <ion-card-content>
     <div>
@@ -51,27 +28,35 @@
       <hr>
     </div>
     <ion-scroll scrollX="true" style="white-space:nowrap; height: 68px;">
-      <div style="display: inline-block; text-align: center; margin-right: 10px" *ngFor="let item of tours">
-        <img class="avatar" src="{{item.img}}"/><br>
-        <span>{{item.buddy}}</span>
+      <div style="display: inline-block; text-align: center; margin-right: 10px" *ngFor="let item of buddies">
+        <img class="avatar" src="{{item.profile.img}}"/><br>
+        <span>{{item.profile.name}}</span>
       </div>
     </ion-scroll>
   </ion-card-content>
   <hr>
 
   <ion-list>
-    <ion-item  *ngFor="let item of tours">
+    <!--<ion-item  *ngFor="let item of tours">-->
+    <ion-item *ngFor="let item of finalTours">
       <img item-start class="miniimg" src="{{item.img}}">
       <!--<div><span style="float:right"> <img item-start class="avatar" src="{{item.img}}"></span><h2>{{item.name}}</h2></div>-->
       <!--<h2>{{item.name}}</h2>-->
       <ion-grid>
         <ion-row>
           <ion-col col-9>
-            <h2>{{item.name}}</h2>
-            <rating class="rating" [(ngModel)]="item.rate" (ngModelChange)="onModelChange($event, item)" readOnly="{{lock}}"></rating>
+            <h2>{{item.title}}</h2>
+            <rating class="rating" [(ngModel)]="item.rate" readOnly="true"></rating>
           </ion-col>
-          <ion-col col-3>
-             <img item-start class="avatar" src="{{item.img}}">
+
+          <ion-col col-3 *ngFor="let user of buddies">
+            <div style="display: inline-block; text-align: center; margin-right: 10px" >
+              <img *ngIf="item.buddy == user.profile.id " class="avatar" src="{{user.profile.img}}"/><br>
+              <span *ngIf="item.buddy == user.profile.id ">{{user.profile.name}}</span>
+            </div>
+
+            <!--<img *ngIf="item.buddy == user.profile.id " item-start class="avatar" src="{{user.profile.img}}"><br>-->
+            <!--<span *ngIf="item.buddy == user.profile.id ">{{user.profile.name}}</span>-->
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -82,17 +67,4 @@
     </ion-item>
 
   </ion-list>
-
-  <ion-card-content>
-    <ion-card-title>
-      <!--<div><span style="float:right">Ver todo</span>Tours en {{infoCity.name}}</div>-->
-      <hr>
-    </ion-card-title>
-    <ion-scroll scrollX="true" style="white-space:nowrap; height: 150px;">
-      <img class="tours" src="assets/imgs/furgoneta.jpg"/>
-      <img class="tours" src="assets/imgs/furgoneta.jpg"/>
-      <img class="tours" src="assets/imgs/furgoneta.jpg"/>
-      <img class="tours" src="assets/imgs/furgoneta.jpg"/>
-    </ion-scroll>
-  </ion-card-content>
 </ion-content>

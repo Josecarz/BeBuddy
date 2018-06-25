@@ -8,13 +8,14 @@
 
   <ion-navbar color="dark">
     <ion-title *ngIf="!usuario">login</ion-title>
-    <ion-title *ngIf="usuario" style="text-align: center; margin-left: 40px ">Perfil</ion-title>
+    <ion-title *ngIf="usuario" style="text-align: center;">Perfil</ion-title>
 
 
     <ion-buttons end *ngIf="usuario">
       <button ion-button icon-only (click)="navEdit()"><ion-icon name="md-settings" ></ion-icon></button>
     </ion-buttons>
   </ion-navbar>
+
 
 </ion-header>
 
@@ -67,7 +68,7 @@
         <div><p style="margin-left: 12px">{{ratingInfo.votes}} Valoraciones</p></div>
       </ion-col>
       <ion-col col-5>
-        <button ion-button round small full>Ver opiniones</button>
+        <button ion-button round small full (click)="navComment(user)">Ver opiniones</button>
       </ion-col>
     </ion-row>
   </ion-grid>

@@ -91,16 +91,19 @@ export class EditPerfilComponent {
     this.items = this.dataService.filterItems(this.searchTerm, this.sites2);
   }
 
-    editUser(): void {
+  editUser(): void {
     let userCopy = Object.assign(this.newUser);
     userCopy.id = this.userInfo.id;
-
     this.profile.editUser(userCopy, this.usuario.uid);
   }
 
   selectCity(city){
     this.searchTerm = '';
     this.newUser.city = city.id;
+    let userCopy = Object.assign(this.newUser);
+    userCopy.id = this.userInfo.id;
+    console.log(city);
+    this.profile.updateCity( userCopy.city, this.usuario.uid);
   }
 
 

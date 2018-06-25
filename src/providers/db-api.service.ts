@@ -18,6 +18,9 @@ export class DbApiService {
   getTours(): Observable<any> {
     return this.fb.list('tours').valueChanges();
   }
+  getBuddies(): Observable<any> {
+    return this.fb.list('users').valueChanges();
+  }
 
   getCountry(): Observable<any> {
     return this.fb.list('countries').valueChanges();
@@ -26,10 +29,6 @@ export class DbApiService {
   getCity(): Observable<any> {
     return this.fb.list('cities').valueChanges();
   }
-
-  // getCity(): Observable<any> {
-  //   return this.fb.list('cities/').valueChanges();
-  // }
 
   getCities(id): Observable<any> {
     return this.fb.list(`countries/${id}/ciudades`).valueChanges();
@@ -40,21 +39,7 @@ export class DbApiService {
   }
 
   getComments(id): Observable<any> {
-    return this.fb.list('recipes/'+id+'/comments/').valueChanges();
-  }
-
-
-  getIngredients(): Observable <any> {
-    return this.fb.list('alimentos/1/todos').valueChanges();
-  }
-
-  pushIngredient(ingredient){
-    this.fb.list('alimentos/1/todos').push({
-      energetic_value: ingredient.calories,
-      id: ingredient.id,
-      name: ingredient.name,
-      vitamins: ingredient.vitamins
-    });
+    return this.fb.list('tours/'+id+'/comments/').valueChanges();
   }
 
   getMyRecipes(user){
@@ -70,7 +55,23 @@ export class DbApiService {
     this.afDB.database.ref(`/users/${userId}/rating/`).set(rate);
   }
 
+  pushTourRating(tour) {
+    console.log(tour);
+    this.afDB.database.ref(`/tours/${tour.id}`).set(tour);
+  }
 
+  getInfoUserTour(id): Observable<any> {
+    return this.fb.object(`/users/${id}/profile/`).valueChanges();
+  }
+
+  // getInfoUser(){
+  //   return
+  // }
+
+  // firebase.database().ref('usuarios').orderByChild('name').equalTo('Moises').on('child_added', function(data) {
+  //   var element = data.val();
+  //   console.log(element.name);
+  // });
 
   // editRecipe(recipe, user){
   //   this.fb.list(`recipes/${recipe.key}`).update({
