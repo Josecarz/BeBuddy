@@ -6,6 +6,8 @@ import {UserService} from "../../providers/user-service";
 import {NewUser} from "../../models/models";
 import {DataProvider} from "../../providers/data";
 import {FormControl} from "@angular/forms";
+import {LoginPageModule} from "../../pages/login/login.module";
+import {LoginPage} from "../../pages/login/login";
 
 /**
  * Generated class for the EditPerfilComponent component.
@@ -95,6 +97,7 @@ export class EditPerfilComponent {
     let userCopy = Object.assign(this.newUser);
     userCopy.id = this.userInfo.id;
     this.profile.editUser(userCopy, this.usuario.uid);
+    this.navCtrl.setRoot(LoginPage)
   }
 
   selectCity(city){

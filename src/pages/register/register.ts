@@ -7,6 +7,7 @@ import {NewUser} from "../../models/models";
 import {UserService} from "../../providers/user-service";
 import {HomePage} from "../home/home";
 import {LoginPage} from "../login/login";
+import {EditPerfilComponent} from "../../components/edit-perfil/edit-perfil";
 
 /**
  * Generated class for the RegisterPage page.
@@ -25,8 +26,9 @@ export class RegisterPage {
   newUser: NewUser = { name: '', email: '', password: '' };
   passwordVisible: boolean = false;
   emailPattern: RegExp = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-
-  constructor(public navCtrl: NavController, private profile: UserService, private loadingCtrl: LoadingController) {
+  usuario: any;
+  userInfo:any;
+  constructor(public navCtrl: NavController, private profile: UserService, private loadingCtrl: LoadingController, private auth: AngularFireAuth) {
   }
 
   changePasswordVisbility(): void {
@@ -38,8 +40,20 @@ export class RegisterPage {
     loader.present();
 
     setTimeout(() => {
-      this.navCtrl.pop();
-      loader.dismiss();
+      this.auth.authState.subscribe(data => {
+        this.usuario = data;
+        if (this.usuario != null) {
+          console.log("USUARIO   " + this.usuario.uid);
+          this.profile.getUserProfileInfo(this.usuario.uid).subscribe(
+            (data) => {
+              this.userInfo = data;
+              console.log("USUARIO INFO   " + this.userInfo.name);
+            }
+          );
+        }
+        this.navCtrl.setRoot(EditPerfilComponent, this.userInfo);
+        loader.dismiss();
+      })
     }, 2000);
     this.profile.createAccount(this.newUser).then(() => {
     }).catch(err => {
