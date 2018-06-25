@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {DbApiService} from "../../providers/db-api.service";
 import {TripdetailPage} from "../tripdetail/tripdetail";
 import {DataProvider} from "../../providers/data";
+import {TourService} from "../../providers/tour-service";
 
 /**
  * Generated class for the CitydetailPage page.
@@ -29,14 +30,18 @@ export class CitydetailPage {
   city: string ='';
   buddies: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,  private dbapi: DbApiService,  private dataService: DataProvider) {
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              private dbapi: DbApiService,
+              private dataService: DataProvider,
+              private tourService: TourService) {
     this.infoCity = this.navParams.data;
     this.param = this.infoCity.id;
     console.log(this.infoCity);
   }
 
   ionViewDidLoad() {
-    this.dbapi.getTours().subscribe(
+    this.tourService.getTours().subscribe(
       (data) => {
         this.tours = data;
         console.log(this.tours);

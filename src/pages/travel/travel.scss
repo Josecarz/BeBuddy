@@ -1,5 +1,6 @@
 page-travel {
 
+
   .card-background-page {
 
     ion-card {
@@ -7,23 +8,26 @@ page-travel {
       text-align: center;
       margin:auto;
       width: auto;
-      height:230px;
+      height: 150px;
     }
 
     .buttons {
       //background-color: #222222;
+      font-family: "Neon";
       position: absolute;
-      bottom: 5%;
+      bottom: 20%;
       font-size: 2.0em;
       width: 100%;
       font-weight: bold;
-      color: red;
-
-      button{
-        margin-right: 10px !important;
-      }
+      color: #fff;
     }
 
+  }
+  .grid{
+    padding: 0px !important;
+  }
+  .row{
+    margin-bottom: 0px !important;
   }
 
   .destino {
@@ -53,7 +57,7 @@ page-travel {
     .buttons {
       //background-color: #222222;
       font-family: "Neon";
-      position: absolute;
+      position: relative;
       bottom: 5%;
       font-size: 2.0em;
       width: 100%;
@@ -96,9 +100,9 @@ page-travel {
       &.rating li {
         background: none;
         color: #ffb400;
-        margin: -2px;
+        margin: -10px;
         ion-icon {
-          font-size: 25px;
+          font-size: 20px;
         }
       }
     }
@@ -107,5 +111,4 @@ page-travel {
   .label-md {
     margin: 0;
   }
-
 }

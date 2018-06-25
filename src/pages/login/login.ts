@@ -12,6 +12,7 @@ import {EditPerfilComponent} from "../../components/edit-perfil/edit-perfil";
 import {RatingService} from "../../providers/rating-service";
 import {CreateTourComponent} from "../../components/create-tour/create-tour";
 import {CommentsComponent} from "../../components/comments/comments";
+import {HomePage} from "../home/home";
 
 /**
  * Generated class for the LoginPage page.
@@ -63,9 +64,6 @@ export class LoginPage {
         );
       }
     });
-
-
-
   }
 
   login(): void {
@@ -85,7 +83,7 @@ export class LoginPage {
 
   logout(){
     this.profile.userLogout();
-    this.navCtrl.setRoot(LoginPage);
+    this.navCtrl.setRoot(HomePage);
   }
 
   SignUp(): void {

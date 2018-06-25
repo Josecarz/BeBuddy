@@ -1,5 +1,5 @@
 <!--
-  Generated template for the TravelPage page.
+  Generated template for the ToursPage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
@@ -7,17 +7,16 @@
 <ion-header>
 
   <ion-navbar color="dark">
-    <ion-title style="font-family: Neon; text-align: center; margin-right: 50px ">Mis planes</ion-title>
+    <ion-title style="font-family: Neon; text-align: center; margin-right: 50px ">Todos los tours</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-
 <ion-content>
   <ion-list>
     <!--<ion-item  *ngFor="let item of tours">-->
-    <ion-item *ngFor="let item of favourites">
+    <ion-item *ngFor="let item of tours">
       <img item-start class="miniimg" src="{{item.img}}">
       <!--<div><span style="float:right"> <img item-start class="avatar" src="{{item.img}}"></span><h2>{{item.name}}</h2></div>-->
       <!--<h2>{{item.name}}</h2>-->
@@ -30,10 +29,10 @@
 
           <ion-col col-3>
             <ng-container *ngFor="let user of buddy">
-              <div style="display: inline-block; text-align: center; margin-right: 10px" >
-                <img *ngIf="item.buddy == user.profile.id " class="avatar" src="{{user.profile.img}}"/><br>
-                <span *ngIf="item.buddy == user.profile.id ">{{user.profile.name}}</span>
-              </div>
+            <div style="display: inline-block; text-align: center; margin-right: 10px" >
+              <img *ngIf="item.buddy == user.profile.id " class="avatar" src="{{user.profile.img}}"/><br>
+              <span *ngIf="item.buddy == user.profile.id ">{{user.profile.name}}</span>
+            </div>
             </ng-container>
           </ion-col>
 

@@ -37,3 +37,9 @@ export type Rating = {
   rate: number;
   points: number;
 }
+
+export type Follow = {
+  id: string;
+  name: string;
+  img: string;
+}

@@ -113,7 +113,21 @@ page-home {
     }
   }
 
-
+  .miniTour{
+    position: absolute;
+    background-color: #222222;
+    opacity: 0.7;
+    width: 150px;
+    border: 1px;
+    margin: 1px;
+    margin-bottom: 2px;
+    bottom: 4%;
+    font-size: 17px;
+    font-weight: bold;
+    color: #fff;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
 
 
 }

@@ -27,11 +27,18 @@
   </ion-card>
   <ion-card-content>
     <ion-card-title>
-      <div><span style="float:right">Ver todo</span>Tours</div>
+      <div><span style="float:right" (click)="navTours()">Ver todo</span>Tours</div>
       <hr>
     </ion-card-title>
-    <ion-scroll scrollX="true" style="white-space:nowrap; height: 150px;">
-      <img *ngFor="let item of tours"  class="tours" src="{{item.img}}"/>
+    <!--<ion-scroll scrollX="true" style="white-space:nowrap; height: 160px;">-->
+      <!--<img *ngFor="let item of tours" style="margin: 5px; border: 1px; border-radius: 10px" class="tours" src="{{item.img}}"/>-->
+    <!--</ion-scroll>-->
+
+    <ion-scroll scrollX="true" style="white-space:nowrap; height: 160px;">
+      <div style="display: inline-block; text-align: center;" *ngFor="let item of tours">
+        <img style="width: 150px; margin: 1px; border: 1px; border-radius: 10px" class="tours" src="{{item.img}}"/><br>
+        <div class="miniTour">{{item.title}}</div>
+      </div>
     </ion-scroll>
   </ion-card-content>
 

@@ -14,9 +14,9 @@ export class TourService {
 
   }
 
-  public getEvents(): Observable<Event[]> {
+  public getTours(): Observable<Tour[]> {
     return this.db.list(`/tours`)
-      .valueChanges().map(events => events.reverse()) as Observable<Event[]>
+      .valueChanges().map(tours => tours.reverse()) as Observable<Tour[]>
   }
 
   public createTour(tour: Tour): Promise<any> {
@@ -32,6 +32,7 @@ export class TourService {
             time: tour.time,
             buddy: tour.buddy,
             city: tour.city,
+            comments: new Array(""),
           }).then(snapshot=>{
             this.addTourToCity(tour, success.key);
           }).then(() => resolve())

@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar color="dark" >
-    <ion-title style="font-family: Neon; text-align: center; margin-right: 50px ">{{tour.title}}</ion-title>
+    <ion-title style="font-family: Neon; text-align: center; ">{{tour.title}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -28,12 +28,15 @@
       </ion-buttons>
     </ion-card>
   </div>
-
+  <ion-title>{{tour.title}}</ion-title>
+  <hr style="margin: 0px">
   <ion-grid style="padding: 0">
     <ion-row>
       <ion-col col-7>
         <rating class="rating" [(ngModel)]="tour.rate" (ngModelChange)="rate($event, tour)" readOnly="{{lock}}"></rating>
-        <div><p style="margin-left: 12px">{{tour.votes}} Valoraciones</p></div>
+        <div><p style="margin-left: 12px" *ngIf="tour.votes == null">{{tour.votes}}Aun no hay valoraciones</p></div>
+        <div><p style="margin-left: 12px" *ngIf="tour.votes == 1">{{tour.votes}} Valoración</p></div>
+        <div><p style="margin-left: 12px" *ngIf="tour.votes > 1">{{tour.votes}} Valoraciones</p></div>
       </ion-col>
       <ion-col col-5>
         <button ion-button round small full (click)="navComment(tour)">Ver opiniones</button>
@@ -41,22 +44,30 @@
     </ion-row>
   </ion-grid>
   <hr style="margin: 0px">
+  <ion-title>Descripcíon</ion-title>
   <p style="margin: 5px">{{tour.description}} </p>
   <hr style="margin: 0px">
   <ion-grid>
+    <ion-title>Buddy</ion-title>
     <ion-row *ngIf="user">
-      <ion-col col-3 style="text-align: center">
+      <ion-col col-2 style="text-align: center">
         <img class="avatar" src="{{user.img}}"/><br>
         <span>{{user.name}}</span>
       </ion-col>
-      <ion-col col-9>
+      <ion-col col-10>
         <ion-buttons class="buttons" end>
           <button ion-button small round>Enviar mensaje</button>
-          <button ion-button small round>Seguir</button>
+          <ng-container *ngFor="let followUser of follows">
+            <button ion-button small round *ngIf="followUser.id != user.id && userInfo.id != user.id" (click)="follow(user)">Seguir</button>
+            <button ion-button small round *ngIf="followUser.id == user.id  && userInfo.id != user.id" (click)="unfollow(user)">Dejar de seguir</button>
+            <button ion-button small round *ngIf="userInfo.id == user.id" (click)="deleteTour(tour)">Eliminar tour</button>
+          </ng-container>
         </ion-buttons>
       </ion-col>
     </ion-row>
   </ion-grid>
+  <hr style="margin: 0px">
+  <ion-title>Días disponibles</ion-title>
   <div style="text-align: center">
     <ng-container *ngFor="let day of days">
         <div *ngIf="tour.days.includes(day)"
@@ -68,7 +79,7 @@
 
     </ng-container>
   </div>
-  <hr style="margin: 0px">
+  <hr style="margin-top: 7px">
   <ion-card-content>
     <ion-card-title *ngIf="user" >
       <div><span style="float:right">Ver todo</span>Otros tours de {{user.name}}</div>

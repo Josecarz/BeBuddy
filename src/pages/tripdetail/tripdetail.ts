@@ -5,6 +5,9 @@ import { Storage } from '@ionic/storage';
 import {FavouritesService} from "../../providers/favourites-service";
 import {RatingService} from "../../providers/rating-service";
 import {CommentsComponent} from "../../components/comments/comments";
+import {UserService} from "../../providers/user-service";
+import {AngularFireAuth} from "angularfire2/auth";
+import {Follow} from "../../models/models";
 
 /**
  * Generated class for the TripdetailPage page.
@@ -26,6 +29,10 @@ export class TripdetailPage {
   lock: any;
   user: any;
   flag: false;
+  usuario: any;
+  userInfo: any;
+  followUser: Follow = { id: '', name: '', img:'' };
+  follows: any;
   days = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
 
   constructor(public navCtrl: NavController,
@@ -33,7 +40,9 @@ export class TripdetailPage {
               private fav: FavouritesService,
               public storage: Storage,
               private dbapi: DbApiService,
-              private rating: RatingService) {
+              private rating: RatingService,
+              private profile: UserService,
+              private auth: AngularFireAuth) {
     this.tour = this.navParams.data;
     // console.log('ionViewDidLoad ' + this.destino);
   }
@@ -42,6 +51,28 @@ export class TripdetailPage {
     console.log('ionViewDidLoad TripdetailPage' + this.tour.id);
     this.fav.isFav(this.tour.id).then(value => this.favourite = value);
 
+    this.auth.authState.subscribe(data => {
+      this.usuario = data;
+      if (this.usuario != null) {
+        console.log("USUARIO   " + this.usuario.uid);
+        this.profile.getUserProfileInfo(this.usuario.uid).subscribe(
+          (data) => {
+            this.userInfo = data;
+            console.log("USUARIO INFO   " + this.userInfo.name);
+
+            this.dbapi.getFollows(this.userInfo.id).subscribe(
+              (data) => {
+                this.follows = data;
+                console.log(this.follows);
+              }
+            );
+          }
+        );
+
+
+      }
+    });
+
     //Necesitamos la información del usuario que creo el tour
     this.dbapi.getInfoUserTour(this.tour.buddy).subscribe(
       (data) => {
@@ -49,6 +80,7 @@ export class TripdetailPage {
         console.log(this.user);
       }
     );
+
   }
 
   ionViewWillLoad(){
@@ -72,5 +104,14 @@ export class TripdetailPage {
     this.navCtrl.push(CommentsComponent, {'tour': tour, 'usuario': this.user});
   }
 
+
+  follow(user){
+    console.log(user.id);
+    this.followUser.id = user.id;
+    this.followUser.name = user.name;
+    this.followUser.img = user.img;
+    console.log(this.followUser.id);
+    this.profile.addUserToFollow(this.userInfo.id, this.followUser);
+  }
 
 }

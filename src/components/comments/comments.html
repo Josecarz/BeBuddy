@@ -1,7 +1,7 @@
 <!-- Generated template for the CommentsComponent component -->
 <ion-header>
 
-  <ion-navbar color="secondary">
+  <ion-navbar color="dark">
     <ion-title>Comentarios</ion-title>
   </ion-navbar>
 
@@ -21,7 +21,7 @@
       <ion-input formControlName="comment" type="text" placeholder="Añade un comentario.."[(ngModel)]="recipe.newComment"></ion-input>
     </ion-item>
     <div>
-      <button ion-button color="secondary" full round type="submit" [disabled]="!myForm.valid" (click)="addComment(recipe)">Enviar</button>
+      <button ion-button full round small type="submit" [disabled]="!myForm.valid" (click)="addComment(recipe)">Enviar</button>
     </div>
   </form>
 </ion-content>

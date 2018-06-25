@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
-import {NewUser, Rating, UserInfo} from "../models/models";
+import {Follow, NewUser, Rating, UserInfo} from "../models/models";
 import {Observable} from "rxjs/Observable";
 
 
@@ -67,12 +67,12 @@ export class UserService {
   }
 
   public addRatingToUser(userId: string, rating: Rating) {
-
     this.db.object(`/users/${userId}/rating`).set(rating);
+    this.db.object(`/users/${userId}/follows/${userId}`).set(userId);
   }
 
-  private addUserToFollow(userId: string, userFollow: string){
-    return this.db.object(`/users/${userId}/follows`)
+  public addUserToFollow(userId: string, userFollow: Follow){
+    return this.db.object(`/users/${userId}/follows/${userFollow.id}`)
       .set(userFollow);
   }
 

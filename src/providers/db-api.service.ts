@@ -64,6 +64,11 @@ export class DbApiService {
     return this.fb.object(`/users/${id}/profile/`).valueChanges();
   }
 
+  public getFollows(userId: string):  Observable <any>{
+    return this.fb.list(`/users/${userId}/follows`)
+      .valueChanges()
+  }
+
   // getInfoUser(){
   //   return
   // }

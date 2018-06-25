@@ -7,6 +7,8 @@ import {DataProvider} from "../../providers/data";
 import {TripdetailPage} from "../tripdetail/tripdetail";
 import {CountrydetailPage} from "../countrydetail/countrydetail";
 import {UserService} from "../../providers/user-service";
+import {ToursPage} from "../tours/tours";
+import {TourService} from "../../providers/tour-service";
 
 @Component({
   selector: 'page-home',
@@ -33,7 +35,8 @@ export class HomePage {
               public navParams: NavParams,
               private dbapi: DbApiService,
               private dataService: DataProvider,
-              private profile: UserService
+              private profile: UserService,
+              private tourService: TourService
               ) {
     this.searchControl = new FormControl();
 
@@ -70,7 +73,7 @@ export class HomePage {
     );
 
 
-    this.dbapi.getTours().subscribe(
+    this.tourService.getTours().subscribe(
       (data) => {
         this.tours = data;
       }
@@ -101,6 +104,10 @@ export class HomePage {
       }
     );
     this.navCtrl.push(CountrydetailPage, destino);
+  }
+
+  navTours(){
+    this.navCtrl.push(ToursPage);
   }
 }
 
