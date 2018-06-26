@@ -69,6 +69,11 @@ export class DbApiService {
       .valueChanges()
   }
 
+  public getUser(userId: string){
+    return this.fb.object(`/users/${userId}/`)
+      .valueChanges()
+  }
+
   // getInfoUser(){
   //   return
   // }

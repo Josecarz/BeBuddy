@@ -73,8 +73,29 @@
     </ion-row>
   </ion-grid>
   <hr style="margin: 0px">
+
+  <ion-list>
+    <ion-item *ngFor="let item of tours">
+      <img item-start class="miniimg" src="{{item.img}}">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-9>
+            <h2>{{item.title}}</h2>
+            <rating class="ratingTour" [(ngModel)]="item.rate" readOnly="true"></rating>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-buttons class="buttons" end>
+        <button ion-button small round (click)="navTour(item)">Ver más</button>
+      </ion-buttons>
+
+    </ion-item>
+
+  </ion-list>
+
+
   <div padding>
-    <button ion-button round full color="primary" (tap)="logout()">Cerrar sesión</button><br>
+    <button ion-button small round full color="primary" (tap)="logout()">Cerrar sesión</button><br>
   </div>
 
 </ion-content>

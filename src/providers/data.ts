@@ -35,12 +35,29 @@ export class DataProvider {
     return tours.filter((item) => {
 
       return item.city == id;
-      // console.log(item);
-      // if (!item.city) {
-      //   return false
-      // } else {
-      //   return item.city.toLowerCase().indexOf(id.toLowerCase()) !== -1;
-      // }
+
+    });
+  }
+
+  filterByBuddy(id, tours){
+    if (id==''){
+      return [];
+    }
+    return tours.filter((item) => {
+
+      return item.buddy == id;
+
+    });
+  }
+
+  filterById(id, buddies){
+    if (id==''){
+      return [];
+    }
+    return buddies.filter((item) => {
+
+      return item.profile.id == id;
+
     });
   }
 

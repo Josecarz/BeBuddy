@@ -29,6 +29,7 @@ export class PerfilPage {
   usuario: any;
   userInfo: any;
   buddy: any;
+  buddyFinal: any;
   ratingInfo: any;
   lock: any;
   followUser: Follow = { id: '', name: '', img:'' };
@@ -39,6 +40,7 @@ export class PerfilPage {
               private rating: RatingService, public navParams: NavParams) {
     this.buddy = this.navParams.data;
     console.log(this.buddy)
+    this.buddyFinal = this.buddy.profile;
   }
 
 
@@ -47,28 +49,24 @@ export class PerfilPage {
     this.auth.authState.subscribe(data => {
       this.usuario = data;
       if (this.usuario != null) {
-        console.log("USUARIO   " + this.usuario.uid);
         this.profile.getUserProfileInfo(this.usuario.uid).subscribe(
           (data) => {
             this.userInfo = data;
-            console.log("USUARIO INFO   " + this.userInfo.name);
 
             this.dbapi.getFollows(this.userInfo.id).subscribe(
               (data) => {
                 this.follows = data;
-                console.log(this.follows);
                 this.checkFollow();
               }
             );
           }
         );
-        this.profile.getUserRatingInfo(this.buddy.profile.id).subscribe(
+        this.profile.getUserRatingInfo(this.buddy.id).subscribe(
           (data) => {
             this.ratingInfo = data;
             if(this.ratingInfo == null){
-              this.profile.addRatingToUser(this.buddy.profile.id, this.ratingUser);
+              this.profile.addRatingToUser(this.buddy.id, this.ratingUser);
             }
-            console.log("RATING " + this.ratingInfo)
           }
         );
       }
@@ -77,11 +75,11 @@ export class PerfilPage {
 
 
   follow(user){
-    console.log(user.id);
+    // console.log(user.id);
     this.followUser.id = user.profile.id;
     this.followUser.name = user.profile.name;
     this.followUser.img = user.profile.img;
-    console.log(this.followUser.id);
+    // console.log(this.followUser.id);
     this.profile.addUserToFollow(this.userInfo.id, this.followUser);
   }
 

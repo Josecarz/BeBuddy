@@ -27,13 +27,11 @@
 <ion-content padding>
   <div [ngSwitch]="followChat">
     <ion-list *ngSwitchCase="'Seguidos'">
-      <ion-item>
+      <ion-item *ngFor="let user of follows" (click)="navUser(user)">
         <ion-avatar item-start>
-          <img src="img/avatar-finn.png">
+          <img src="{{user?.img}}">
         </ion-avatar>
-        <h2>Finn</h2>
-        <h3>Don't Know What To Do!</h3>
-        <p>I've had a pretty messed up day. If we just...</p>
+        <h2>{{user?.name}}</h2>
       </ion-item>
     </ion-list>
 

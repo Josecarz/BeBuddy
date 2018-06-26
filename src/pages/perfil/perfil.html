@@ -16,8 +16,8 @@
 <ion-content>
   <div class="card-background-page">
     <ion-card>
-      <img src="{{buddy.profile?.img}}"/>
-      <div class="card-title">{{buddy.profile?.name}}</div>
+      <img src="{{buddyFinal?.img}}"/>
+      <div class="card-title">{{buddyFinal?.name}}</div>
 
       <ion-buttons end class="buttons">
         <button ion-button small round *ngIf="!isFollow" (click)="follow(buddy)">Seguir</button>

@@ -72,6 +72,11 @@ page-login {
 
   }
 
+  .miniimg {
+    width: 110px;
+    height: 110px;
+  }
+
   .rating{
     ul {
       margin: 10px;
@@ -87,6 +92,23 @@ page-login {
       }
     }
   }
+
+  .ratingTour{
+    ul {
+      margin: 0px;
+      padding: 0;
+      margin-top: 5px;
+      &.rating li {
+        background: none;
+        color: #ffb400;
+        margin: -10px;
+        ion-icon {
+          font-size: 20px;
+        }
+      }
+    }
+  }
+
 
 
 }

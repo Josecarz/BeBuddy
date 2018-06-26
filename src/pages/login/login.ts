@@ -13,6 +13,7 @@ import {RatingService} from "../../providers/rating-service";
 import {CreateTourComponent} from "../../components/create-tour/create-tour";
 import {CommentsComponent} from "../../components/comments/comments";
 import {HomePage} from "../home/home";
+import {DataProvider} from "../../providers/data";
 
 /**
  * Generated class for the LoginPage page.
@@ -37,9 +38,10 @@ export class LoginPage {
   userInfo: any;
   ratingInfo: any;
   lock: any;
+  tours: any;
   ratingUser: Rating = { rate: 0, votes: 0, points: 0 };
   constructor(public navCtrl: NavController, private dbapi: DbApiService,  private profile: UserService, private loadingCtrl: LoadingController, private auth: AngularFireAuth,
-              private rating: RatingService) {
+              private rating: RatingService, private dataService: DataProvider) {
   }
 
   ionViewWillEnter(){
@@ -60,6 +62,14 @@ export class LoginPage {
               this.profile.addRatingToUser(this.usuario.uid, this.ratingUser);
             }
             console.log("RATING " + this.ratingInfo)
+          }
+        );
+
+        this.dbapi.getTours().subscribe(
+          (data) => {
+            this.tours = data;
+            this.dataService.filterByBuddy(this.userInfo.id, this.tours);
+            //filtrar por mi id=buddy
           }
         );
       }
