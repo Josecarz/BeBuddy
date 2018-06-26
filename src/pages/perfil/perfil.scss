@@ -1,3 +1,95 @@
 page-perfil {
 
+
+  .title {
+    text-align: center;
+    font-family: "Neon";
+  }
+
+  h1{
+    font-size: 80px;
+    text-align: center;
+    color: #fff;
+    font-family: "Neon";
+
+  }
+
+  ion-content {
+    .back {
+      background-image: url("../../assets/imgs/fondologin.png");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      width: 100%;
+      position: relative;
+      border: none;
+
+      ion-item{
+        opacity: 0.8;
+      }
+
+      p{
+        text-align: center;
+        color: #fff;
+      }
+    }
+  }
+
+  .card-background-page {
+
+    ion-card {
+      position: relative;
+      text-align: center;
+      margin:auto;
+      width: auto;
+    }
+
+    .buttons {
+      //background-color: #222222;
+      position: absolute;
+      bottom: 5%;
+      font-size: 2.0em;
+      width: 100%;
+      font-weight: bold;
+      color: red;
+
+      button{
+        margin-right: 10px !important;
+      }
+    }
+
+    .card-title {
+      //background-color: #222222;
+      font-family: "Neon";
+      opacity: 1;
+      position: absolute;
+      bottom: 20%;
+      font-size: 2.0em;
+      width: 100%;
+      font-weight: bold;
+      color: #fff;
+    }
+
+
+
+  }
+
+  .rating{
+    ul {
+      margin: 10px;
+      padding: 0;
+      margin-top: 5px;
+      &.rating li {
+        background: none;
+        color: #ffb400;
+        margin: 0px;
+        ion-icon {
+          font-size: 20px;
+        }
+      }
+    }
+  }
+
+
+
 }

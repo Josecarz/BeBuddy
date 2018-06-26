@@ -6,14 +6,14 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>buddies</ion-title>
+  <ion-navbar color="dark">
+    <ion-title style="font-family: Neon; text-align: center; margin-right: 50px ">Buddies</ion-title>
   </ion-navbar>
 
   <div padding>
-    <ion-segment [(ngModel)]="pet">
-      <ion-segment-button value="nose">
-        nose
+    <ion-segment [(ngModel)]="followChat">
+      <ion-segment-button value="Seguidos">
+        Seguidos
       </ion-segment-button>
       <ion-segment-button value="Chats">
         Chats
@@ -25,15 +25,16 @@
 
 
 <ion-content padding>
-  <div [ngSwitch]="pet">
-    <ion-list *ngSwitchCase="'nose'">
+  <div [ngSwitch]="followChat">
+    <ion-list *ngSwitchCase="'Seguidos'">
       <ion-item>
-        <ion-thumbnail item-start>
-          <img src="img/thumbnail-puppy-1.jpg">
-        </ion-thumbnail>
-        <h2>Ruby</h2>
+        <ion-avatar item-start>
+          <img src="img/avatar-finn.png">
+        </ion-avatar>
+        <h2>Finn</h2>
+        <h3>Don't Know What To Do!</h3>
+        <p>I've had a pretty messed up day. If we just...</p>
       </ion-item>
-      ...
     </ion-list>
 
     <ion-list *ngSwitchCase="'Chats'">

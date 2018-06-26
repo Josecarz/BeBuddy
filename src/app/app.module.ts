@@ -67,7 +67,7 @@ export const FirebaseConfig = {
     EditPerfilComponent,
     CreateTourComponent,
     CommentsComponent,
-    ToursPage
+    ToursPage,
   ],
   imports: [
     BrowserModule,

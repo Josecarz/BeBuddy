@@ -4,6 +4,10 @@ import {DbApiService} from "../../providers/db-api.service";
 import {TripdetailPage} from "../tripdetail/tripdetail";
 import {DataProvider} from "../../providers/data";
 import {TourService} from "../../providers/tour-service";
+import {PerfilPage} from "../perfil/perfil";
+import {AngularFireAuth} from "angularfire2/auth";
+import {UserService} from "../../providers/user-service";
+import {LoginPage} from "../login/login";
 
 /**
  * Generated class for the CitydetailPage page.
@@ -29,12 +33,16 @@ export class CitydetailPage {
   param: '';
   city: string ='';
   buddies: any;
+  usuario: any;
+  userInfo: any;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private dbapi: DbApiService,
               private dataService: DataProvider,
-              private tourService: TourService) {
+              private tourService: TourService,
+              private auth: AngularFireAuth,
+              private profile: UserService) {
     this.infoCity = this.navParams.data;
     this.param = this.infoCity.id;
     console.log(this.infoCity);
@@ -56,6 +64,20 @@ export class CitydetailPage {
         this.setFilteredItems()
       }
     );
+
+    this.auth.authState.subscribe(data => {
+      this.usuario = data;
+      if (this.usuario != null) {
+        console.log("USUARIO   " + this.usuario.uid);
+        this.profile.getUserProfileInfo(this.usuario.uid).subscribe(
+          (data) => {
+            this.userInfo = data;
+            console.log("USUARIO INFO   " + this.userInfo.id);
+
+          }
+        );
+      }
+    });
   }
 
   setFilteredItems() {
@@ -69,5 +91,15 @@ export class CitydetailPage {
   navTour(tour){
     this.navCtrl.push(TripdetailPage, tour);
   }
+
+  navUser(user){
+    console.log(user);
+    this.navCtrl.push(PerfilPage, user);
+  }
+
+  navMiPerfil(){
+    this.navCtrl.push(LoginPage);
+  }
+
 
 }

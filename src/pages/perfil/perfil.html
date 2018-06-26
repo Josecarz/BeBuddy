@@ -6,13 +6,37 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>perfil</ion-title>
+  <ion-navbar color="dark">
+    <ion-title style="font-family: Neon; text-align: center; margin-right: 50px ">Perfil</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
+  <div class="card-background-page">
+    <ion-card>
+      <img src="{{buddy.profile?.img}}"/>
+      <div class="card-title">{{buddy.profile?.name}}</div>
+
+      <ion-buttons end class="buttons">
+        <button ion-button small round *ngIf="!isFollow" (click)="follow(buddy)">Seguir</button>
+        <button ion-button small round *ngIf="isFollow" (click)="unfollow(buddy)">Dejar de seguir</button>
+      </ion-buttons>
+    </ion-card>
+  </div>
+
+  <ion-grid style="padding: 0" >
+    <ion-row>
+      <ion-col col-7 *ngIf="ratingInfo">
+        <rating class="rating" [(ngModel)]="ratingInfo.rate" (ngModelChange)="rate($event, ratingInfo)" readOnly="{{lock}}"></rating>
+        <div><p style="margin-left: 12px">{{ratingInfo.votes}} Valoraciones</p></div>
+      </ion-col>
+      <ion-col col-5>
+        <button ion-button round small full (click)="navComment(user)">Ver opiniones</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <hr style="margin: 0px">
 
 </ion-content>

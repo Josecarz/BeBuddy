@@ -20,7 +20,7 @@
 </ion-header>
 
 
-<ion-content *ngIf="!usuario">
+<ion-content class="back" *ngIf="!usuario">
 
   <div>
     <h1>bebuddy</h1>
@@ -72,7 +72,7 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-
+  <hr style="margin: 0px">
   <div padding>
     <button ion-button round full color="primary" (tap)="logout()">Cerrar sesión</button><br>
   </div>

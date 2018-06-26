@@ -27,9 +27,14 @@
       <ion-title style="font-size: 20px; margin: 0px; text-align: center">Buddies en {{infoCity.name}}</ion-title>
       <hr style="margin: 4px;">
     </div>
-    <ion-scroll scrollX="true" style="white-space:nowrap; height: 68px;">
-      <div style="display: inline-block; text-align: center; margin-right: 10px" *ngFor="let item of buddies">
-        <img class="avatar" src="{{item.profile.img}}"/><br>
+    <ion-scroll scrollX="true" style="white-space:nowrap; height: 68px;" *ngIf="usuario">
+      <div style="display: inline-block; text-align: center; margin-right: 10px"  *ngFor="let item of buddies">
+        <ng-container *ngIf="item.profile.id != userInfo.id">
+        <img class="avatar" src="{{item.profile.img}}" (click)="navUser(item)"/><br>
+        </ng-container>
+        <ng-container *ngIf="item.profile.id == userInfo.id">
+        <img  class="avatar" src="{{item.profile.img}}" (click)="navMiPerfil()"/><br>
+        </ng-container>
         <span>{{item.profile.name}}</span>
       </div>
     </ion-scroll>
@@ -54,8 +59,20 @@
           <ion-col col-3>
             <ng-container *ngFor="let user of buddies">
               <div style="display: inline-block; text-align: center; margin-right: 10px" >
-                <img *ngIf="item.buddy == user.profile.id " class="avatar" src="{{user.profile.img}}"/><br>
+                <ng-container *ngIf="user.profile.id != userInfo.id">
+                  <img *ngIf="item.buddy == user.profile.id " class="avatar" src="{{user.profile.img}}" (click)="navUser(user)"/><br>
+                </ng-container>
+                <ng-container *ngIf="user.profile.id == userInfo.id">
+                  <img *ngIf="item.buddy == user.profile.id" class="avatar" src="{{user.profile.img}}" (click)="navMiPerfil()"/><br>
+                </ng-container>
                 <span *ngIf="item.buddy == user.profile.id ">{{user.profile.name}}</span>
+
+                <!--<ng-container *ngIf="item.profile.id != userInfo.id">-->
+                  <!--<img class="avatar" src="{{item.profile.img}}" (click)="navUser(item)"/><br>-->
+                <!--</ng-container>-->
+                <!--<ng-container *ngIf="item.profile.id == userInfo.id">-->
+                  <!--<img  class="avatar" src="{{item.profile.img}}" (click)="navMiPerfil()"/><br>-->
+                <!--</ng-container>-->
               </div>
             </ng-container>
           </ion-col>

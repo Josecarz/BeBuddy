@@ -27,12 +27,17 @@
             <rating class="rating" [(ngModel)]="item.rate" readOnly="true"></rating>
           </ion-col>
 
-          <ion-col col-3>
+          <ion-col col-3 pull-1 *ngIf="userInfo">
             <ng-container *ngFor="let user of buddy">
-            <div style="display: inline-block; text-align: center; margin-right: 10px" >
-              <img *ngIf="item.buddy == user.profile.id " class="avatar" src="{{user.profile.img}}"/><br>
-              <span *ngIf="item.buddy == user.profile.id ">{{user.profile.name}}</span>
-            </div>
+              <div style="display: inline-block; text-align: center; margin-right: 10px" >
+                <ng-container *ngIf="user.profile.id != userInfo.id">
+                  <img *ngIf="item.buddy == user.profile.id " class="avatar" src="{{user.profile.img}}" (click)="navUser(user)"/><br>
+                </ng-container>
+                <ng-container *ngIf="user.profile.id == userInfo.id">
+                  <img *ngIf="item.buddy == user.profile.id" class="avatar" src="{{user.profile.img}}" (click)="navMiPerfil()"/><br>
+                </ng-container>
+                <span *ngIf="item.buddy == user.profile.id ">{{user.profile.name}}</span>
+              </div>
             </ng-container>
           </ion-col>
 

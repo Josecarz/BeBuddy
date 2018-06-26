@@ -34,6 +34,7 @@ export class TripdetailPage {
   followUser: Follow = { id: '', name: '', img:'' };
   follows: any;
   isFollow: boolean;
+  isMe: boolean;
   days = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
 
   constructor(public navCtrl: NavController,
@@ -66,6 +67,7 @@ export class TripdetailPage {
                 this.follows = data;
                 console.log(this.follows);
                 this.checkFollow();
+                this.checkMe();
               }
             );
           }
@@ -130,5 +132,13 @@ export class TripdetailPage {
       } else {
         this.isFollow = false;
       }}
+  }
+
+  checkMe(){
+    if(this.tour.buddy == this.userInfo.id){
+      this.isMe = true;
+    } else {
+      this.isMe = false;
+    }
   }
 }

@@ -4,6 +4,9 @@ import {DbApiService} from "../../providers/db-api.service";
 import {UserService} from "../../providers/user-service";
 import {TourService} from "../../providers/tour-service";
 import {TripdetailPage} from "../tripdetail/tripdetail";
+import {PerfilPage} from "../perfil/perfil";
+import {AngularFireAuth} from "angularfire2/auth";
+import {LoginPage} from "../login/login";
 
 /**
  * Generated class for the ToursPage page.
@@ -21,7 +24,12 @@ export class ToursPage {
 
   tours: any;
   buddy: any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, private dbapi: DbApiService,  private tourService: TourService) {
+  usuario: any;
+  userInfo: any;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private dbapi: DbApiService,  private tourService: TourService,
+              private auth: AngularFireAuth,
+              private profile: UserService) {
   }
 
   ionViewDidLoad() {
@@ -41,10 +49,33 @@ export class ToursPage {
       }
     );
 
+    this.auth.authState.subscribe(data => {
+      this.usuario = data;
+      if (this.usuario != null) {
+        console.log("USUARIO   " + this.usuario.uid);
+        this.profile.getUserProfileInfo(this.usuario.uid).subscribe(
+          (data) => {
+            this.userInfo = data;
+            console.log("USUARIO INFO   " + this.userInfo.id);
+
+          }
+        );
+      }
+    });
+
   }
 
   navTour(tour){
     this.navCtrl.push(TripdetailPage, tour);
+  }
+
+  navUser(user){
+    console.log(user);
+    this.navCtrl.push(PerfilPage, user);
+  }
+
+  navMiPerfil(){
+    this.navCtrl.push(LoginPage);
   }
 
 }
