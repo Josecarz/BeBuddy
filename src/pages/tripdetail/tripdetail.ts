@@ -33,6 +33,7 @@ export class TripdetailPage {
   userInfo: any;
   followUser: Follow = { id: '', name: '', img:'' };
   follows: any;
+  isFollow: boolean;
   days = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
 
   constructor(public navCtrl: NavController,
@@ -64,6 +65,7 @@ export class TripdetailPage {
               (data) => {
                 this.follows = data;
                 console.log(this.follows);
+                this.checkFollow();
               }
             );
           }
@@ -114,4 +116,19 @@ export class TripdetailPage {
     this.profile.addUserToFollow(this.userInfo.id, this.followUser);
   }
 
+
+  unfollow(user){
+    this.profile.deleteUserToFollow(this.userInfo.id, user.id);
+    this.isFollow = false;
+  }
+
+  checkFollow(){
+    //tengo que comprobar que el user sea follow o no
+    for(let follow of this.follows){
+      if(follow.id == this.user.id){
+        this.isFollow =true;
+      } else {
+        this.isFollow = false;
+      }}
+  }
 }

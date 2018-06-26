@@ -68,12 +68,17 @@ export class UserService {
 
   public addRatingToUser(userId: string, rating: Rating) {
     this.db.object(`/users/${userId}/rating`).set(rating);
-    this.db.object(`/users/${userId}/follows/${userId}`).set(userId);
+    this.db.object(`/users/${userId}/follows/${userId}`).set('true');
   }
 
   public addUserToFollow(userId: string, userFollow: Follow){
     return this.db.object(`/users/${userId}/follows/${userFollow.id}`)
       .set(userFollow);
+  }
+
+  public deleteUserToFollow(userId: string, user){
+    return this.db.object(`/users/${userId}/follows/${user}`)
+      .remove();
   }
 
 }

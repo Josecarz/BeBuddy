@@ -57,10 +57,11 @@
       <ion-col col-10>
         <ion-buttons class="buttons" end>
           <button ion-button small round>Enviar mensaje</button>
-          <ng-container *ngFor="let followUser of follows">
-            <button ion-button small round *ngIf="followUser.id != user.id && userInfo.id != user.id" (click)="follow(user)">Seguir</button>
-            <button ion-button small round *ngIf="followUser.id == user.id  && userInfo.id != user.id" (click)="unfollow(user)">Dejar de seguir</button>
-            <button ion-button small round *ngIf="userInfo.id == user.id" (click)="deleteTour(tour)">Eliminar tour</button>
+          <!--<ng-container *ngFor="let followUser of follows">-->
+            <ng-container >
+            <button ion-button small round *ngIf="!isFollow" (click)="follow(user)">Seguir</button>
+            <button ion-button small round *ngIf="isFollow" (click)="unfollow(user)">Dejar de seguir</button>
+            <!--<button ion-button small round *ngIf="userInfo.id == user.id" (click)="deleteTour(tour)">Eliminar tour</button>-->
           </ng-container>
         </ion-buttons>
       </ion-col>
