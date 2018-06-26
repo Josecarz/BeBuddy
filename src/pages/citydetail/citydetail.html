@@ -59,13 +59,13 @@
           <ion-col col-3>
             <ng-container *ngFor="let user of buddies">
               <div style="display: inline-block; text-align: center; margin-right: 10px" >
-                <ng-container *ngIf="user.profile.id != userInfo.id">
-                  <img *ngIf="item.buddy == user.profile.id " class="avatar" src="{{user.profile.img}}" (click)="navUser(user)"/><br>
+                <ng-container *ngIf="user.profile?.id != userInfo?.id">
+                  <img *ngIf="item.buddy == user.profile?.id " class="avatar" src="{{user.profile?.img}}" (click)="navUser(user)"/><br>
                 </ng-container>
-                <ng-container *ngIf="user.profile.id == userInfo.id">
-                  <img *ngIf="item.buddy == user.profile.id" class="avatar" src="{{user.profile.img}}" (click)="navMiPerfil()"/><br>
+                <ng-container *ngIf="user.profile?.id == userInfo?.id">
+                  <img *ngIf="item.buddy == user.profile?.id" class="avatar" src="{{user.profile?.img}}" (click)="navMiPerfil()"/><br>
                 </ng-container>
-                <span *ngIf="item.buddy == user.profile.id ">{{user.profile.name}}</span>
+                <span *ngIf="item.buddy == user.profile?.id ">{{user.profile?.name}}</span>
 
                 <!--<ng-container *ngIf="item.profile.id != userInfo.id">-->
                   <!--<img class="avatar" src="{{item.profile.img}}" (click)="navUser(item)"/><br>-->

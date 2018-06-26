@@ -31,8 +31,8 @@
           <ion-col col-3 pull-1>
             <ng-container *ngFor="let user of buddy">
               <div style="display: inline-block; text-align: center; margin-right: 10px" >
-                <img *ngIf="item.buddy == user.profile.id " class="avatar" src="{{user.profile.img}}" (click)="navUser(user)"/><br>
-                <span *ngIf="item.buddy == user.profile.id ">{{user.profile.name}}</span>
+                <img *ngIf="item.buddy == user.profile?.id " class="avatar" src="{{user.profile?.img}}" (click)="navUser(user)"/><br>
+                <span *ngIf="item.buddy == user.profile?.id ">{{user.profile?.name}}</span>
               </div>
             </ng-container>
           </ion-col>

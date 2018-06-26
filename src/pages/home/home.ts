@@ -109,5 +109,9 @@ export class HomePage {
   navTours(){
     this.navCtrl.push(ToursPage);
   }
+
+  navTour(tour){
+    this.navCtrl.push(TripdetailPage, tour);
+  }
 }
 

@@ -36,7 +36,7 @@
 
     <ion-scroll scrollX="true" style="white-space:nowrap; height: 160px;">
       <div style="display: inline-block; text-align: center;" *ngFor="let item of tours">
-        <img style="width: 150px; margin: 1px; border: 1px; border-radius: 10px" class="tours" src="{{item.img}}"/><br>
+        <img style="width: 150px; margin: 1px; border: 1px; border-radius: 10px" class="tours" src="{{item.img}}" (click)="navTour(item)"/><br>
         <div class="miniTour">{{item.title}}</div>
       </div>
     </ion-scroll>
