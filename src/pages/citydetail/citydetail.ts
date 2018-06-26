@@ -53,7 +53,7 @@ export class CitydetailPage {
       (data) => {
         this.tours = data;
         console.log(this.tours);
-        this.setFilteredItems()
+        this.setFilteredTourItems()
       }
     );
 
@@ -61,7 +61,7 @@ export class CitydetailPage {
       (data) => {
         this.buddy = data;
         console.log(this.buddy);
-        this.setFilteredItems()
+        this.setFilteredBuddiesItems();
       }
     );
 
@@ -80,13 +80,18 @@ export class CitydetailPage {
     });
   }
 
-  setFilteredItems() {
+  setFilteredTourItems() {
+    console.log("FILTERITEMS")
     this.finalTours = this.dataService.filterByCity(this.param, this.tours);
 
+  }
 
-    this.buddies = this.dataService.filterByCityBuddy(this.param, this.buddy);
+  setFilteredBuddiesItems() {
+    console.log("FILTERITEMS")
+    this.buddies = this.dataService.filterByCity(this.param, this.buddy);
     console.log(this.buddies);
   }
+
 
   navTour(tour){
     this.navCtrl.push(TripdetailPage, tour);

@@ -45,7 +45,7 @@ export class ToursPage {
     this.dbapi.getBuddies().subscribe(
       (data) => {
         this.buddy = data;
-        console.log(this.buddy);
+        console.log(data);
       }
     );
 

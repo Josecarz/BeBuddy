@@ -29,13 +29,13 @@
     </div>
     <ion-scroll scrollX="true" style="white-space:nowrap; height: 68px;" *ngIf="usuario">
       <div style="display: inline-block; text-align: center; margin-right: 10px"  *ngFor="let item of buddies">
-        <ng-container *ngIf="item.profile.id != userInfo.id">
-        <img class="avatar" src="{{item.profile.img}}" (click)="navUser(item)"/><br>
+        <ng-container *ngIf="item.profile?.id != userInfo?.id">
+        <img class="avatar" src="{{item.profile?.img}}" (click)="navUser(item)"/><br>
         </ng-container>
-        <ng-container *ngIf="item.profile.id == userInfo.id">
-        <img  class="avatar" src="{{item.profile.img}}" (click)="navMiPerfil()"/><br>
+        <ng-container *ngIf="item.profile?.id == userInfo?.id">
+        <img  class="avatar" src="{{item.profile?.img}}" (click)="navMiPerfil()"/><br>
         </ng-container>
-        <span>{{item.profile.name}}</span>
+        <span>{{item.profile?.name}}</span>
       </div>
     </ion-scroll>
   </ion-card-content>
