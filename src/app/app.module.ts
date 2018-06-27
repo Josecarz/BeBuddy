@@ -39,6 +39,8 @@ import {Camera} from "@ionic-native/camera";
 import {TourService} from "../providers/tour-service";
 import {CommentsComponent} from "../components/comments/comments";
 import {ToursPage} from "../pages/tours/tours";
+import {ChatService} from "../providers/chat-service";
+import {ChatPage} from "../pages/chat/chat";
 
 
 
@@ -68,6 +70,7 @@ export const FirebaseConfig = {
     CreateTourComponent,
     CommentsComponent,
     ToursPage,
+    ChatPage
   ],
   imports: [
     BrowserModule,
@@ -97,7 +100,8 @@ export const FirebaseConfig = {
     EditPerfilComponent,
     CreateTourComponent,
     CommentsComponent,
-    ToursPage
+    ToursPage,
+    ChatPage
   ],
   providers: [
     StatusBar,
@@ -111,7 +115,8 @@ export const FirebaseConfig = {
     RatingService,
     CameraService,
     Camera,
-    TourService
+    TourService,
+    ChatService
 
   ]
 })

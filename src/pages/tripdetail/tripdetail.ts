@@ -8,6 +8,8 @@ import {CommentsComponent} from "../../components/comments/comments";
 import {UserService} from "../../providers/user-service";
 import {AngularFireAuth} from "angularfire2/auth";
 import {Follow} from "../../models/models";
+import {ChatService} from "../../providers/chat-service";
+import {ChatPage} from "../chat/chat";
 
 /**
  * Generated class for the TripdetailPage page.
@@ -34,8 +36,11 @@ export class TripdetailPage {
   followUser: Follow = { id: '', name: '', img:'' };
   follows: any;
   isFollow: boolean;
+  isChat: boolean;
   isMe: boolean;
+  chats: any;
   days = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
+  chatId: string;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -44,32 +49,37 @@ export class TripdetailPage {
               private dbapi: DbApiService,
               private rating: RatingService,
               private profile: UserService,
-              private auth: AngularFireAuth) {
+              private auth: AngularFireAuth,
+              private chat: ChatService) {
     this.tour = this.navParams.data;
     // console.log('ionViewDidLoad ' + this.destino);
   }
 
   ionViewWillEnter() {
-    console.log('ionViewDidLoad TripdetailPage' + this.tour.id);
     this.fav.isFav(this.tour.id).then(value => this.favourite = value);
 
     this.auth.authState.subscribe(data => {
       this.usuario = data;
       if (this.usuario != null) {
-        console.log("USUARIO   " + this.usuario.uid);
         this.profile.getUserProfileInfo(this.usuario.uid).subscribe(
           (data) => {
             this.userInfo = data;
-            console.log("USUARIO INFO   " + this.userInfo.name);
 
             this.dbapi.getFollows(this.userInfo.id).subscribe(
               (data) => {
                 this.follows = data;
-                console.log(this.follows);
                 this.checkFollow();
                 this.checkMe();
               }
             );
+            this.chat.getChats(this.userInfo.id).subscribe(
+              (data) => {
+                this.chats = data;
+                console.log(this.chats);
+                this.checkChat();
+              }
+            );
+
           }
         );
 
@@ -134,11 +144,29 @@ export class TripdetailPage {
       }}
   }
 
+  checkChat(){
+    for(let chat of this.chats){
+      if(chat.id == this.user.id){
+        this.chatId = chat.idChat;
+        this.isChat =true;
+      } else {
+        this.isChat = false;
+      }}
+  }
+
   checkMe(){
     if(this.tour.buddy == this.userInfo.id){
       this.isMe = true;
     } else {
       this.isMe = false;
     }
+  }
+
+  startChat(){
+    this.chat.startChat(this.userInfo.id, this.user.id);
+  }
+
+  navToChat(){
+    this.navCtrl.push(ChatPage, this.chatId);
   }
 }

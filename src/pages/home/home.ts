@@ -22,12 +22,14 @@ export class HomePage {
   cities =[];
   tours = [];
   user: string = '';
+  finalTours = [];
 
   searchTerm: string = '';
   searchControl: FormControl;
   items: any;
   searching: any = false;
   userInfo: any;
+  follows: any;
 
   constructor(private afAuth: AngularFireAuth,
               public navCtrl: NavController,
@@ -36,7 +38,7 @@ export class HomePage {
               private dbapi: DbApiService,
               private dataService: DataProvider,
               private profile: UserService,
-              private tourService: TourService
+              private tourService: TourService,
               ) {
     this.searchControl = new FormControl();
 
@@ -54,6 +56,15 @@ export class HomePage {
           message: `Welcome to Bebuddy, ${data.email}`,
           duration: 1500
         }).present();
+
+        this.dbapi.getFollows(data.uid).subscribe(
+          (data) => {
+            this.follows = data;
+            for(let follow of this.follows){
+
+            }
+          }
+        );
       }
     });
 
@@ -71,6 +82,7 @@ export class HomePage {
         this.setFilteredItems();
       }
     );
+
 
 
     this.tourService.getTours().subscribe(

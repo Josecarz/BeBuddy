@@ -18,7 +18,23 @@
     </ion-card>
   </div>
 
+  <ion-list>
+    <ion-item *ngFor="let item of finalTours">
+      <img item-start class="miniimg" src="{{item.img}}">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-9>
+            <h2>{{item.title}}</h2>
+            <rating class="ratingTour" [(ngModel)]="item.rate" readOnly="true"></rating>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-buttons class="buttons" end>
+        <button ion-button small round (click)="navTour(item)">Ver más</button>
+      </ion-buttons>
 
+    </ion-item>
+  </ion-list>
 
   <ion-card class="destino" *ngFor="let item of items" (click)="navTrip(item)">
     <!--<img src="{{item.img}}"/>-->

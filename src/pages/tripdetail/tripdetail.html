@@ -56,7 +56,8 @@
       </ion-col>
       <ion-col col-10>
         <ion-buttons class="buttons" end>
-          <button ion-button small round  *ngIf="!isMe">Enviar mensaje</button>
+          <button ion-button small round  *ngIf="!isMe && isChat" (click)="navToChat()">Enviar mensaje</button>
+          <button ion-button small round  *ngIf="!isMe && !isChat" (click)="startChat()">CREAR mensaje</button>
           <!--<ng-container *ngFor="let followUser of follows">-->
             <button ion-button small round *ngIf="!isFollow && !isMe" (click)="follow(user)">Seguir</button>
             <button ion-button small round *ngIf="isFollow && !isMe" (click)="unfollow(user)">Dejar de seguir</button>

@@ -1,16 +1,10 @@
 import { Component } from '@angular/core';
 import {IonicPage, Loading, LoadingController, NavController, NavParams} from 'ionic-angular';
 import {RatingService} from "../../providers/rating-service";
-import {LoginPage} from "../login/login";
-import {CommentsComponent} from "../../components/comments/comments";
 import {DbApiService} from "../../providers/db-api.service";
-import {HomePage} from "../home/home";
-import {CreateTourComponent} from "../../components/create-tour/create-tour";
-import {RegisterPage} from "../register/register";
 import {Follow, Login, Rating} from "../../models/models";
 import {UserService} from "../../providers/user-service";
 import {AngularFireAuth} from "angularfire2/auth";
-import {EditPerfilComponent} from "../../components/edit-perfil/edit-perfil";
 import {DataProvider} from "../../providers/data";
 
 /**

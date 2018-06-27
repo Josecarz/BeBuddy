@@ -69,49 +69,12 @@ export class DbApiService {
       .valueChanges()
   }
 
+
   public getUser(userId: string){
     return this.fb.object(`/users/${userId}/`)
       .valueChanges()
   }
 
-  // getInfoUser(){
-  //   return
-  // }
-
-  // firebase.database().ref('usuarios').orderByChild('name').equalTo('Moises').on('child_added', function(data) {
-  //   var element = data.val();
-  //   console.log(element.name);
-  // });
-
-  // editRecipe(recipe, user){
-  //   this.fb.list(`recipes/${recipe.key}`).update({
-  //     name: recipe.name,
-  //     ingredient: recipe.ingredients,
-  //     tag: recipe.tag,
-  //     user: user.email
-  //
-  //   }, recipe.key);
-  // }
 
 
-  //
-  // editRecipe(recipe, user){
-  //   this.fb.list(`recipes/${recipe.key}`).update({
-  //     name: recipe.name,
-  //     ingredient: recipe.ingredients,
-  //     tag: recipe.tag,
-  //     user: user.email
-  //
-  //   }, recipe.key);
-  // }
-
-  // getTournamentsData(tourneyId): Observable<any> {
-  //   return this.fb.object(`tournaments-data/${tourneyId}`).valueChanges()
-  //     .map(resp => this.currentTourney = resp);
-  // }
-  //
-  //
-  // getCurrentTourney() {
-  //   return this.currentTourney;
-  // }
 }

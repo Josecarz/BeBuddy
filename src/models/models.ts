@@ -43,3 +43,17 @@ export type Follow = {
   name: string;
   img: string;
 }
+
+
+export type Chat = {
+  friendName: string;
+  friendPhotoUrl: string;
+  startDate: number;
+  chatRoomId: string;
+}
+
+export type ChatMessage = {
+  content: string;
+  who: string;
+  cssClass: string;
+}
