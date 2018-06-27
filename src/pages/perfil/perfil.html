@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar color="dark">
-    <ion-title style="font-family: Neon; text-align: center; margin-right: 50px ">Perfil</ion-title>
+    <ion-title class="titleTop">Perfil</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -38,5 +38,25 @@
     </ion-row>
   </ion-grid>
   <hr style="margin: 0px">
+
+  <ion-title class="miTitle">Tours de {{buddyFinal?.name}}</ion-title>
+  <ion-list>
+    <ion-item *ngFor="let item of finalTours">
+      <img item-start class="miniimg" src="{{item.img}}">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-9>
+            <h2>{{item.title}}</h2>
+            <rating class="ratingTour" [(ngModel)]="item.rate" readOnly="true"></rating>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-buttons class="buttons" end>
+        <button ion-button small round (click)="navTour(item)">Ver más</button>
+      </ion-buttons>
+
+    </ion-item>
+
+  </ion-list>
 
 </ion-content>

@@ -7,8 +7,8 @@
 <ion-header>
 
   <ion-navbar color="dark">
-    <ion-title *ngIf="!usuario">login</ion-title>
-    <ion-title *ngIf="usuario" style="text-align: center;">Perfil</ion-title>
+    <ion-title class="titleTop" *ngIf="!usuario">login</ion-title>
+    <ion-title  class="titleTop" *ngIf="usuario" style="text-align: center;">Perfil</ion-title>
 
 
     <ion-buttons end *ngIf="usuario">
@@ -74,8 +74,9 @@
   </ion-grid>
   <hr style="margin: 0px">
 
+  <ion-title class="miTitle">Tours de {{userInfo?.name}}</ion-title>
   <ion-list>
-    <ion-item *ngFor="let item of tours">
+    <ion-item *ngFor="let item of finalTours">
       <img item-start class="miniimg" src="{{item.img}}">
       <ion-grid>
         <ion-row>
@@ -93,8 +94,7 @@
 
   </ion-list>
 
-
-  <div padding>
+  <div padding-left padding-right>
     <button ion-button small round full color="primary" (tap)="logout()">Cerrar sesión</button><br>
   </div>
 

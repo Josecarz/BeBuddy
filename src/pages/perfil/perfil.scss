@@ -1,7 +1,7 @@
 page-perfil {
 
 
-  .title {
+  .titleTop {
     text-align: center;
     font-family: "Neon";
   }
@@ -74,6 +74,11 @@ page-perfil {
 
   }
 
+  .miniimg {
+    width: 110px;
+    height: 110px;
+  }
+
   .rating{
     ul {
       margin: 10px;
@@ -89,6 +94,27 @@ page-perfil {
       }
     }
   }
+
+  .ratingTour{
+    ul {
+      margin: 0px;
+      padding: 0;
+      margin-top: 5px;
+      &.rating li {
+        background: none;
+        color: #ffb400;
+        margin: -10px;
+        ion-icon {
+          font-size: 20px;
+        }
+      }
+    }
+  }
+  .miTitle {
+    margin: 10px !important;
+    text-align: center;
+  }
+
 
 
 

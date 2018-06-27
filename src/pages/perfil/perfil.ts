@@ -11,6 +11,7 @@ import {Follow, Login, Rating} from "../../models/models";
 import {UserService} from "../../providers/user-service";
 import {AngularFireAuth} from "angularfire2/auth";
 import {EditPerfilComponent} from "../../components/edit-perfil/edit-perfil";
+import {DataProvider} from "../../providers/data";
 
 /**
  * Generated class for the PerfilPage page.
@@ -35,9 +36,11 @@ export class PerfilPage {
   followUser: Follow = { id: '', name: '', img:'' };
   follows: any;
   isFollow: boolean;
+  tours: any;
+  finalTours: any;
   ratingUser: Rating = { rate: 0, votes: 0, points: 0 };
   constructor(public navCtrl: NavController, private dbapi: DbApiService,  private profile: UserService, private loadingCtrl: LoadingController, private auth: AngularFireAuth,
-              private rating: RatingService, public navParams: NavParams) {
+              private rating: RatingService, public navParams: NavParams, private dataService: DataProvider) {
     this.buddy = this.navParams.data;
     console.log(this.buddy)
     this.buddyFinal = this.buddy.profile;
@@ -67,6 +70,13 @@ export class PerfilPage {
             if(this.ratingInfo == null){
               this.profile.addRatingToUser(this.buddy.id, this.ratingUser);
             }
+          }
+        );
+        this.dbapi.getTours().subscribe(
+          (data) => {
+            this.tours = data;
+            this.finalTours = this.dataService.filterByBuddy(this.buddyFinal.id, this.tours);
+            //filtrar por mi id=buddy
           }
         );
       }

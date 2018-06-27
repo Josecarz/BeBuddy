@@ -1,6 +1,6 @@
 page-login {
 
-  .title {
+  .titleTop{
     text-align: center;
     font-family: "Neon";
   }
@@ -108,7 +108,10 @@ page-login {
       }
     }
   }
-
+  .miTitle {
+    margin: 10px !important;
+    text-align: center;
+  }
 
 
 }

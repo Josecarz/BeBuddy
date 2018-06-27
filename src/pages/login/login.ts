@@ -39,6 +39,7 @@ export class LoginPage {
   ratingInfo: any;
   lock: any;
   tours: any;
+  finalTours: any;
   ratingUser: Rating = { rate: 0, votes: 0, points: 0 };
   constructor(public navCtrl: NavController, private dbapi: DbApiService,  private profile: UserService, private loadingCtrl: LoadingController, private auth: AngularFireAuth,
               private rating: RatingService, private dataService: DataProvider) {
@@ -53,6 +54,7 @@ export class LoginPage {
           (data) => {
             this.userInfo = data;
             console.log("USUARIO INFO   " + this.userInfo.name);
+
           }
         );
         this.profile.getUserRatingInfo(this.usuario.uid).subscribe(
@@ -64,14 +66,14 @@ export class LoginPage {
             console.log("RATING " + this.ratingInfo)
           }
         );
-
         this.dbapi.getTours().subscribe(
           (data) => {
             this.tours = data;
-            this.dataService.filterByBuddy(this.userInfo.id, this.tours);
+            this.finalTours = this.dataService.filterByBuddy(this.userInfo.id, this.tours);
             //filtrar por mi id=buddy
           }
         );
+
       }
     });
   }
