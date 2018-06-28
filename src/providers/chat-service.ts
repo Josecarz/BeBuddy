@@ -63,4 +63,8 @@ export class ChatService {
     return this.db.list(`/chats/${chatId}/messages`).valueChanges();
   }
 
+  public deleteChat(chatId: string): Promise <any>{
+    return this.db.object(`/chats/${chatId}`).set({});
+  }
+
 }

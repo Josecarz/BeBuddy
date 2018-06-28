@@ -6,15 +6,15 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>Chat</ion-title>
+  <ion-navbar color="dark">
+    <ion-title style="font-family: Neon; text-align: center">Chat</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 
-<ion-content padding>
+<ion-content padding class="back">
 
   <div id="chatMessages">
     <div *ngFor="let message of messages" [class]="message.specialMessage ? 'message special' : 'message'">
@@ -26,11 +26,20 @@
 
 </ion-content>
 
-<ion-footer>
-  <ion-toolbar>
-    <div id="footer">
-      <div class="elem"><ion-input type="text" [(ngModel)]="message"></ion-input></div>
-      <div class="elem"><button ion-button icon-only (click)="sendMessage()"><ion-icon name="send"></ion-icon> </button></div>
+<!--<ion-footer>-->
+  <!--<ion-toolbar>-->
+    <!--<div id="footer">-->
+      <!--<div class="elem"><ion-input type="text" [(ngModel)]="message"></ion-input></div>-->
+      <!--<div class="elem"><button ion-button icon-only (click)="sendMessage()"><ion-icon name="send"></ion-icon> </button></div>-->
+    <!--</div>-->
+  <!--</ion-toolbar>-->
+<!--</ion-footer>-->
+
+<ion-footer style="height: 45px;">
+  <ion-toolbar class="toolbar-input" keyboard-attach>
+    <input placeholder="Escribe tu mensaje" [(ngModel)]="message">
+    <div class="icon-wrapper" (tap)="sendMessage()">
+      <ion-icon name="md-send"></ion-icon>
     </div>
   </ion-toolbar>
 </ion-footer>

@@ -20,6 +20,8 @@
       <div class="card-title">{{buddyFinal?.name}}</div>
 
       <ion-buttons end class="buttons">
+        <button ion-button small round  *ngIf="isChat" (click)="navToChat()">Enviar mensaje</button>
+        <button ion-button small round  *ngIf="!isChat" (click)="startChat()">CREAR mensaje</button>
         <button ion-button small round *ngIf="!isFollow" (click)="follow(buddy)">Seguir</button>
         <button ion-button small round *ngIf="isFollow" (click)="unfollow(buddy)">Dejar de seguir</button>
       </ion-buttons>

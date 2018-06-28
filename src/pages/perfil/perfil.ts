@@ -6,6 +6,8 @@ import {Follow, Login, Rating} from "../../models/models";
 import {UserService} from "../../providers/user-service";
 import {AngularFireAuth} from "angularfire2/auth";
 import {DataProvider} from "../../providers/data";
+import {ChatPage} from "../chat/chat";
+import {ChatService} from "../../providers/chat-service";
 
 /**
  * Generated class for the PerfilPage page.
@@ -33,8 +35,12 @@ export class PerfilPage {
   tours: any;
   finalTours: any;
   ratingUser: Rating = { rate: 0, votes: 0, points: 0 };
+  chatId: string;
+  isChat: boolean;
+  chats: any;
+
   constructor(public navCtrl: NavController, private dbapi: DbApiService,  private profile: UserService, private loadingCtrl: LoadingController, private auth: AngularFireAuth,
-              private rating: RatingService, public navParams: NavParams, private dataService: DataProvider) {
+              private rating: RatingService, public navParams: NavParams, private dataService: DataProvider, private chat: ChatService) {
     this.buddy = this.navParams.data;
     console.log(this.buddy)
     this.buddyFinal = this.buddy.profile;
@@ -54,6 +60,13 @@ export class PerfilPage {
               (data) => {
                 this.follows = data;
                 this.checkFollow();
+              }
+            );
+            this.chat.getChats(this.userInfo.id).subscribe(
+              (data) => {
+                this.chats = data;
+                console.log(this.chats);
+                this.checkChat();
               }
             );
           }
@@ -103,6 +116,19 @@ export class PerfilPage {
       }}
   }
 
+  checkChat(){
+    for(let chat of this.chats){
+      if(chat.id == this.buddyFinal.id){
+        this.chatId = chat.idChat;
+        this.isChat =true;
+      } else {
+        this.isChat = false;
+      }}
+  }
+
+  navToChat(){
+    this.navCtrl.push(ChatPage, this.chatId);
+  }
 
 
 

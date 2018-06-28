@@ -16,7 +16,7 @@ page-chat {
     font-size: 80%;
   }
   .message {
-    font-size: 120%;
+    font-size: 100%;
   }
   .elem button {
     border-radius: 0;
@@ -31,23 +31,6 @@ page-chat {
     position: relative;
     min-width: 50px;
   }
-  div#footer div.elem:first-child {
-    flex-grow: 1;
-  }
-  div#footer {
-    display: flex;
-    flex-direction: row;
-    align-items: stretch;
-  }
-
-  ion-input{
-    padding-left: 15px;
-    font-size: 125%;
-  }
-  ion-toolbar {
-    margin: 0;
-    padding: 0!important;
-  }
   .message:after {
     content: '';
     display: block;
@@ -60,31 +43,52 @@ page-chat {
     float: right;
   }
 
-  //.message.special .innerMessage .messageContent{
-  //  background: white;
-  //  display: inline-block;
-  //  padding: 0 10px;
-  //}
-  //
-  //.message.special .innerMessage:before{
-  //  content: '';
-  //  height: 2px;
-  //  background: #eee;
-  //  display: block;
-  //  top: 50%;
-  //  position: absolute;
-  //  left: 0;
-  //  width: 100%;
-  //  z-index: -1;
-  //}
 
-  //.message.special .innerMessage{
-  //  background: transparent;
-  //  color: black;
-  //  font-size: 80%;
-  //  width: 100%;
-  //  float: none;
-  //  text-align: center;
-  //  position: relative;
-  //}
+  ion-footer {
+    bottom: -1px;
+  }
+  .toolbar-input {
+    .toolbar-background {
+      background-color: color($colors, 'dark');
+      border: 0;
+    }
+    input {
+      padding-left: 15px;
+      border: 0;
+      border-radius: 200px;
+      width: 90%;
+      height: 30px;
+    }
+    .icon-wrapper {
+      color: #ffffff;
+      font-size: 20px;
+      height: 30px;
+      width: 10%;
+      float: right;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+
+  .back {
+    background-image: url("../../assets/imgs/fondologin.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    position: relative;
+    border: none;
+
+    ion-item{
+      opacity: 0.8;
+    }
+
+    p{
+      text-align: center;
+      color: #fff;
+    }
+  }
+
 }

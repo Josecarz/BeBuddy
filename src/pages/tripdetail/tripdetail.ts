@@ -163,7 +163,12 @@ export class TripdetailPage {
   }
 
   startChat(){
-    this.chat.startChat(this.userInfo.id, this.user.id);
+    this.chat.startChat(this.userInfo.id, this.user.id).then(
+      (data) => {
+        this.navToChat();
+      }
+    );
+
   }
 
   navToChat(){

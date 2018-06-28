@@ -16,10 +16,10 @@
   </div>
   <form (ngSubmit)="createTour()" #eventForm="ngForm">
     <div class="img-container" (tap)="selectImage()" [ngStyle]="{'background-image': 'url(' + imageSrc + ')'}">
-      <img *ngIf="!imageUploaded" src="assets/imgs/upload_image.png" />
+      <img *ngIf="!imageUploaded" src="assets/imgs/upload-icon.png" />
     </div>
     <div>
-      <p>Información del Tour:</p>
+      <ion-title padding>Información del Tour</ion-title>
     </div>
     <ion-item>
       <ion-label>
@@ -57,8 +57,11 @@
         <ion-option>Domingo</ion-option>
       </ion-select>
     </ion-item>
-    <button [disabled]="!eventForm.form.valid || (tour.image.length == 0)" type="submit" ion-button full class="button-blue">
-      Crear evento
-    </button>
+
+    <div padding-left padding-right>
+      <button [disabled]="!eventForm.form.valid || (tour.image.length == 0)" type="submit" ion-button full small round class="button-blue">
+        Crear evento
+      </button>
+    </div>
   </form>
 </ion-content>
