@@ -111,9 +111,3 @@ export class TourComponent {
   }
 
 }
-export class JoseComponent extends TourComponent {
-}
-
-export class DaniComponent extends TourComponent {
-
-}

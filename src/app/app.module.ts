@@ -43,7 +43,6 @@ import {ChatService} from "../providers/chat-service";
 import {ChatPage} from "../pages/chat/chat";
 import {LoadDataComponent} from "../components/load-data/load-data";
 import {TourComponent} from "../components/tour/tour";
-import {TourModule} from "../components/tour/tour.module";
 
 
 
