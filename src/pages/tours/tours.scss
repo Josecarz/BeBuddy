@@ -1,114 +1,114 @@
 page-tours {
 
-
-  .card-background-page {
-
-    ion-card {
-      position: relative;
-      text-align: center;
-      margin:auto;
-      width: auto;
-      height: 150px;
-    }
-
-    .buttons {
-      //background-color: #222222;
-      font-family: "Neon";
-      position: absolute;
-      bottom: 20%;
-      font-size: 2.0em;
-      width: 100%;
-      font-weight: bold;
-      color: #fff;
-    }
-
-  }
-  .grid{
-    padding: 0px !important;
-  }
-  .row{
-    margin-bottom: 0px !important;
-  }
-
-  .destino {
-    background-image: url("../../assets/imgs/fondologin.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    //width: 100%;
-    height: 50px;
-    position: relative;
-    border: none;
-
-    p{
-      font-family: "Neon";
-      font-size: 18px;
-      text-align: center;
-      position: relative;
-      top: 25%;
-      font-weight: bold;
-      color: #fff;
-    }
-  }
-
-  .tours{
-    height: 150px;
-
-    .buttons {
-      //background-color: #222222;
-      font-family: "Neon";
-      position: relative;
-      bottom: 5%;
-      font-size: 2.0em;
-      width: 100%;
-      font-weight: bold;
-      color: #fff;
-    }
-
-    .card-title {
-      //background-color: #222222;
-      font-family: "Neon";
-      opacity: 1;
-      position: absolute;
-      bottom: 30%;
-      font-size: 2.0em;
-      width: 100%;
-      font-weight: bold;
-      color: #fff;
-    }
-  }
-
-
-  .miniimg {
-    width: 110px;
-    height: 110px;
-  }
-
-  .avatar {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    border: 3px solid  #488aff;
-  }
-
-  .rating{
-    ul {
-      margin: 0px;
-      padding: 0;
-      margin-top: 5px;
-      &.rating li {
-        background: none;
-        color: #ffb400;
-        margin: -10px;
-        ion-icon {
-          font-size: 20px;
-        }
-      }
-    }
-  }
-
-  .label-md {
-    margin: 0;
-  }
+  //
+  //.card-background-page {
+  //
+  //  ion-card {
+  //    position: relative;
+  //    text-align: center;
+  //    margin:auto;
+  //    width: auto;
+  //    height: 150px;
+  //  }
+  //
+  //  .buttons {
+  //    //background-color: #222222;
+  //    font-family: "Neon";
+  //    position: absolute;
+  //    bottom: 20%;
+  //    font-size: 2.0em;
+  //    width: 100%;
+  //    font-weight: bold;
+  //    color: #fff;
+  //  }
+  //
+  //}
+  //.grid{
+  //  padding: 0px !important;
+  //}
+  //.row{
+  //  margin-bottom: 0px !important;
+  //}
+  //
+  //.destino {
+  //  background-image: url("../../assets/imgs/fondologin.png");
+  //  background-repeat: no-repeat;
+  //  background-size: cover;
+  //  background-position: center;
+  //  //width: 100%;
+  //  height: 50px;
+  //  position: relative;
+  //  border: none;
+  //
+  //  p{
+  //    font-family: "Neon";
+  //    font-size: 18px;
+  //    text-align: center;
+  //    position: relative;
+  //    top: 25%;
+  //    font-weight: bold;
+  //    color: #fff;
+  //  }
+  //}
+  //
+  //.tours{
+  //  height: 150px;
+  //
+  //  .buttons {
+  //    //background-color: #222222;
+  //    font-family: "Neon";
+  //    position: relative;
+  //    bottom: 5%;
+  //    font-size: 2.0em;
+  //    width: 100%;
+  //    font-weight: bold;
+  //    color: #fff;
+  //  }
+  //
+  //  .card-title {
+  //    //background-color: #222222;
+  //    font-family: "Neon";
+  //    opacity: 1;
+  //    position: absolute;
+  //    bottom: 30%;
+  //    font-size: 2.0em;
+  //    width: 100%;
+  //    font-weight: bold;
+  //    color: #fff;
+  //  }
+  //}
+  //
+  //
+  //.miniimg {
+  //  width: 110px;
+  //  height: 110px;
+  //}
+  //
+  //.avatar {
+  //  width: 45px;
+  //  height: 45px;
+  //  border-radius: 50%;
+  //  border: 3px solid  #488aff;
+  //}
+  //
+  //.rating{
+  //  ul {
+  //    margin: 0px;
+  //    padding: 0;
+  //    margin-top: 5px;
+  //    &.rating li {
+  //      background: none;
+  //      color: #ffb400;
+  //      margin: -10px;
+  //      ion-icon {
+  //        font-size: 20px;
+  //      }
+  //    }
+  //  }
+  //}
+  //
+  //.label-md {
+  //  margin: 0;
+  //}
 
 }

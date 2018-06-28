@@ -1,0 +1,43 @@
+<!-- Generated template for the TourComponent component -->
+
+
+
+<div>
+
+  <ion-list>
+    <!--<ion-item  *ngFor="let item of tours">-->
+    <ion-item style="margin-top: -8px; margin-right: 0px;" *ngFor="let item of tours">
+      <img item-start class="miniimg" src="{{item.img}}">
+      <!--<div><span style="float:right"> <img item-start class="avatar" src="{{item.img}}"></span><h2>{{item.name}}</h2></div>-->
+      <!--<h2>{{item.name}}</h2>-->
+      <h2 style="overflow: hidden; white-space:nowrap; text-overflow: ellipsis;">{{item.title}}</h2>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-9>
+            <!--<h2 style="overflow: hidden; white-space:nowrap; text-overflow: ellipsis;">{{item.title}}</h2>-->
+            <rating class="rating" [(ngModel)]="item.rate" readOnly="true"></rating>
+          </ion-col>
+
+          <ion-col style="padding: 0px !important; text-align: center; margin-top: 1px" col-3 *ngIf="userInfo">
+            <ng-container *ngFor="let user of buddy">
+
+                <ng-container *ngIf="user.profile?.id != userInfo.id">
+                  <img *ngIf="item.buddy == user.profile?.id " class="avatar" src="{{user.profile?.img}}" (click)="navUser(user)"/><br>
+                </ng-container>
+                <ng-container *ngIf="user.profile?.id == userInfo.id">
+                  <img *ngIf="item.buddy == user.profile?.id" class="avatar" src="{{user.profile?.img}}" (click)="navMiPerfil()"/><br>
+                </ng-container>
+              <span *ngIf="item.buddy == user.profile?.id "><p style="overflow: hidden; white-space:nowrap; text-overflow: ellipsis;">{{user.profile?.name}}</p></span>
+            </ng-container>
+          </ion-col>
+
+        </ion-row>
+      </ion-grid>
+      <!--<ion-buttons  end>-->
+        <button ion-button small round (click)="navTour(item)">Ver más</button>
+      <!--</ion-buttons>-->
+    </ion-item>
+    <!--<hr>-->
+  </ion-list>
+</div>
+

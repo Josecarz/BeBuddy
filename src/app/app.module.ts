@@ -41,6 +41,9 @@ import {CommentsComponent} from "../components/comments/comments";
 import {ToursPage} from "../pages/tours/tours";
 import {ChatService} from "../providers/chat-service";
 import {ChatPage} from "../pages/chat/chat";
+import {LoadDataComponent} from "../components/load-data/load-data";
+import {TourComponent} from "../components/tour/tour";
+import {TourModule} from "../components/tour/tour.module";
 
 
 
@@ -70,7 +73,9 @@ export const FirebaseConfig = {
     CreateTourComponent,
     CommentsComponent,
     ToursPage,
-    ChatPage
+    ChatPage,
+    LoadDataComponent,
+    TourComponent
   ],
   imports: [
     BrowserModule,
@@ -82,7 +87,7 @@ export const FirebaseConfig = {
     Ionic2RatingModule,
     IonicStorageModule.forRoot(),
     HttpClientModule,
-    HttpModule
+    HttpModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -101,7 +106,9 @@ export const FirebaseConfig = {
     CreateTourComponent,
     CommentsComponent,
     ToursPage,
-    ChatPage
+    ChatPage,
+    LoadDataComponent,
+
   ],
   providers: [
     StatusBar,
