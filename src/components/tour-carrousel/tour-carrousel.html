@@ -1,0 +1,34 @@
+<!-- Generated template for the TourCarrouselComponent component -->
+<ion-card-content style="padding-top: 0px;">
+  <ion-card-title style="padding: 0px; font-size: 18px;">
+    <div>
+      <ng-container *ngIf="name=='cityFrom' && usuario">
+        <span style="float:right; color: #488aff;  font-weight: bold; " (click)="navCity(city)">Ver todo</span>
+        Tours en {{city?.name}}
+        <hr style="padding: 1px">
+      </ng-container>
+      <ng-container *ngIf="name!='cityFrom'">
+        <span style="float:right; color: #488aff;  font-weight: bold; " (click)="navTours()">Ver todo</span>
+        Tours
+        <hr style="padding: 1px">
+      </ng-container>
+
+    </div>
+  </ion-card-title>
+
+  <ion-scroll scrollX="true" style="white-space:nowrap; height: 160px;">
+    <ng-container *ngIf="name!='cityFrom'">
+    <div style="display: inline-block; text-align: center;" *ngFor="let item of tours ">
+      <img style="width: 150px; margin: 1px; border: 1px; border-radius: 10px" class="tours" src="{{item.img}}" (click)="navTour(item)"/><br>
+      <div class="miniTour">{{item.title}}</div>
+    </div>
+    </ng-container>
+
+    <ng-container *ngIf="name=='cityFrom' && usuario && toursCity">
+      <div style="display: inline-block; text-align: center;" *ngFor="let item of toursCity">
+        <img style="width: 150px; margin: 1px; border: 1px; border-radius: 10px" class="tours" src="{{item.img}}" (click)="navTour(item)"/><br>
+        <div class="miniTour">{{item.title}}</div>
+      </div>
+    </ng-container>
+  </ion-scroll>
+</ion-card-content>

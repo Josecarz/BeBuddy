@@ -45,7 +45,7 @@
   </ion-grid>
   <hr style="margin: 0px">
   <ion-title class="miTitle">Descripcíon</ion-title>
-  <p style="margin: 5px">{{tour.description}} </p>
+  <ion-card-content style="margin: 5px">{{tour.description}} </ion-card-content>
   <hr style="margin: 0px">
   <ion-grid>
     <ion-title class="miTitle">Buddy</ion-title>
@@ -56,7 +56,7 @@
       </ion-col>
       <ion-col col-10>
         <ion-buttons class="buttons" end>
-          <button ion-button small round  *ngIf="!isMe && isChat" (click)="navToChat()">Enviar mensaje</button>
+          <button class="myButton" ion-button small round  *ngIf="!isMe && isChat" (click)="navToChat()">Enviar mensaje</button>
           <button ion-button small round  *ngIf="!isMe && !isChat" (click)="startChat()">CREAR mensaje</button>
           <!--<ng-container *ngFor="let followUser of follows">-->
             <button ion-button small round *ngIf="!isFollow && !isMe" (click)="follow(user)">Seguir</button>

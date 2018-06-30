@@ -118,12 +118,5 @@ export class HomePage {
     this.navCtrl.push(CountrydetailPage, destino);
   }
 
-  navTours(){
-    this.navCtrl.push(ToursPage);
-  }
-
-  navTour(tour){
-    this.navCtrl.push(TripdetailPage, tour);
-  }
 }
 

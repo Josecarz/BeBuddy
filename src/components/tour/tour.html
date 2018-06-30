@@ -3,9 +3,15 @@
 
 
 <div>
-
+  <ion-item>
+    <ion-label><ion-icon name="md-list"></ion-icon> Ordenar por...</ion-label>
+    <ion-select [(ngModel)]="order" (ionChange)="checkSelect()">
+      <ion-option>Más populares</ion-option>
+      <ion-option>Mejor valorados</ion-option>
+    </ion-select>
+  </ion-item>
   <ion-list>
-    <ion-item style="margin-top: -8px; margin-right: 0px;" *ngFor="let item of tours">
+    <ion-item  *ngFor="let item of tours">
       <img item-start class="miniimg" src="{{item.img}}">
       <h2 style="overflow: hidden; white-space:nowrap; text-overflow: ellipsis;">{{item.title}}</h2>
       <ion-grid>
@@ -13,15 +19,17 @@
           <ion-col col-9>
             <rating class="rating" [(ngModel)]="item.rate" readOnly="true"></rating>
           </ion-col>
-          <ion-col style="padding: 0px !important; text-align: center; margin-top: 1px" col-3 >
+          <ion-col style="padding: 0px !important; text-align: center; margin-top: 1px" col-3 ><br><br>
             <ng-container *ngFor="let user of buddy">
                 <ng-container *ngIf="user.profile?.id != userInfo?.id">
-                  <img *ngIf="item.buddy == user.profile?.id " class="avatar" src="{{user.profile?.img}}" (click)="navUser(user)"/><br>
+                  <img *ngIf="item.buddy == user.profile?.id " class="avatar" src="{{user.profile?.img}}" (click)="navUser(user)"/>
                 </ng-container>
                 <ng-container *ngIf="user.profile?.id == userInfo?.id">
-                  <img *ngIf="item.buddy == user.profile?.id" class="avatar" src="{{user.profile?.img}}" (click)="navMiPerfil()"/><br>
+                  <img *ngIf="item.buddy == user.profile?.id" class="avatar" src="{{user.profile?.img}}" (click)="navMiPerfil()"/>
                 </ng-container>
-              <span *ngIf="item.buddy == user.profile?.id "><p style="overflow: hidden; white-space:nowrap; text-overflow: ellipsis;">{{user.profile?.name}}</p></span>
+                <ng-container *ngIf="item.buddy == user.profile?.id ">
+                  <p style="overflow: hidden; white-space:nowrap; text-overflow: ellipsis;">{{user.profile?.name}}</p>
+                </ng-container>
             </ng-container>
           </ion-col>
 

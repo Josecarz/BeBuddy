@@ -33,7 +33,6 @@ import {FavouritesService} from "../providers/favourites-service";
 import {EditPerfilComponent} from "../components/edit-perfil/edit-perfil";
 import {RatingService} from "../providers/rating-service";
 import {CreateTourComponent} from "../components/create-tour/create-tour";
-// import {CommentsComponent} from "../components/comments/comments";
 import {CameraService} from "../providers/camera-service";
 import {Camera} from "@ionic-native/camera";
 import {TourService} from "../providers/tour-service";
@@ -43,6 +42,7 @@ import {ChatService} from "../providers/chat-service";
 import {ChatPage} from "../pages/chat/chat";
 import {LoadDataComponent} from "../components/load-data/load-data";
 import {TourComponent} from "../components/tour/tour";
+import {TourCarrouselComponent} from "../components/tour-carrousel/tour-carrousel";
 
 
 
@@ -74,7 +74,8 @@ export const FirebaseConfig = {
     ToursPage,
     ChatPage,
     LoadDataComponent,
-    TourComponent
+    TourComponent,
+    TourCarrouselComponent
   ],
   imports: [
     BrowserModule,

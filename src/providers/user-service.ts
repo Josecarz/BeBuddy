@@ -62,6 +62,12 @@ export class UserService {
       .set(city);
   }
 
+  public getCity(city): Observable<any>{
+    console.log(city)
+    return this.db.object(`/cities/${city}`).valueChanges();
+  }
+
+
   private addUserToDatabase(userId: string, user: NewUser) {
       return this.db.object(`/users/${userId}/profile`).set(user);
   }

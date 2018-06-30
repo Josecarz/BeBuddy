@@ -30,6 +30,7 @@ export class ChatService {
   private createChat(userId: string, buddyId: string, id){
     this.db.object(`/users/${buddyId}/chats/${id}`).set({
       id: userId,
+      idChat: id,
     });
     this.db.object(`/chats/${id}`).set({
       idChat: id,
@@ -51,13 +52,7 @@ export class ChatService {
       date: dateNow,
     })
   }
-  // public sendMessage(userId: string, buddyId: string, message: string){
-  //   this.db.object(`/chats/${userId}${buddyId}`).set({
-  //     who: userId,
-  //     message: message,
-  //     date:  Date.now(),
-  //   });
-  // }
+
 
   public getMessages(chatId: string):  Observable <any>{
     return this.db.list(`/chats/${chatId}/messages`).valueChanges();

@@ -8,6 +8,7 @@ import {TripdetailPage} from "../../pages/tripdetail/tripdetail";
 import {PerfilPage} from "../../pages/perfil/perfil";
 import {LoginPage} from "../../pages/login/login";
 import {DataProvider} from "../../providers/data";
+import * as _ from 'lodash';
 
 
 /**
@@ -29,6 +30,7 @@ export class TourComponent {
   userInfo: any;
   finalTours: any;
   buddies: any;
+  order: string;
 
   @Input() nombre;
   @Input() param;
@@ -36,25 +38,23 @@ export class TourComponent {
   constructor(public navCtrl: NavController, public navParams: NavParams, private dbapi: DbApiService,  private tourService: TourService,
               private auth: AngularFireAuth,
               private profile: UserService,  private dataService: DataProvider) {
-    console.log('Hello TourComponent Component');
-    this.text = 'Hello World';
-    this.start();
-
   }
 
-  // ionViewWillLoad(){
-  //   this.start();
-  //
-  // }
+  ngOnInit(){
+    this.start();
+    console.log(this.nombre);
+    console.log(this.order);
+  }
 
   start(){
     this.tourService.getTours().subscribe(
       (data) => {
         this.tours = data;
         console.log(this.tours);
-        if(this.nombre=="city"){
+
+        if(this.nombre=="city")
           this.setFilteredTourItems()
-        }
+
       }
     );
 
@@ -62,9 +62,10 @@ export class TourComponent {
       (data) => {
         this.buddy = data;
         console.log(data);
-        if(this.nombre=="city"){
+
+        if(this.nombre=="city")
           this.setFilteredBuddiesItems();
-        }
+
       }
     );
 
@@ -85,7 +86,7 @@ export class TourComponent {
 
   setFilteredTourItems() {
     console.log("FILTERITEMS")
-    this.finalTours = this.dataService.filterByCity(this.param, this.tours);
+    this.tours = this.dataService.filterByCity(this.param, this.tours);
 
   }
 
@@ -108,6 +109,22 @@ export class TourComponent {
 
   navMiPerfil(){
     this.navCtrl.push(LoginPage);
+  }
+
+  orderByRate(){
+    this.tours = _.orderBy(this.tours, 'name', 'asc');
+
+  }
+
+  checkSelect(){
+    console.log(this.order)
+  // this.ngOnInit();
+
+
+
+    if(this.order=="Mejor valorados")
+      this.tours = _.orderBy(this.tours, 'votes', 'asc');
+      console.log(this.tours);
   }
 
 }
