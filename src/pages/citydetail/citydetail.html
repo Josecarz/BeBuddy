@@ -22,23 +22,23 @@
   </div>
 
 
-  <ion-card-content style="padding: 4px">
-    <div>
-      <ion-title style="font-size: 20px; margin: 0px; text-align: center">Buddies en {{infoCity.name}}</ion-title>
-      <hr style="margin: 4px;">
-    </div>
-    <ion-scroll scrollX="true" style="white-space:nowrap; height: 68px;">
-      <div style="display: inline-block; text-align: center; margin-right: 10px"  *ngFor="let item of buddies">
-        <ng-container *ngIf="item.profile?.id != userInfo?.id">
-        <img class="avatar" src="{{item.profile?.img}}" (click)="navUser(item)"/><br>
-        </ng-container>
-        <ng-container *ngIf="item.profile?.id == userInfo?.id">
-        <img  class="avatar" src="{{item.profile?.img}}" (click)="navMiPerfil()"/><br>
-        </ng-container>
-        <span>{{item.profile?.name}}</span>
-      </div>
-    </ion-scroll>
-  </ion-card-content>
+  <!--<ion-card-content style="padding: 4px">-->
+    <!--<div>-->
+      <!--<ion-title style="font-size: 20px; margin: 0px; text-align: center">Buddies en {{infoCity.name}}</ion-title>-->
+      <!--<hr style="margin: 4px;">-->
+    <!--</div>-->
+    <!--<ion-scroll scrollX="true" style="white-space:nowrap; height: 68px;">-->
+      <!--<div style="display: inline-block; text-align: center; margin-right: 10px"  *ngFor="let item of buddies">-->
+        <!--<ng-container *ngIf="item.profile?.id != userInfo?.id">-->
+        <!--<img class="avatar" src="{{item.profile?.img}}" (click)="navUser(item)"/><br>-->
+        <!--</ng-container>-->
+        <!--<ng-container *ngIf="item.profile?.id == userInfo?.id">-->
+        <!--<img  class="avatar" src="{{item.profile?.img}}" (click)="navMiPerfil()"/><br>-->
+        <!--</ng-container>-->
+        <!--<span>{{item.profile?.name}}</span>-->
+      <!--</div>-->
+    <!--</ion-scroll>-->
+  <!--</ion-card-content>-->
   <hr>
   <hr style="margin: 2px">
   <ion-title style="font-size: 20px; margin: 0px; text-align: center; padding: 2px;">Tours en {{infoCity.name}}</ion-title>

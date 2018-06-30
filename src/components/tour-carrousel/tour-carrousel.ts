@@ -7,6 +7,7 @@ import {AngularFireAuth} from "angularfire2/auth";
 import {UserService} from "../../providers/user-service";
 import {DataProvider} from "../../providers/data";
 import {CitydetailPage} from "../../pages/citydetail/citydetail";
+import {DbApiService} from "../../providers/db-api.service";
 
 /**
  * Generated class for the TourCarrouselComponent component.
@@ -28,11 +29,13 @@ export class TourCarrouselComponent {
   userInfo: any;
   city: any;
   toursCity: any;
+  buddy: any;
 
   @Input() name;
 
   constructor(public navCtrl: NavController,    private auth: AngularFireAuth,
-              private profile: UserService,  private tourService: TourService, private dataService: DataProvider) {
+              private profile: UserService,  private tourService: TourService, private dataService: DataProvider,
+              private dbapi: DbApiService,) {
     console.log('Hello TourCarrouselComponent Component');
     this.text = 'Hello World';
   }
@@ -66,6 +69,14 @@ export class TourCarrouselComponent {
         );
       }
     });
+
+    this.dbapi.getBuddies().subscribe(
+      (data) => {
+        this.buddy = data;
+        console.log(this.buddy);
+        //this.setFilteredBuddiesItems();
+      }
+    );
   }
 
   navTours(){

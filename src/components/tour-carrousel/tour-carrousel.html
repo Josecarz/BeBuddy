@@ -1,5 +1,5 @@
 <!-- Generated template for the TourCarrouselComponent component -->
-<ion-card-content style="padding-top: 0px;">
+<ion-card-content style="padding-top: 0px;" *ngIf="name!='buddy'">
   <ion-card-title style="padding: 0px; font-size: 18px;">
     <div>
       <ng-container *ngIf="name=='cityFrom' && usuario">
@@ -30,5 +30,25 @@
         <div class="miniTour">{{item.title}}</div>
       </div>
     </ng-container>
+  </ion-scroll>
+</ion-card-content>
+
+
+<ion-card-content *ngIf="name=='buddy'">
+  <!--<div>-->
+    <!--<ion-title *ngIf="name=='cityBuddy'" style="font-size: 20px; margin: 0px; text-align: center">Buddies en {{infoCity.name}}</ion-title>-->
+    <!--<hr style="margin: 4px;">-->
+  <!--</div>-->
+  <ion-scroll scrollX="true" style="white-space:nowrap; height: 95px;">
+    <div style="display: inline-block; text-align: center; margin-right: 10px"  *ngFor="let item of buddy">
+      <ng-container *ngIf="item.profile?.id != userInfo?.id">
+        <img class="avatar" src="{{item.profile?.img}}" (click)="navUser(item)"/><br>
+          <span>{{item.profile?.name}}</span>
+      </ng-container>
+      <ng-container *ngIf="item.profile?.id == userInfo?.id">
+        <img class="avatar" src="{{item.profile?.img}}" (click)="navMiPerfil()"/><br>
+          <span>{{item.profile?.name}}</span>
+      </ng-container>
+    </div>
   </ion-scroll>
 </ion-card-content>

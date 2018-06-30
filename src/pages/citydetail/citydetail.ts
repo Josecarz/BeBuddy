@@ -57,13 +57,6 @@ export class CitydetailPage {
       }
     );
 
-    this.dbapi.getBuddies().subscribe(
-      (data) => {
-        this.buddy = data;
-        console.log(this.buddy);
-        this.setFilteredBuddiesItems();
-      }
-    );
 
     this.auth.authState.subscribe(data => {
       this.usuario = data;
