@@ -48,56 +48,7 @@ export class CitydetailPage {
     console.log(this.infoCity);
   }
 
-  ionViewDidLoad() {
-    this.tourService.getTours().subscribe(
-      (data) => {
-        this.tours = data;
-        console.log(this.tours);
-        this.setFilteredTourItems()
-      }
-    );
 
-
-    this.auth.authState.subscribe(data => {
-      this.usuario = data;
-      if (this.usuario != null) {
-        console.log("USUARIO   " + this.usuario.uid);
-        this.profile.getUserProfileInfo(this.usuario.uid).subscribe(
-          (data) => {
-            this.userInfo = data;
-            console.log("USUARIO INFO   " + this.userInfo.id);
-
-          }
-        );
-      }
-    });
-  }
-
-  setFilteredTourItems() {
-    console.log("FILTERITEMS")
-    this.finalTours = this.dataService.filterByCity(this.param, this.tours);
-
-  }
-
-  setFilteredBuddiesItems() {
-    console.log("FILTERITEMS")
-    this.buddies = this.dataService.filterByCity(this.param, this.buddy);
-    console.log(this.buddies);
-  }
-
-
-  navTour(tour){
-    this.navCtrl.push(TripdetailPage, tour);
-  }
-
-  navUser(user){
-    console.log(user);
-    this.navCtrl.push(PerfilPage, user);
-  }
-
-  navMiPerfil(){
-    this.navCtrl.push(LoginPage);
-  }
 
 
 }

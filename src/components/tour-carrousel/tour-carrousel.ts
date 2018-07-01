@@ -8,6 +8,8 @@ import {UserService} from "../../providers/user-service";
 import {DataProvider} from "../../providers/data";
 import {CitydetailPage} from "../../pages/citydetail/citydetail";
 import {DbApiService} from "../../providers/db-api.service";
+import {LoginPage} from "../../pages/login/login";
+import {PerfilPage} from "../../pages/perfil/perfil";
 
 /**
  * Generated class for the TourCarrouselComponent component.
@@ -24,14 +26,16 @@ export class TourCarrouselComponent {
   text: string;
   tours: any;
 
-  from: string;
   usuario: any;
   userInfo: any;
   city: any;
   toursCity: any;
   buddy: any;
+  infoCity: any;
 
   @Input() name;
+  @Input() from;
+  @Input() param;
 
   constructor(public navCtrl: NavController,    private auth: AngularFireAuth,
               private profile: UserService,  private tourService: TourService, private dataService: DataProvider,
@@ -45,7 +49,8 @@ export class TourCarrouselComponent {
   }
 
   start(){
-    this.from = this.name;
+    // this.infoCity = this.param;
+    // console.log(this.infoCity)
     this.tourService.getTours().subscribe(
       (data) => {
         this.tours = data;
@@ -74,7 +79,8 @@ export class TourCarrouselComponent {
       (data) => {
         this.buddy = data;
         console.log(this.buddy);
-        //this.setFilteredBuddiesItems();
+        if (this.param!=null)
+          this.setFilteredBuddiesItems();
       }
     );
   }
@@ -92,9 +98,23 @@ export class TourCarrouselComponent {
 
   }
 
+  navUser(user){
+    console.log(user);
+    this.navCtrl.push(PerfilPage, user);
+  }
+
+  navMiPerfil(){
+    this.navCtrl.push(LoginPage);
+  }
+
   setFilteredTourItems(city) {
     console.log("FILTERITEMS")
     this.toursCity = this.dataService.filterByCity(city, this.tours);
   }
 
+  setFilteredBuddiesItems() {
+    console.log("FILTERITEMS")
+    this.buddy = this.dataService.filterByCity(this.param, this.buddy);
+    // console.log(this.buddies);
+  }
 }

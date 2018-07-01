@@ -34,11 +34,7 @@
 </ion-card-content>
 
 
-<ion-card-content *ngIf="name=='buddy'">
-  <!--<div>-->
-    <!--<ion-title *ngIf="name=='cityBuddy'" style="font-size: 20px; margin: 0px; text-align: center">Buddies en {{infoCity.name}}</ion-title>-->
-    <!--<hr style="margin: 4px;">-->
-  <!--</div>-->
+<ion-card-content *ngIf="name=='buddy'" style="padding-top: 0px; padding-bottom: 0px">
   <ion-scroll scrollX="true" style="white-space:nowrap; height: 95px;">
     <div style="display: inline-block; text-align: center; margin-right: 10px"  *ngFor="let item of buddy">
       <ng-container *ngIf="item.profile?.id != userInfo?.id">
