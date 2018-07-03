@@ -74,7 +74,7 @@ export class UserService {
 
   public addRatingToUser(userId: string, rating: Rating) {
     this.db.object(`/users/${userId}/rating`).set(rating);
-    this.db.object(`/users/${userId}/follows/${userId}`).set('true');
+    // this.db.object(`/users/${userId}/follows/${userId}`).set('true');
   }
 
   public addUserToFollow(userId: string, userFollow: Follow){

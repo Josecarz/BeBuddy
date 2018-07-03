@@ -21,7 +21,7 @@
 
       <ion-buttons end class="buttons">
         <button ion-button small round  *ngIf="isChat" (click)="navToChat()">Enviar mensaje</button>
-        <button ion-button small round  *ngIf="!isChat" (click)="startChat()">CREAR mensaje</button>
+        <button ion-button small round  *ngIf="!isChat" (click)="startChat(buddy)">CREAR mensaje</button>
         <button ion-button small round *ngIf="!isFollow" (click)="follow(buddy)">Seguir</button>
         <button ion-button small round *ngIf="isFollow" (click)="unfollow(buddy)">Dejar de seguir</button>
       </ion-buttons>
@@ -31,7 +31,7 @@
   <ion-grid style="padding: 0" >
     <ion-row>
       <ion-col col-7 *ngIf="ratingInfo">
-        <rating class="rating" [(ngModel)]="ratingInfo.rate" (ngModelChange)="rate($event, ratingInfo)" readOnly="{{lock}}"></rating>
+        <rating class="miRating" [(ngModel)]="ratingInfo.rate" (ngModelChange)="rate($event, ratingInfo)" readOnly="{{lock}}"></rating>
         <div><p style="margin-left: 12px">{{ratingInfo.votes}} Valoraciones</p></div>
       </ion-col>
       <ion-col col-5>
@@ -40,25 +40,6 @@
     </ion-row>
   </ion-grid>
   <hr style="margin: 0px">
-
   <ion-title class="miTitle">Tours de {{buddyFinal?.name}}</ion-title>
-  <ion-list>
-    <ion-item *ngFor="let item of finalTours">
-      <img item-start class="miniimg" src="{{item.img}}">
-      <ion-grid>
-        <ion-row>
-          <ion-col col-9>
-            <h2>{{item.title}}</h2>
-            <rating class="ratingTour" [(ngModel)]="item.rate" readOnly="true"></rating>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-      <ion-buttons class="buttons" end>
-        <button ion-button small round (click)="navTour(item)">Ver más</button>
-      </ion-buttons>
-
-    </ion-item>
-
-  </ion-list>
-
+  <tour nombre="perfil" param="{{buddyFinal?.id}}"></tour>
 </ion-content>

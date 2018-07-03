@@ -54,6 +54,8 @@ export class TourComponent {
 
         if(this.nombre=="city")
           this.setFilteredTourItems()
+        if(this.nombre=='perfil')
+          this.setFilterTourByUser()
 
       }
     );
@@ -96,7 +98,9 @@ export class TourComponent {
     console.log(this.buddies);
   }
 
-
+  setFilterTourByUser(){
+    this.tours = this.dataService.filterByBuddy(this.param, this.tours);
+  }
 
   navTour(tour){
     this.navCtrl.push(TripdetailPage, tour);

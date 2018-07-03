@@ -31,11 +31,15 @@ export class TourCarrouselComponent {
   city: any;
   toursCity: any;
   buddy: any;
-  infoCity: any;
+  toursUser: any;
+  moreThanOne: boolean = false;
+
 
   @Input() name;
   @Input() from;
   @Input() param;
+  @Input() tour;
+  @Input() user;
 
   constructor(public navCtrl: NavController,    private auth: AngularFireAuth,
               private profile: UserService,  private tourService: TourService, private dataService: DataProvider,
@@ -54,6 +58,8 @@ export class TourCarrouselComponent {
     this.tourService.getTours().subscribe(
       (data) => {
         this.tours = data;
+        if(this.name=='trip')
+          this.setFilteredTourBuddy()
       }
     );
 
@@ -99,7 +105,7 @@ export class TourCarrouselComponent {
   }
 
   navUser(user){
-    console.log(user);
+    console.log(1, user);
     this.navCtrl.push(PerfilPage, user);
   }
 
@@ -110,6 +116,12 @@ export class TourCarrouselComponent {
   setFilteredTourItems(city) {
     console.log("FILTERITEMS")
     this.toursCity = this.dataService.filterByCity(city, this.tours);
+  }
+
+  setFilteredTourBuddy() {
+    console.log("FILTERITEMS")
+    console.log(this.user)
+    this.toursUser = this.dataService.filterByBuddy(this.param, this.tours);
   }
 
   setFilteredBuddiesItems() {

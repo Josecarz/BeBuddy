@@ -26,7 +26,9 @@ export type Tour = {
   date: number;
   image: string;
   img?: string;
-  days: [''];
+  days: {
+
+  };
   buddy: string;
   city: string;
   time: string;

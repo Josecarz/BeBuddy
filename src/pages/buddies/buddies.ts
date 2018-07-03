@@ -31,9 +31,11 @@ export class BuddiesPage {
   userInfo: any;
   follows: any;
   chats: any;
-  finalChats: FinalChat = {img: '', idChat: '', name: ''};
+  // finalChats: FinalChat = {img: '', idChat: '', name: ''};
+  finalChats: any[]=[];
   arrayChat = [];
   lock: boolean = true;
+  promise: any;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -53,29 +55,28 @@ export class BuddiesPage {
     this.auth.authState.subscribe(data => {
       this.usuario = data;
       if (this.usuario != null) {
-        console.log("USUARIO   " + this.usuario.uid);
         this.profile.getUserProfileInfo(this.usuario.uid).subscribe(
           (data) => {
             this.userInfo = data;
-            console.log("USUARIO INFO   " + this.userInfo.name);
 
             this.dbapi.getFollows(this.userInfo.id).subscribe(
               (data) => {
                 this.follows = data;
-                console.log(this.follows);
               }
             );
 
-            this.chat.getChats(this.userInfo.id).subscribe(
+            let x = this.chat.getChats(this.userInfo.id).subscribe(
               (data) => {
                 this.chats = data;
-                console.log(this.chats);
                 this.loadChats();
+                x.unsubscribe();
               }
             );
+
           }
         );
       }
+
     });
   }
 
@@ -91,22 +92,22 @@ export class BuddiesPage {
   }
 
   loadChats() {
-    if (this.lock) {
-      this.lock = false;
-      for (let chat of this.chats) {
+    console.log("LOAD CHATS")
 
-        this.finalChats.idChat = chat.idChat;
-        console.log(this.finalChats)
+    this.finalChats = [];
+    if(this.chats) {
+      for (let chat of this.chats) {
         this.profile.getUserProfileInfo(chat.id).subscribe(
           (data) => {
-            console.log(data)
-            this.finalChats.img = data.img;
-            this.finalChats.name = data.name;
-            this.arrayChat.push(this.finalChats);
-            console.log(this.finalChats)
-          }
-        )
+            this.finalChats.push({
+              idChat: chat.idChat,
+              infoUser: data
+            });
+            console.log(chat.idChat)
+          });
       }
+      console.log(4, this.finalChats)
+
     }
   }
 
@@ -114,16 +115,20 @@ export class BuddiesPage {
     this.navCtrl.push(ChatPage, chatId);
   }
 
-  deleteChat(chatId){
-    console.log(chatId);
-    let contador = 0;
-    /*for (let chat of this.arrayChat){
-      contador ++;
-      if (chat.idChat==chatId){
-        this.arrayChat.pop(22);
-      }
-    }*/
-    this.chat.deleteChat(chatId);
+  deleteChat(chat){
+
+
+    console.log(1, this.finalChats);
+
+
+    const index = this.finalChats.indexOf(chat);
+    console.log(index)
+    this.finalChats.splice(index, 1);
+
+    console.log(2, this.finalChats);
+
+    this.chat.deleteChat(chat.idChat, this.userInfo.id);
+    // this.lock = true;
   }
 
 }

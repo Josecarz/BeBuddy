@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActionSheetController, NavController, LoadingController, Loading } from 'ionic-angular';
 import { AngularFireDatabase } from 'angularfire2/database';
-import { Tour } from '../../models/models';
+import {FinalChat, Tour} from '../../models/models';
 import {CameraService} from "../../providers/camera-service";
 import {TourService} from "../../providers/tour-service";
 import {UserService} from "../../providers/user-service";
@@ -23,6 +23,15 @@ export class CreateTourComponent {
   autocomplete: any;
   usuario: any;
   userInfo: any;
+  lock: boolean = false;
+  days: any []=[];
+  hours: any []=[];
+  // day: {hours: ''};
+  miday: { day: '', hour: ''};
+  hour: any;
+  day: any []=[];
+  dayAux: any []=[];
+  sem = true;
 
   constructor(
     private navCtrl: NavController,
@@ -40,7 +49,7 @@ export class CreateTourComponent {
       description: '',
       image: '',
       date: 0,
-      days: [''],
+      days: [],
       buddy: '',
       city: '',
       time: '',
@@ -89,6 +98,7 @@ export class CreateTourComponent {
   createTour() {
     this.tour.buddy = this.userInfo.id;
     this.tour.city = this.userInfo.city;
+    this.tour.days=this.day;
     this.loader.present();
     this.tourService.createTour(this.tour)
       .then(() => {
@@ -99,5 +109,66 @@ export class CreateTourComponent {
       .catch(err => console.log(err));
   }
 
+  checkSelect(){
+    this.lock=true;
+    console.log(this.tour)
+    // console.log(day)
+    // for(let day of this.tour.days){
+    //   this.days.push(day);
+    // }
+    //
+    // console.log(this.days)
+  }
 
+  checkSelect2(event, day){
+    console.log(day)
+    console.log(this.day)
+
+    // this.day[day] = event;
+    // this.day.forEach((value,index) => {
+    //   console.log(value,index)
+    // });
+    // if(this.day.length>0) {
+    //   // this.day.push({day: day, hour: event});
+    //   for (let dayAux of this.day) {
+    //     if (dayAux.day == day) {
+    //
+    //       dayAux.hour = event;
+    //       this.sem = false;
+    //     } else {
+    //       if (this.sem) {
+    //         this.day.push({day: day, hour: event});
+    //
+    //       }
+    //     }
+    //   }
+    // }else {
+    //   this.day.push({day: day, hour: event});
+    //   this.sem = true;
+    // }
+    // console.log(this.day)
+    if(this.day.length>0) {
+      if (this.day.find((dayAux) => dayAux.day == day)) {
+        for (let dayAux of this.day) {
+          if (dayAux.day == day) {
+            dayAux.hour = event;
+          }
+        }
+      } else {
+        this.day.push({day: day, hour: event});
+      }
+      console.log(this.day)
+    } else {
+      this.day.push({day: day, hour: event});
+    }
+
+  }
+
+
+  createEvent(){
+
+    // this.tour.days.day = this.day[day];
+    // this.dayAux=this.day;
+    // console.log(this.dayAux)
+  }
 }

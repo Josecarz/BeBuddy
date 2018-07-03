@@ -1,40 +1,58 @@
 <!-- Generated template for the TourCarrouselComponent component -->
 <ion-card-content style="padding-top: 0px;" *ngIf="name!='buddy'">
   <ion-card-title style="padding: 0px; font-size: 18px;">
-    <div>
-      <ng-container *ngIf="name=='cityFrom' && usuario">
+      <ng-container *ngIf="name=='cityFrom' && name!='trip' && usuario">
         <span style="float:right; color: #488aff;  font-weight: bold; " (click)="navCity(city)">Ver todo</span>
         Tours en {{city?.name}}
         <hr style="padding: 1px">
       </ng-container>
-      <ng-container *ngIf="name!='cityFrom'">
+      <ng-container *ngIf="name!='cityFrom' && name!='trip'">
         <span style="float:right; color: #488aff;  font-weight: bold; " (click)="navTours()">Ver todo</span>
         Tours
         <hr style="padding: 1px">
       </ng-container>
 
-    </div>
+      <ng-container *ngIf="name=='trip' && toursUser?.length>1 ">
+        <span style="font-size: 20px; margin: 0px; text-align: center; padding: 2px;">Otros tours de {{user}}</span>
+        <hr>
+      </ng-container>
+
   </ion-card-title>
 
-  <ion-scroll scrollX="true" style="white-space:nowrap; height: 160px;">
-    <ng-container *ngIf="name!='cityFrom'">
+
+    <ng-container *ngIf="name!='cityFrom' && name!='trip'">
+      <ion-scroll scrollX="true" style="white-space:nowrap; height: 160px;">
     <div style="display: inline-block; text-align: center;" *ngFor="let item of tours ">
       <img style="width: 150px; margin: 1px; border: 1px; border-radius: 10px" class="tours" src="{{item.img}}" (click)="navTour(item)"/><br>
       <div class="miniTour">{{item.title}}</div>
     </div>
+      </ion-scroll>
     </ng-container>
 
     <ng-container *ngIf="name=='cityFrom' && usuario && toursCity">
+      <ion-scroll scrollX="true" style="white-space:nowrap; height: 160px;">
       <div style="display: inline-block; text-align: center;" *ngFor="let item of toursCity">
         <img style="width: 150px; margin: 1px; border: 1px; border-radius: 10px" class="tours" src="{{item.img}}" (click)="navTour(item)"/><br>
         <div class="miniTour">{{item.title}}</div>
       </div>
+      </ion-scroll>
     </ng-container>
-  </ion-scroll>
+
+    <ng-container *ngIf="name=='trip' && toursUser?.length>1">
+      <ion-scroll scrollX="true" style="white-space:nowrap; height: 160px;">
+      <div style="display: inline-block; text-align: center;" *ngFor="let item of toursUser">
+        <ng-container *ngIf="item.id != tour">
+          <img style="width: 150px; margin: 1px; border: 1px; border-radius: 10px" class="tours" src="{{item.img}}" (click)="navTour(item)"/><br>
+          <div class="miniTour">{{item.title}}</div>
+        </ng-container>
+      </div>
+      </ion-scroll>
+    </ng-container>
 </ion-card-content>
 
 
 <ion-card-content *ngIf="name=='buddy'" style="padding-top: 0px; padding-bottom: 0px">
+
   <ion-scroll scrollX="true" style="white-space:nowrap; height: 95px;">
     <div style="display: inline-block; text-align: center; margin-right: 10px"  *ngFor="let item of buddy">
       <ng-container *ngIf="item.profile?.id != userInfo?.id">
@@ -48,3 +66,18 @@
     </div>
   </ion-scroll>
 </ion-card-content>
+
+<!--<ion-card-content *ngIf="name=='trip'" style="padding-top: 0px; padding-bottom: 0px">-->
+  <!--<ion-scroll scrollX="true" style="white-space:nowrap; height: 95px;">-->
+    <!--<div style="display: inline-block; text-align: center; margin-right: 10px"  *ngFor="let item of buddy">-->
+      <!--<ng-container *ngIf="item.profile?.id != userInfo?.id">-->
+        <!--<img class="avatar" src="{{item.profile?.img}}" (click)="navUser(item)"/><br>-->
+        <!--<span>{{item.profile?.name}}</span>-->
+      <!--</ng-container>-->
+      <!--<ng-container *ngIf="item.profile?.id == userInfo?.id">-->
+        <!--<img class="avatar" src="{{item.profile?.img}}" (click)="navMiPerfil()"/><br>-->
+        <!--<span>{{item.profile?.name}}</span>-->
+      <!--</ng-container>-->
+    <!--</div>-->
+  <!--</ion-scroll>-->
+<!--</ion-card-content>-->

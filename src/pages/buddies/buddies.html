@@ -38,16 +38,16 @@
 
     <div [ngSwitch]="followChat">
     <ion-list *ngSwitchCase="'Chats'">
-      <ion-item-sliding *ngFor="let chat of arrayChat">
+      <ion-item-sliding *ngFor="let chat of finalChats">
         <ion-item (tap)="navToChat(chat?.idChat)">
           <ion-avatar item-start>
-            <img src="{{chat?.img}}">
+            <img src="{{chat?.infoUser.img}}">
           </ion-avatar>
-          <h2 class="friend-name">{{chat?.name}}</h2>
+          <h2 class="friend-name">{{chat?.infoUser.name}}</h2>
         </ion-item>
 
         <ion-item-options side="right">
-          <button color="danger" ion-button (tap)="deleteChat(chat?.idChat)">
+          <button color="danger" ion-button (tap)="deleteChat(chat)">
             <ion-icon name="trash"></ion-icon>
             Eliminar
           </button>

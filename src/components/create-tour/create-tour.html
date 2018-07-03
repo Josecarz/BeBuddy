@@ -27,12 +27,6 @@
       </ion-label>
       <ion-input required [(ngModel)]="tour.title" name="title" placeholder="Título"></ion-input>
     </ion-item>
-    <!--<ion-item (tap)="chooseDate()">-->
-      <!--<ion-label>-->
-        <!--<ion-icon name="md-calendar"></ion-icon>-->
-      <!--</ion-label>-->
-      <!--<ion-input required [(ngModel)]="dateString" name="dateString" class="date-input" placeholder="Fecha"></ion-input>-->
-    <!--</ion-item>-->
     <ion-item>
       <ion-label>
         <ion-icon name="md-create"></ion-icon>
@@ -47,7 +41,7 @@
     </ion-item>
     <ion-item>
       <ion-label><ion-icon name="md-calendar"></ion-icon> Días disponibles</ion-label>
-      <ion-select [(ngModel)]="tour.days" multiple="true" [ngModelOptions]="{standalone: true}">
+      <ion-select [(ngModel)]="tour.days.day" multiple="true" [ngModelOptions]="{standalone: true}" (ionChange)="checkSelect()">
         <ion-option>Lunes</ion-option>
         <ion-option>Martes</ion-option>
         <ion-option>Miércoles</ion-option>
@@ -58,8 +52,36 @@
       </ion-select>
     </ion-item>
 
+    <ng-container *ngIf="lock">
+      <ion-item *ngFor="let day of tour.days.day">
+          <ion-label><ion-icon name="md-clock"></ion-icon> Horar inicial: {{day}}</ion-label>
+          <ion-select multiple="false" (ionChange)="checkSelect2($event, day)">
+          <ion-option>7:00</ion-option>
+          <ion-option>8:00</ion-option>
+          <ion-option>9:00</ion-option>
+          <ion-option>10:00</ion-option>
+          <ion-option>11:00</ion-option>
+          <ion-option>12:00</ion-option>
+          <ion-option>13:00</ion-option>
+          <ion-option>14:00</ion-option>
+          <ion-option>15:00</ion-option>
+          <ion-option>16:00</ion-option>
+          <ion-option>17:00</ion-option>
+          <ion-option>18:00</ion-option>
+          <ion-option>19:00</ion-option>
+          <ion-option>20:00</ion-option>
+          <ion-option>21:00</ion-option>
+          <ion-option>22:00</ion-option>
+          <ion-option>23:00</ion-option>
+          <ion-option>00:00</ion-option>
+          </ion-select>
+      </ion-item>
+
+    </ng-container>
+
     <div padding-left padding-right>
-      <button [disabled]="!eventForm.form.valid || (tour.image.length == 0)" type="submit" ion-button full small round class="button-blue">
+      <!--<button [disabled]="!eventForm.form.valid || (tour.image.length == 0)" type="submit" ion-button full small round class="button-blue" (click)="createEvent()">-->
+      <button type="submit" ion-button full small round class="button-blue">
         Crear evento
       </button>
     </div>

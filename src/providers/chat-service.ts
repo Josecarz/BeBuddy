@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase } from 'angularfire2/database';
+import {AngularFireDatabase, AngularFireList} from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 import {Tour} from "../models/models";
+import {map} from "rxjs/operator/map";
 
 @Injectable()
 export class ChatService {
 
+  itemsRef: AngularFireList<any>;
+  items: Observable<any[]>;
 
   constructor(private db: AngularFireDatabase) {
 
@@ -58,8 +61,9 @@ export class ChatService {
     return this.db.list(`/chats/${chatId}/messages`).valueChanges();
   }
 
-  public deleteChat(chatId: string): Promise <any>{
-    return this.db.object(`/chats/${chatId}`).set({});
+  public deleteChat(chatId: string, userId: string): Promise <any>{
+    return this.db.object(`/users/${userId}/chats/${chatId}`).set({});
   }
+
 
 }

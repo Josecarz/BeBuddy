@@ -81,15 +81,7 @@
     </ng-container>
   </div>
   <hr style="margin-top: 7px">
-  <ion-card-content>
-    <ion-card-title *ngIf="user" >
-      <div><span style="float:right">Ver todo</span>Otros tours de {{user.name}}</div>
-      <hr>
-    </ion-card-title>
-    <ion-scroll scrollX="true" style="white-space:nowrap; height: 150px;">
-      <img class="tours" src="assets/imgs/furgoneta.jpg"/>
-      <img class="tours" src="assets/imgs/furgoneta.jpg"/>
-      <img class="tours" src="assets/imgs/furgoneta.jpg"/>
-      <img class="tours" src="assets/imgs/furgoneta.jpg"/>
-    </ion-scroll>
-  </ion-card-content>
+  <ng-container  *ngIf="user">
+
+    <tour-carrousel name="trip" param="{{user.id}}" tour="{{tour.id}}" user="{{user.name}}"></tour-carrousel>
+  </ng-container>

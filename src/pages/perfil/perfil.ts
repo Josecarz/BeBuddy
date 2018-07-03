@@ -42,7 +42,7 @@ export class PerfilPage {
   constructor(public navCtrl: NavController, private dbapi: DbApiService,  private profile: UserService, private loadingCtrl: LoadingController, private auth: AngularFireAuth,
               private rating: RatingService, public navParams: NavParams, private dataService: DataProvider, private chat: ChatService) {
     this.buddy = this.navParams.data;
-    console.log(this.buddy)
+    console.log(1, this.buddy)
     this.buddyFinal = this.buddy.profile;
   }
 
@@ -60,6 +60,7 @@ export class PerfilPage {
               (data) => {
                 this.follows = data;
                 this.checkFollow();
+
               }
             );
             this.chat.getChats(this.userInfo.id).subscribe(
@@ -71,19 +72,12 @@ export class PerfilPage {
             );
           }
         );
-        this.profile.getUserRatingInfo(this.buddy.id).subscribe(
+        this.profile.getUserRatingInfo(this.buddy.profile.id).subscribe(
           (data) => {
             this.ratingInfo = data;
             if(this.ratingInfo == null){
-              this.profile.addRatingToUser(this.buddy.id, this.ratingUser);
+              this.profile.addRatingToUser(this.buddy.profile.id, this.ratingUser);
             }
-          }
-        );
-        this.dbapi.getTours().subscribe(
-          (data) => {
-            this.tours = data;
-            this.finalTours = this.dataService.filterByBuddy(this.buddyFinal.id, this.tours);
-            //filtrar por mi id=buddy
           }
         );
       }
@@ -108,13 +102,18 @@ export class PerfilPage {
 
   checkFollow(){
     //tengo que comprobar que el user sea follow o no
-    for(let follow of this.follows){
-      if(follow.id == this.buddy.profile.id){
-        this.isFollow =true;
-      } else {
-        this.isFollow = false;
-      }}
+    // for(let follow of this.follows){
+    //   console.log(follow.id)
+    //   console.log(this.buddy.profile.id)
+    //   if(follow.id === this.buddy.profile.id){
+    //     this.isFollow =true;
+    //   } else {
+    //     this.isFollow = false;
+    this.isFollow= this.follows.find((follow)=>follow.id ==this.buddy.profile.id)
   }
+
+
+
 
   checkChat(){
     for(let chat of this.chats){
@@ -130,7 +129,9 @@ export class PerfilPage {
     this.navCtrl.push(ChatPage, this.chatId);
   }
 
-
+  startChat(user){
+    this.chat.startChat(this.userInfo.id, user.profile.id)
+  }
 
 
 }

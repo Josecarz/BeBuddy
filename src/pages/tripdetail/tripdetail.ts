@@ -136,12 +136,13 @@ export class TripdetailPage {
 
   checkFollow(){
     //tengo que comprobar que el user sea follow o no
-    for(let follow of this.follows){
-      if(follow.id == this.user.id){
-        this.isFollow =true;
-      } else {
-        this.isFollow = false;
-      }}
+    // for(let follow of this.follows){
+    //   if(follow.id == this.user.id){
+    //     this.isFollow =true;
+    //   } else {
+    //     this.isFollow = false;
+    //   }}
+    this.isFollow= this.follows.find((follow)=>follow.id ==this.user.id)
   }
 
   checkChat(){
