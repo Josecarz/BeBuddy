@@ -8,6 +8,7 @@ import {AngularFireAuth} from "angularfire2/auth";
 import {DataProvider} from "../../providers/data";
 import {ChatPage} from "../chat/chat";
 import {ChatService} from "../../providers/chat-service";
+import {CommentsComponent} from "../../components/comments/comments";
 
 /**
  * Generated class for the PerfilPage page.
@@ -132,6 +133,8 @@ export class PerfilPage {
   startChat(user){
     this.chat.startChat(this.userInfo.id, user.profile.id)
   }
-
+  navComment(user){
+    this.navCtrl.push(CommentsComponent, {'usuario': user});
+  }
 
 }

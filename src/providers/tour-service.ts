@@ -49,4 +49,8 @@ export class TourService {
 
   }
 
+  public deleteTour(tourId: string){
+    this.db.object(`tours/${tourId}`).remove();
+  }
+
 }

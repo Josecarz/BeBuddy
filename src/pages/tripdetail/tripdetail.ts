@@ -10,6 +10,7 @@ import {AngularFireAuth} from "angularfire2/auth";
 import {Follow} from "../../models/models";
 import {ChatService} from "../../providers/chat-service";
 import {ChatPage} from "../chat/chat";
+import {TourService} from "../../providers/tour-service";
 
 /**
  * Generated class for the TripdetailPage page.
@@ -41,6 +42,8 @@ export class TripdetailPage {
   chats: any;
   days = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
   chatId: string;
+  miDays: any[]=[];
+  miHours: any[]=[];
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -50,8 +53,10 @@ export class TripdetailPage {
               private rating: RatingService,
               private profile: UserService,
               private auth: AngularFireAuth,
-              private chat: ChatService) {
+              private chat: ChatService,
+              private tourapi: TourService) {
     this.tour = this.navParams.data;
+    console.log(this.tour.days)
     // console.log('ionViewDidLoad ' + this.destino);
   }
 
@@ -95,6 +100,11 @@ export class TripdetailPage {
       }
     );
 
+    for(let day of this.tour.days){
+      this.miDays.push(day.day);
+      this.miHours.push(day.hour)
+    }
+
   }
 
   ionViewWillLoad(){
@@ -115,7 +125,7 @@ export class TripdetailPage {
   }
 
   navComment(tour){
-    this.navCtrl.push(CommentsComponent, {'tour': tour, 'usuario': this.user});
+    this.navCtrl.push(CommentsComponent, {'tour': tour, 'usuario': this.user, 'from': 'tour'});
   }
 
 
@@ -174,5 +184,9 @@ export class TripdetailPage {
 
   navToChat(){
     this.navCtrl.push(ChatPage, this.chatId);
+  }
+
+  deleteTour(){
+    this.tourapi.deleteTour(this.tour.id)
   }
 }

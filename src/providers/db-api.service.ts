@@ -42,6 +42,10 @@ export class DbApiService {
     return this.fb.list('tours/'+id+'/comments/').valueChanges();
   }
 
+  getCommentsUser(id): Observable<any> {
+    return this.fb.list('users/'+id+'/comments/').valueChanges();
+  }
+
   getMyRecipes(user){
     return this.fb.list('recipes').valueChanges();
   }

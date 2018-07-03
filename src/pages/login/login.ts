@@ -115,7 +115,7 @@ export class LoginPage {
     this.navCtrl.push(CreateTourComponent);
   }
 
-  navComment(tour){
-    this.navCtrl.push(CommentsComponent, {'tour': tour, 'usuario': this.userInfo});
+  navComment(){
+    this.navCtrl.push(CommentsComponent, {'usuario': this.userInfo});
   }
 }

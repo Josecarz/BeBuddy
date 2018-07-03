@@ -47,41 +47,51 @@
   <ion-title class="miTitle">Descripcíon</ion-title>
   <ion-card-content style="margin: 5px">{{tour.description}} </ion-card-content>
   <hr style="margin: 0px">
+  <hr style="margin: 1px">
+  <ion-title class="miTitle">Días disponibles</ion-title>
+  <div style="text-align: center">
+    <ng-container *ngFor="let day of days">
+        <div *ngIf="miDays.includes(day)"
+             style="display: inline-block; width: 30px; height: 30px; border: 1px; border-radius: 50px; margin: 2px; color: white; text-align: center; line-height: 30px; background-color: #32db64"
+        >{{day.charAt(0)}}</div>
+      <div *ngIf="!miDays.includes(day)"
+           style="display: inline-block; width: 30px; height: 30px; border: 1px; border-radius: 50px; margin: 2px; color: white; text-align: center; line-height: 30px; background-color: #f53d3d"
+      >{{day.charAt(0)}}</div>
+    </ng-container>
+
+  </div>
+  <ion-title class="miTitle">Hora aproximada de comienzo</ion-title>
+  <div style="text-align: center">
+    <ng-container *ngFor="let day of tour.days">
+      <div style="display: inline-block; height: 30px; border: 1px; border-radius: 50px; margin: 2px; padding-left: 4px; padding-right: 4px; color: white; text-align: center; line-height: 30px; background-color: #32db64"
+      >{{day.day}} : {{day.hour}}</div>
+    </ng-container>
+  </div>
+  <hr style="margin-top: 7px">
   <ion-grid>
     <ion-title class="miTitle">Buddy</ion-title>
     <ion-row *ngIf="user">
-      <ion-col col-2 style="text-align: center">
+      <ion-col style="text-align: center; margin-top: 24px">
         <img class="avatar" src="{{user.img}}"/><br>
         <span>{{user.name}}</span>
       </ion-col>
-      <ion-col col-10>
-        <ion-buttons class="buttons" end>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-buttons class="buttons" style="text-align: center">
           <button class="myButton" ion-button small round  *ngIf="!isMe && isChat" (click)="navToChat()">Enviar mensaje</button>
           <button ion-button small round  *ngIf="!isMe && !isChat" (click)="startChat()">CREAR mensaje</button>
           <!--<ng-container *ngFor="let followUser of follows">-->
-            <button ion-button small round *ngIf="!isFollow && !isMe" (click)="follow(user)">Seguir</button>
-            <button ion-button small round *ngIf="isFollow && !isMe" (click)="unfollow(user)">Dejar de seguir</button>
-          <button color="danger" ion-button small round *ngIf="isMe" (click)="unfollow(user)">Eliminar tour</button>
-            <!--<button ion-button small round *ngIf="userInfo.id == user.id" (click)="deleteTour(tour)">Eliminar tour</button>-->
+          <button ion-button small round *ngIf="!isFollow && !isMe" (click)="follow(user)">Seguir</button>
+          <button ion-button small round *ngIf="isFollow && !isMe" (click)="unfollow(user)">Dejar de seguir</button>
+          <button color="danger" ion-button small round *ngIf="isMe" (click)="deleteTour()">Eliminar tour</button>
+          <!--<button ion-button small round *ngIf="userInfo.id == user.id" (click)="deleteTour(tour)">Eliminar tour</button>-->
         </ion-buttons>
       </ion-col>
     </ion-row>
   </ion-grid>
-  <hr style="margin: 0px">
-  <ion-title class="miTitle">Días disponibles</ion-title>
-  <div style="text-align: center">
-    <ng-container *ngFor="let day of days">
-        <div *ngIf="tour.days.includes(day)"
-             style="display: inline-block; width: 30px; height: 30px; border: 1px; border-radius: 50px; margin: 2px; color: white; text-align: center; line-height: 30px; background-color: #32db64"
-        >{{day.charAt(0)}}</div>
-      <div *ngIf="!tour.days.includes(day)"
-           style="display: inline-block; width: 30px; height: 30px; border: 1px; border-radius: 50px; margin: 2px; color: white; text-align: center; line-height: 30px; background-color: #f53d3d"
-      >{{day.charAt(0)}}</div>
 
-    </ng-container>
-  </div>
-  <hr style="margin-top: 7px">
   <ng-container  *ngIf="user">
-
+    <hr style="margin: 0px">
     <tour-carrousel name="trip" param="{{user.id}}" tour="{{tour.id}}" user="{{user.name}}"></tour-carrousel>
   </ng-container>

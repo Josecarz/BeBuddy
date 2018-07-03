@@ -19,7 +19,7 @@ export class CommentsComponent {
   recipe: any;
   usuario: any;
   comments=[];
-
+  from: string;
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public formBuilder: FormBuilder,
@@ -28,13 +28,15 @@ export class CommentsComponent {
     this.myForm = this.createMyForm();
     this.recipe = this.navParams.get('tour');
     this.usuario = this.navParams.get('usuario');
+    this.from = this.navParams.get('from');
   }
 
   ionViewDidLoad() {
     console.log(this.recipe);
     console.log(this.usuario);
     console.log('ionViewDidLoad CommentsPage');
-    this.service.getComments(this.recipe.id).subscribe(data => this.comments = data);
+    if (this.from!='user')
+      this.service.getComments(this.recipe.id).subscribe(data => this.comments = data);
     console.log(this.comments);
   }
   private createMyForm() {
