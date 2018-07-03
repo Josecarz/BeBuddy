@@ -3,13 +3,14 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import {Follow, NewUser, Rating, UserInfo} from "../models/models";
 import {Observable} from "rxjs/Observable";
+import {AngularFireStorage} from "angularfire2/storage";
 
 
 @Injectable()
 export class UserService {
   usuario: any;
   rating: any;
-  constructor(private db: AngularFireDatabase, private auth: AngularFireAuth) {
+  constructor(private db: AngularFireDatabase, private auth: AngularFireAuth, private storage: AngularFireStorage) {
   }
 
   public userLogin(email: string, password: string): Promise<any> {
@@ -41,6 +42,7 @@ export class UserService {
       this.auth.auth.createUserAndRetrieveDataWithEmailAndPassword(user.email, user.password).then(success => {
         delete user.password;
         user.img = "assets/imgs/furgoneta.jpg";
+        // user.comments: new Array(""),
         let userCopy = Object.assign(user);
         userCopy.id = success.user.uid;
         this.addUserToDatabase(userCopy.id, userCopy);
@@ -49,11 +51,50 @@ export class UserService {
     });
   }
 
+  // return new Promise((resolve, reject) => {
+  // this.db.list(`/tours`).push({}).then(success => {
+  // this.storage.ref(`/tours/${success.key}.jpg`).putString(tour.image, 'data_url').then(snapshot => {
+  // this.db.object(`/tours/${success.key}`).set({
+  // title: tour.title,
+  // description: tour.description,
+  // id: success.key,
+  // img: snapshot.downloadURL,
+  // days: tour.days,
+  // time: tour.time,
+  // buddy: tour.buddy,
+  // city: tour.city,
+  // comments: new Array(""),
+  // }).then(snapshot=>{
+  // this.addTourToCity(tour, success.key);
+  // }).then(() => resolve())
+  // .catch(err => reject(err.code));
+  // })
+  // .catch(err => reject(err.code));
+  // }, err => reject(err.code));
+  // });
+
   public editUser(user: NewUser, id){
-    let userCopy = Object.assign(user);
-    this.db.object(`/users/${id}/profile`)
-      .update(userCopy);
+    // let userCopy = Object.assign(user);
+    // this.db.object(`/users/${id}/profile`)
+    //   .update(userCopy);
     // this.addUserToDatabase(id, userCopy)
+
+
+    return new Promise((resolve, reject) => {
+      this.storage.ref(`/users/${Date.now()}.jpg`).putString(user.img, 'data_url').then(snapshot => {
+        this.db.object(`/users/${id}/profile`).update({
+          name: user.name,
+          img: snapshot.downloadURL,
+          email: user.email,
+          city: user.city,
+        }).then(snapshot=>{
+        }).then(() => resolve())
+          .catch(err => reject(err.code));
+      })
+        .catch(err => reject(err.code));
+    });
+
+
   }
 
   public updateCity(city, id){
@@ -69,8 +110,20 @@ export class UserService {
 
 
   private addUserToDatabase(userId: string, user: NewUser) {
-      return this.db.object(`/users/${userId}/profile`).set(user);
+    // this.db.object(`/users/${userId}/profile`).set({
+    //   name: user.name,
+    //   city: user.city,
+    //   email: user.email,
+    //   img: user.img,
+    //   id: userId,
+    //   comments: new Array(""),
+    // });
+
+    this.db.object(`/users/${userId}/profile`).set(user);
+    this.db.object(`/users/${userId}/profile`).update({comments: new Array("")})
   }
+
+
 
   public addRatingToUser(userId: string, rating: Rating) {
     this.db.object(`/users/${userId}/rating`).set(rating);

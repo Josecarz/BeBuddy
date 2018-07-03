@@ -2,7 +2,7 @@
 
 
 
-<div>
+<div *ngIf="nombre!='miTravel'">
   <ion-item>
     <ion-label><ion-icon name="md-list"></ion-icon> Ordenar por...</ion-label>
     <ion-select [(ngModel)]="order" (ionChange)="checkSelect()">
@@ -40,3 +40,39 @@
   </ion-list>
 </div>
 
+<div *ngIf="nombre=='miTravel' && followTour?.length>0">
+  <ion-item>
+    <ion-label><ion-icon name="md-list"></ion-icon> Ordenar por...</ion-label>
+    <ion-select [(ngModel)]="order" (ionChange)="checkSelect()">
+      <ion-option>Más populares</ion-option>
+      <ion-option>Mejor valorados</ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-list>
+    <ion-item  *ngFor="let item of followTour">
+      <img item-start class="miniimg" src="{{item.img}}">
+      <h2 style="overflow: hidden; white-space:nowrap; text-overflow: ellipsis;">{{item.title}}</h2>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-9>
+            <rating class="rating" [(ngModel)]="item.rate" readOnly="true"></rating>
+          </ion-col>
+          <ion-col style="padding: 0px !important; text-align: center; margin-top: 1px" col-3 ><br><br>
+            <ng-container *ngFor="let user of buddy">
+              <ng-container *ngIf="user.profile?.id != userInfo?.id">
+                <img *ngIf="item.buddy == user.profile?.id " class="avatar" src="{{user.profile?.img}}" (click)="navUser(user)"/>
+              </ng-container>
+              <ng-container *ngIf="user.profile?.id == userInfo?.id">
+                <img *ngIf="item.buddy == user.profile?.id" class="avatar" src="{{user.profile?.img}}" (click)="navMiPerfil()"/>
+              </ng-container>
+              <ng-container *ngIf="item.buddy == user.profile?.id ">
+                <p style="overflow: hidden; white-space:nowrap; text-overflow: ellipsis;">{{user.profile?.name}}</p>
+              </ng-container>
+            </ng-container>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <button ion-button small round (click)="navTour(item)">Ver más</button>
+    </ion-item>
+  </ion-list>
+</div>

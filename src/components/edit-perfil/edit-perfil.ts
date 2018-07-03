@@ -8,6 +8,7 @@ import {DataProvider} from "../../providers/data";
 import {FormControl} from "@angular/forms";
 import {LoginPageModule} from "../../pages/login/login.module";
 import {LoginPage} from "../../pages/login/login";
+import {CameraService} from "../../providers/camera-service";
 
 /**
  * Generated class for the EditPerfilComponent component.
@@ -21,6 +22,8 @@ import {LoginPage} from "../../pages/login/login";
 })
 export class EditPerfilComponent {
 
+  imageSrc: string;
+  imageUploaded: boolean;
   text: string;
   userInfo: any;
   newUser: NewUser = { name: '', email: '', city: ''};
@@ -35,14 +38,17 @@ export class EditPerfilComponent {
   searchControl: FormControl;
   items: any;
   searching: any = false;
+  image: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,  private dbapi: DbApiService,
               private profile: UserService, private auth: AngularFireAuth,  private loadingCtrl: LoadingController,
-              private dataService: DataProvider,) {
+              private dataService: DataProvider,
+              private cam: CameraService,) {
     console.log('Hello EditPerfilComponent Component');
     this.text = 'Hello World';
     this.userInfo = this.navParams.data;
     this.searchControl = new FormControl();
+    this.imageUploaded = false;
     console.log('USERINFO' + this.userInfo.name);
   }
 
@@ -96,6 +102,7 @@ export class EditPerfilComponent {
   editUser(): void {
     let userCopy = Object.assign(this.newUser);
     userCopy.id = this.userInfo.id;
+    userCopy.img = this.image;
     this.profile.editUser(userCopy, this.usuario.uid);
     this.navCtrl.setRoot(LoginPage)
   }
@@ -110,5 +117,13 @@ export class EditPerfilComponent {
   }
 
 
+  selectImage() {
+    this.cam.getImage().then(imageData => {
+      this.image = imageData;
+      this.imageSrc = imageData;
+      this.imageUploaded = true;
+    })
+      .catch(err => console.log(err));
+  }
 
 }

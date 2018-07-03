@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {DbApiService} from "../../providers/db-api.service";
 import { Storage } from '@ionic/storage';
-import {FavouritesService} from "../../providers/favourites-service";
 import {RatingService} from "../../providers/rating-service";
 import {CommentsComponent} from "../../components/comments/comments";
 import {UserService} from "../../providers/user-service";
@@ -28,15 +27,16 @@ export class TripdetailPage {
 
   tour: any;
   cities = [];
-  favourite: boolean;
   lock: any;
   user: any;
   flag: false;
   usuario: any;
   userInfo: any;
   followUser: Follow = { id: '', name: '', img:'' };
-  follows: any;
+  follows: any
+  followTour: any;
   isFollow: boolean;
+  isFollowTour: boolean;
   isChat: boolean;
   isMe: boolean;
   chats: any;
@@ -47,8 +47,6 @@ export class TripdetailPage {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              private fav: FavouritesService,
-              public storage: Storage,
               private dbapi: DbApiService,
               private rating: RatingService,
               private profile: UserService,
@@ -57,19 +55,16 @@ export class TripdetailPage {
               private tourapi: TourService) {
     this.tour = this.navParams.data;
     console.log(this.tour.days)
-    // console.log('ionViewDidLoad ' + this.destino);
   }
 
   ionViewWillEnter() {
-    this.fav.isFav(this.tour.id).then(value => this.favourite = value);
-
     this.auth.authState.subscribe(data => {
       this.usuario = data;
       if (this.usuario != null) {
         this.profile.getUserProfileInfo(this.usuario.uid).subscribe(
           (data) => {
             this.userInfo = data;
-
+            console.log(this.userInfo)
             this.dbapi.getFollows(this.userInfo.id).subscribe(
               (data) => {
                 this.follows = data;
@@ -77,18 +72,22 @@ export class TripdetailPage {
                 this.checkMe();
               }
             );
+            this.dbapi.getFollowsTour(this.userInfo.id).subscribe(
+              (data) => {
+                this.followTour = data;
+                console.log(this.followTour)
+                this.checkFollow();
+                // this.checkMe();
+              }
+            );
             this.chat.getChats(this.userInfo.id).subscribe(
               (data) => {
                 this.chats = data;
-                console.log(this.chats);
                 this.checkChat();
               }
             );
-
           }
         );
-
-
       }
     });
 
@@ -107,17 +106,16 @@ export class TripdetailPage {
 
   }
 
-  ionViewWillLoad(){
-    this.fav.isFav(this.tour);
-  }
-
-  changeFollow(tour){
-    this.favourite = !this.favourite;
-
-    if(this.favourite)
-      this.fav.favoriteTour(tour)
-    else
-      this.fav.unfavoriteTour(tour);
+  changeFollow(){
+    if(this.isFollowTour){
+      this.tour.follows = this.tour.follows -1 ;
+      this.tourapi.deleteTourToFollow(this.tour, this.userInfo.id, this.tour.follows);
+      console.log("DEJAR DE SEGUIR")
+    } else {
+      this.tour.follows = this.tour.follows +1 ;
+      this.tourapi.addTourToFollow(this.tour, this.userInfo.id, this.tour.follows);
+      console.log("SEGUIR")
+    }
   }
 
   rate($event, tour){
@@ -136,6 +134,7 @@ export class TripdetailPage {
     this.followUser.img = user.img;
     console.log(this.followUser.id);
     this.profile.addUserToFollow(this.userInfo.id, this.followUser);
+    this.isFollow= true;
   }
 
 
@@ -145,14 +144,8 @@ export class TripdetailPage {
   }
 
   checkFollow(){
-    //tengo que comprobar que el user sea follow o no
-    // for(let follow of this.follows){
-    //   if(follow.id == this.user.id){
-    //     this.isFollow =true;
-    //   } else {
-    //     this.isFollow = false;
-    //   }}
-    this.isFollow= this.follows.find((follow)=>follow.id ==this.user.id)
+    this.isFollow= this.follows.find((follow)=>follow.id ==this.user.id);
+    this.isFollowTour= this.followTour.find((follow)=>follow.id ==this.tour.id);
   }
 
   checkChat(){

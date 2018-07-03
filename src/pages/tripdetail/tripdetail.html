@@ -17,13 +17,17 @@
   <div class="card-background-page">
     <ion-card>
       <img src="{{tour.img}}"/>
-      <ion-buttons end class="buttons">
-        <button ion-button round small (click)="changeFollow(tour)" *ngIf="!favourite">
-          <ion-icon name="star" padding-right=""></ion-icon>
+      <ion-buttons style="text-align: center" class="buttons">
+        <button color="secondary" ion-button round small style="padding-left: 10px; padding-right: 10px; ">
+          <ion-icon name="heart" padding-right=""></ion-icon>
+          {{tour.follows}} Seguidores
+        </button>
+        <button color="secondary" ion-button round small (click)="changeFollow(tour)" *ngIf="!isFollowTour">
+          <ion-icon name="heart" padding-right=""></ion-icon>
           Añadir a mis planes
         </button>
-        <button ion-button round (click)="changeFollow(tour)" *ngIf="favourite">
-          <ion-icon name="star"></ion-icon>
+        <button color="secondary" small ion-button round (click)="changeFollow(tour)" *ngIf="isFollowTour">
+          <ion-icon name="heart"></ion-icon>
         </button>
       </ion-buttons>
     </ion-card>

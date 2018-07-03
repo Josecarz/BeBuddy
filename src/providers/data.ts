@@ -44,7 +44,7 @@ export class DataProvider {
       return [];
     }
     return tours.filter((item) => {
-
+      // console.log("FILTRANDO")
       return item.buddy == id;
 
     });
@@ -57,6 +57,19 @@ export class DataProvider {
     return buddies.filter((item) => {
 
       return item.profile.id == id;
+
+    });
+  }
+
+  filterByFollow(id, tours){
+    console.log(id)
+    if (id==''){
+      return [];
+    }
+    return tours.filter((item) => {
+      console.log("filtrando")
+      console.log(item.id)
+      return item.id == id.id;
 
     });
   }

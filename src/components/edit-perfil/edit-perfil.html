@@ -10,13 +10,16 @@
 
 <ion-content>
   <ion-list>
+    <div class="img-container" (tap)="selectImage()" [ngStyle]="{'background-image': 'url(' + imageSrc + ')'}">
+      <img *ngIf="!imageUploaded" src="assets/imgs/upload-icon.png" />
+    </div>
     <div>
       <ion-list>
         <ion-item>
-          <ion-input type="text" [(ngModel)]="newUser.name" placeholder="{{userInfo.name}}"></ion-input>
+          <ion-input type="text" [(ngModel)]="newUser.name" placeholder="{{userInfo?.name}}"></ion-input>
         </ion-item>
         <ion-item>
-          <ion-input type="email" [(ngModel)]="newUser.email" placeholder="{{userInfo.email}}"></ion-input>
+          <ion-input type="email" [(ngModel)]="newUser.email" placeholder="{{userInfo?.email}}"></ion-input>
         </ion-item>
         <!--<ion-item>-->
           <!--<ion-input type="city" [(ngModel)]="newUser.city" placeholder="Elige tu ciudad"></ion-input>-->

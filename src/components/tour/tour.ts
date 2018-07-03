@@ -31,6 +31,7 @@ export class TourComponent {
   finalTours: any;
   buddies: any;
   order: string;
+  followTour: any;
 
   @Input() nombre;
   @Input() param;
@@ -42,20 +43,18 @@ export class TourComponent {
 
   ngOnInit(){
     this.start();
-    console.log(this.nombre);
-    console.log(this.order);
   }
 
   start(){
     this.tourService.getTours().subscribe(
       (data) => {
         this.tours = data;
-        console.log(this.tours);
+        console.log(this.nombre);
 
         if(this.nombre=="city")
-          this.setFilteredTourItems()
+          this.setFilteredTourItems();
         if(this.nombre=='perfil')
-          this.setFilterTourByUser()
+          this.setFilterTourByUser();
 
       }
     );
@@ -78,11 +77,18 @@ export class TourComponent {
         this.profile.getUserProfileInfo(this.usuario.uid).subscribe(
           (data) => {
             this.userInfo = data;
-            console.log("USUARIO INFO   " + this.userInfo.id);
+
+            this.dbapi.getFollowsTour(this.userInfo.id).subscribe(
+              (data) => {
+                this.followTour = data;
+                console.log(this.followTour)
+              }
+            );
 
           }
         );
       }
+
     });
   }
 
@@ -129,6 +135,9 @@ export class TourComponent {
     if(this.order=="Mejor valorados")
       this.tours = _.orderBy(this.tours, 'votes', 'asc');
       console.log(this.tours);
+    if(this.order=="Más populares")
+      this.tours = _.orderBy(this.tours, 'follows', 'desc');
+    console.log(this.tours);
   }
 
 }

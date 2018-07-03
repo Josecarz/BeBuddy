@@ -73,16 +73,16 @@ export class PerfilPage {
             );
           }
         );
-        this.profile.getUserRatingInfo(this.buddy.profile.id).subscribe(
-          (data) => {
-            this.ratingInfo = data;
-            if(this.ratingInfo == null){
-              this.profile.addRatingToUser(this.buddy.profile.id, this.ratingUser);
-            }
-          }
-        );
       }
     });
+    this.profile.getUserRatingInfo(this.buddy.profile.id).subscribe(
+      (data) => {
+        this.ratingInfo = data;
+        if(this.ratingInfo == null){
+          this.profile.addRatingToUser(this.buddy.profile.id, this.ratingUser);
+        }
+      }
+    );
   }
 
 
@@ -102,14 +102,7 @@ export class PerfilPage {
   }
 
   checkFollow(){
-    //tengo que comprobar que el user sea follow o no
-    // for(let follow of this.follows){
-    //   console.log(follow.id)
-    //   console.log(this.buddy.profile.id)
-    //   if(follow.id === this.buddy.profile.id){
-    //     this.isFollow =true;
-    //   } else {
-    //     this.isFollow = false;
+
     this.isFollow= this.follows.find((follow)=>follow.id ==this.buddy.profile.id)
   }
 
@@ -134,7 +127,8 @@ export class PerfilPage {
     this.chat.startChat(this.userInfo.id, user.profile.id)
   }
   navComment(user){
-    this.navCtrl.push(CommentsComponent, {'usuario': user});
+    console.log(user)
+    this.navCtrl.push(CommentsComponent, {'usuario': user, 'from': 'user'});
   }
 
 }

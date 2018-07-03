@@ -53,7 +53,7 @@ export class LoginPage {
         this.profile.getUserProfileInfo(this.usuario.uid).subscribe(
           (data) => {
             this.userInfo = data;
-            console.log("USUARIO INFO   " + this.userInfo.name);
+            console.log(1, this.userInfo);
 
           }
         );
@@ -115,7 +115,8 @@ export class LoginPage {
     this.navCtrl.push(CreateTourComponent);
   }
 
-  navComment(){
-    this.navCtrl.push(CommentsComponent, {'usuario': this.userInfo});
+  navComment(user){
+    console.log(user)
+    this.navCtrl.push(CommentsComponent, {'usuario': this.userInfo, 'from': 'user'});
   }
 }

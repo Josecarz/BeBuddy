@@ -8,7 +8,7 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding *ngIf="from!='user'">
 
   <img src="{{recipe.img}}"/>
 
@@ -22,6 +22,23 @@
     </ion-item>
     <div>
       <button ion-button full round small type="submit" [disabled]="!myForm.valid" (click)="addComment(recipe)">Enviar</button>
+    </div>
+  </form>
+</ion-content>
+<ion-content padding *ngIf="from=='user'">
+
+  <img src="{{usuario.img}}"/>
+
+  <ion-card color="light" *ngFor="let comment of comments">
+    <ion-card-content>{{comment}}</ion-card-content>
+  </ion-card>
+  <form *ngIf="usuario" [formGroup]="myForm">
+    <ion-item>
+      <ion-icon name="addComment"></ion-icon>
+      <ion-input formControlName="comment" type="text" placeholder="Añade un comentario.."[(ngModel)]="usuario.newComment"></ion-input>
+    </ion-item>
+    <div>
+      <button ion-button full round small type="submit" [disabled]="!myForm.valid" (click)="addComment(usuario)">Enviar</button>
     </div>
   </form>
 </ion-content>

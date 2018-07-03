@@ -68,14 +68,14 @@
         <div><p style="margin-left: 12px">{{ratingInfo.votes}} Valoraciones</p></div>
       </ion-col>
       <ion-col col-5>
-        <button ion-button round small full (click)="navComment(user)">Ver opiniones</button>
+        <button ion-button round small full (click)="navComment(buddyFinal)">Ver opiniones</button>
       </ion-col>
     </ion-row>
   </ion-grid>
   <hr style="margin: 0px">
 
 
-  <ng-container>
+  <ng-container *ngIf="usuario">
     <ion-title class="miTitle">Tours de {{userInfo?.name}}</ion-title>
     <tour nombre="perfil" param="{{userInfo?.id}}"></tour>
     <hr>

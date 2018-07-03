@@ -19,4 +19,20 @@ edit-perfil {
       color: #fff;
     }
   }
+
+  .img-container {
+    height: 200px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(128, 128, 128, 0.2);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    img {
+      height: 90px;
+      margin-bottom: 15px;
+    }
+  }
 }

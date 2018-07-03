@@ -53,4 +53,27 @@ export class TourService {
     this.db.object(`tours/${tourId}`).remove();
   }
 
+  public addTourToFollow(tour, userId: string, nFollow){
+    this.db.object(`users/${userId}/followTours/${tour.id}`).set(
+      tour
+    );
+    this.db.object(`tours/${tour.id}/userFollow/${userId}`).set({
+      id: userId,
+    });
+
+    this.updateFollowsTour(tour.id, nFollow);
+  }
+
+  public deleteTourToFollow(tour, userId: string, nFollow){
+    this.db.object(`users/${userId}/followTours/${tour.id}`).remove();
+    this.db.object(`tours/${tour.id}/userFollow/${userId}`).remove();
+    this.updateFollowsTour(tour.id, nFollow);
+  }
+
+  private updateFollowsTour(tourId, nFollow){
+    this.db.object(`tours/${tourId}/`).update({
+      follows: nFollow,
+    })
+  }
+
 }

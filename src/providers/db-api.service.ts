@@ -43,7 +43,7 @@ export class DbApiService {
   }
 
   getCommentsUser(id): Observable<any> {
-    return this.fb.list('users/'+id+'/comments/').valueChanges();
+    return this.fb.list('users/'+id+'/profile/comments').valueChanges();
   }
 
   getMyRecipes(user){
@@ -70,6 +70,12 @@ export class DbApiService {
 
   public getFollows(userId: string):  Observable <any>{
     return this.fb.list(`/users/${userId}/follows`)
+      .valueChanges()
+  }
+
+  public getFollowsTour(userId: string):  Observable <any>{
+    console.log("EN DBAPISERVICE")
+    return this.fb.list(`/users/${userId}/followTours`)
       .valueChanges()
   }
 

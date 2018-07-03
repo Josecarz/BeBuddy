@@ -112,41 +112,12 @@ export class CreateTourComponent {
   checkSelect(){
     this.lock=true;
     console.log(this.tour)
-    // console.log(day)
-    // for(let day of this.tour.days){
-    //   this.days.push(day);
-    // }
-    //
-    // console.log(this.days)
   }
 
   checkSelect2(event, day){
     console.log(day)
     console.log(this.day)
 
-    // this.day[day] = event;
-    // this.day.forEach((value,index) => {
-    //   console.log(value,index)
-    // });
-    // if(this.day.length>0) {
-    //   // this.day.push({day: day, hour: event});
-    //   for (let dayAux of this.day) {
-    //     if (dayAux.day == day) {
-    //
-    //       dayAux.hour = event;
-    //       this.sem = false;
-    //     } else {
-    //       if (this.sem) {
-    //         this.day.push({day: day, hour: event});
-    //
-    //       }
-    //     }
-    //   }
-    // }else {
-    //   this.day.push({day: day, hour: event});
-    //   this.sem = true;
-    // }
-    // console.log(this.day)
     if(this.day.length>0) {
       if (this.day.find((dayAux) => dayAux.day == day)) {
         for (let dayAux of this.day) {
@@ -165,10 +136,4 @@ export class CreateTourComponent {
   }
 
 
-  createEvent(){
-
-    // this.tour.days.day = this.day[day];
-    // this.dayAux=this.day;
-    // console.log(this.dayAux)
-  }
 }
