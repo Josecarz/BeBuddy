@@ -33,7 +33,6 @@ export class CountrydetailPage {
     this.dbapi.getCities(this.destino.id).subscribe(
       (data) => {
         this.cities = data;
-        // console.log('hola' + this.cities);
       }
     );
 

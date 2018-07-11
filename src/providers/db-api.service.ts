@@ -46,14 +46,6 @@ export class DbApiService {
     return this.fb.list('users/'+id+'/profile/comments').valueChanges();
   }
 
-  getMyRecipes(user){
-    return this.fb.list('recipes').valueChanges();
-  }
-
-  pushTour(tour) {
-    this.afDB.database.ref('tours/' + tour.id).set(tour);
-  }
-
   pushUserRating(userId, rate) {
     console.log(rate);
     this.afDB.database.ref(`/users/${userId}/rating/`).set(rate);

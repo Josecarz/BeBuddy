@@ -128,7 +128,7 @@ export class BuddiesPage {
     console.log(2, this.finalChats);
 
     this.chat.deleteChat(chat.idChat, this.userInfo.id);
-    // this.lock = true;
+
   }
 
 }

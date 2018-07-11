@@ -128,8 +128,6 @@ export class TourComponent {
 
   checkSelect(){
     console.log(this.order)
-  // this.ngOnInit();
-
 
 
     if(this.order=="Mejor valorados")

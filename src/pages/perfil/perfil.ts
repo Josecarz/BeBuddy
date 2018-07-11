@@ -34,7 +34,6 @@ export class PerfilPage {
   follows: any;
   isFollow: boolean;
   tours: any;
-  finalTours: any;
   ratingUser: Rating = { rate: 0, votes: 0, points: 0 };
   chatId: string;
   isChat: boolean;
@@ -87,11 +86,9 @@ export class PerfilPage {
 
 
   follow(user){
-    // console.log(user.id);
     this.followUser.id = user.profile.id;
     this.followUser.name = user.profile.name;
     this.followUser.img = user.profile.img;
-    // console.log(this.followUser.id);
     this.profile.addUserToFollow(this.userInfo.id, this.followUser);
   }
 
@@ -127,7 +124,7 @@ export class PerfilPage {
     this.chat.startChat(this.userInfo.id, user.profile.id)
   }
   navComment(user){
-    console.log(user)
+    console.log(user);
     this.navCtrl.push(CommentsComponent, {'usuario': user, 'from': 'user'});
   }
 

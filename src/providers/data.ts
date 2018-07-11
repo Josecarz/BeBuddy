@@ -74,16 +74,4 @@ export class DataProvider {
     });
   }
 
-  // filterByCityBuddy(id, tours){
-  //   console.log(tours);
-  //   if (id==''){
-  //     return [];
-  //   }
-  //   return tours.filter((item) => {
-  //     console.log(item.profile);
-  //     return item.city == id;
-  //
-  //   });
-  // }
-
 }

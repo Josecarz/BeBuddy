@@ -32,6 +32,7 @@ export class TourService {
             time: tour.time,
             buddy: tour.buddy,
             city: tour.city,
+            follows: "0",
             comments: new Array(""),
           }).then(snapshot=>{
             this.addTourToCity(tour, success.key);

@@ -21,25 +21,11 @@
     </ion-card>
   </div>
 
-  <ion-card>Andorra, oficialmente Principado de Andorra, es un pequeño país soberano del suroeste de Europa. Constituido en Estado independiente, de derecho, democrático y social, ​ cuya forma de gobierno es el coprincipado parlamentario.​ </ion-card>
+  <ion-card-content style="margin: 5px">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus harum, qui. Aliquid atque doloribus ea enim eos hic molestiae mollitia pariatur, provident ratione repellendus rerum sequi? Ad amet architecto autem culpa distinctio enim error labore maiores, nulla porro quia, quos. </ion-card-content>
 
   <ion-card class="destino" *ngFor="let city of cities" (click)="navCity(city)">
-    <!--<img src="{{item.img}}"/>-->
+
     <p>{{city.name}}</p>
   </ion-card>
 
-
-
-  <ion-card-content>
-    <ion-card-title>
-      <div><span style="float:right">Ver todo</span>Tours en {{destino.name}}</div>
-      <hr>
-    </ion-card-title>
-    <ion-scroll scrollX="true" style="white-space:nowrap; height: 150px;">
-      <img class="tours" src="assets/imgs/furgoneta.jpg"/>
-      <img class="tours" src="assets/imgs/furgoneta.jpg"/>
-      <img class="tours" src="assets/imgs/furgoneta.jpg"/>
-      <img class="tours" src="assets/imgs/furgoneta.jpg"/>
-    </ion-scroll>
-  </ion-card-content>
 </ion-content>

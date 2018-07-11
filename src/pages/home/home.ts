@@ -49,7 +49,6 @@ export class HomePage {
 
     this.afAuth.authState.subscribe(data => {
       this.usuario = data;
-      // console.log(data.email);
       if (data && data.email && data.uid) {
 
         this.toast.create({

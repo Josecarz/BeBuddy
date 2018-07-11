@@ -70,7 +70,6 @@ export class LoginPage {
           (data) => {
             this.tours = data;
             this.finalTours = this.dataService.filterByBuddy(this.userInfo.id, this.tours);
-            //filtrar por mi id=buddy
           }
         );
 
@@ -116,7 +115,7 @@ export class LoginPage {
   }
 
   navComment(user){
-    console.log(user)
+    console.log(user);
     this.navCtrl.push(CommentsComponent, {'usuario': this.userInfo, 'from': 'user'});
   }
 }

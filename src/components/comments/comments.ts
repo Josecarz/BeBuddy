@@ -54,8 +54,6 @@ export class CommentsComponent {
   addComment(recipe) {
     console.log("recipe", recipe);
     console.log("this.recipes", this.recipe);
-    //recipe.comments[]=recipe.newComment;
-    // recipe.comments.
     if (recipe.comments[0] == "") {
       recipe.comments.pop();
       recipe.comments.push(recipe.newComment);

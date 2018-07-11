@@ -22,11 +22,11 @@
           <ion-icon name="heart" padding-right=""></ion-icon>
           {{tour.follows}} Seguidores
         </button>
-        <button color="secondary" ion-button round small (click)="changeFollow(tour)" *ngIf="!isFollowTour">
+        <button color="secondary" ion-button round small (click)="changeFollow(tour)" *ngIf="!isFollowTour && usuario">
           <ion-icon name="heart" padding-right=""></ion-icon>
           Añadir a mis planes
         </button>
-        <button color="secondary" small ion-button round (click)="changeFollow(tour)" *ngIf="isFollowTour">
+        <button color="secondary" small ion-button round (click)="changeFollow(tour)" *ngIf="isFollowTour && usuario">
           <ion-icon name="heart"></ion-icon>
         </button>
       </ion-buttons>
@@ -82,14 +82,12 @@
     </ion-row>
     <ion-row>
       <ion-col>
-        <ion-buttons class="buttons" style="text-align: center">
+        <ion-buttons class="buttons" style="text-align: center" *ngIf="usuario">
           <button class="myButton" ion-button small round  *ngIf="!isMe && isChat" (click)="navToChat()">Enviar mensaje</button>
-          <button ion-button small round  *ngIf="!isMe && !isChat" (click)="startChat()">CREAR mensaje</button>
-          <!--<ng-container *ngFor="let followUser of follows">-->
+          <button ion-button small round  *ngIf="!isMe && !isChat" (click)="startChat()">Enviar mensaje</button>
           <button ion-button small round *ngIf="!isFollow && !isMe" (click)="follow(user)">Seguir</button>
           <button ion-button small round *ngIf="isFollow && !isMe" (click)="unfollow(user)">Dejar de seguir</button>
           <button color="danger" ion-button small round *ngIf="isMe" (click)="deleteTour()">Eliminar tour</button>
-          <!--<button ion-button small round *ngIf="userInfo.id == user.id" (click)="deleteTour(tour)">Eliminar tour</button>-->
         </ion-buttons>
       </ion-col>
     </ion-row>

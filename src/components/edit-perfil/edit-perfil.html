@@ -21,9 +21,7 @@
         <ion-item>
           <ion-input type="email" [(ngModel)]="newUser.email" placeholder="{{userInfo?.email}}"></ion-input>
         </ion-item>
-        <!--<ion-item>-->
-          <!--<ion-input type="city" [(ngModel)]="newUser.city" placeholder="Elige tu ciudad"></ion-input>-->
-        <!--</ion-item>-->
+
         <ion-title padding style="text-align: center">Ciudad</ion-title>
         <div  ><ion-searchbar placeholder="Elige tu ciudad" [(ngModel)]="searchTerm" [formControl]="searchControl" (ionInput)="onSearchInput()"></ion-searchbar></div>
         <div *ngIf="searching" class="spinner-container">
@@ -34,9 +32,8 @@
   </ion-list>
 
   <ion-card class="destino" *ngFor="let item of items" (click)="selectCity(item)">
-    <!--<img src="{{item.img}}"/>-->
     <p>{{item.name}}</p>
-    <!--<p>{{item.code}}</p>-->
+
   </ion-card>
 
   <div padding>

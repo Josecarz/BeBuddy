@@ -51,34 +51,7 @@ export class UserService {
     });
   }
 
-  // return new Promise((resolve, reject) => {
-  // this.db.list(`/tours`).push({}).then(success => {
-  // this.storage.ref(`/tours/${success.key}.jpg`).putString(tour.image, 'data_url').then(snapshot => {
-  // this.db.object(`/tours/${success.key}`).set({
-  // title: tour.title,
-  // description: tour.description,
-  // id: success.key,
-  // img: snapshot.downloadURL,
-  // days: tour.days,
-  // time: tour.time,
-  // buddy: tour.buddy,
-  // city: tour.city,
-  // comments: new Array(""),
-  // }).then(snapshot=>{
-  // this.addTourToCity(tour, success.key);
-  // }).then(() => resolve())
-  // .catch(err => reject(err.code));
-  // })
-  // .catch(err => reject(err.code));
-  // }, err => reject(err.code));
-  // });
-
   public editUser(user: NewUser, id){
-    // let userCopy = Object.assign(user);
-    // this.db.object(`/users/${id}/profile`)
-    //   .update(userCopy);
-    // this.addUserToDatabase(id, userCopy)
-
 
     return new Promise((resolve, reject) => {
       this.storage.ref(`/users/${Date.now()}.jpg`).putString(user.img, 'data_url').then(snapshot => {
@@ -110,15 +83,6 @@ export class UserService {
 
 
   private addUserToDatabase(userId: string, user: NewUser) {
-    // this.db.object(`/users/${userId}/profile`).set({
-    //   name: user.name,
-    //   city: user.city,
-    //   email: user.email,
-    //   img: user.img,
-    //   id: userId,
-    //   comments: new Array(""),
-    // });
-
     this.db.object(`/users/${userId}/profile`).set(user);
     this.db.object(`/users/${userId}/profile`).update({comments: new Array("")})
   }
@@ -127,7 +91,6 @@ export class UserService {
 
   public addRatingToUser(userId: string, rating: Rating) {
     this.db.object(`/users/${userId}/rating`).set(rating);
-    // this.db.object(`/users/${userId}/follows/${userId}`).set('true');
   }
 
   public addUserToFollow(userId: string, userFollow: Follow){

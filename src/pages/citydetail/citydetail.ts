@@ -23,12 +23,9 @@ import {LoginPage} from "../login/login";
 })
 export class CitydetailPage {
 
-  // city: any;
   infoCity: any;
   tours = [];
   buddy = [];
-  finalTours: any;
-  finalBuddies: any;
   lock: any;
   param: '';
   city: string ='';
@@ -37,12 +34,7 @@ export class CitydetailPage {
   userInfo: any;
 
   constructor(public navCtrl: NavController,
-              public navParams: NavParams,
-              private dbapi: DbApiService,
-              private dataService: DataProvider,
-              private tourService: TourService,
-              private auth: AngularFireAuth,
-              private profile: UserService) {
+              public navParams: NavParams,) {
     this.infoCity = this.navParams.data;
     this.param = this.infoCity.id;
     console.log(this.infoCity);

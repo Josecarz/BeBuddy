@@ -28,54 +28,9 @@ export class ToursPage {
   userInfo: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private dbapi: DbApiService,  private tourService: TourService,
-              private auth: AngularFireAuth,
-              private profile: UserService) {
+              ) {
   }
   //
-  // ionViewDidLoad() {
-  //   console.log('ionViewDidLoad ToursPage');
-  //   this.tourService.getTours().subscribe(
-  //     (data) => {
-  //       this.tours = data;
-  //       console.log(this.tours);
-  //     }
-  //   );
-  //
-  //
-  //   this.dbapi.getBuddies().subscribe(
-  //     (data) => {
-  //       this.buddy = data;
-  //       console.log(data);
-  //     }
-  //   );
-  //
-  //   this.auth.authState.subscribe(data => {
-  //     this.usuario = data;
-  //     if (this.usuario != null) {
-  //       console.log("USUARIO   " + this.usuario.uid);
-  //       this.profile.getUserProfileInfo(this.usuario.uid).subscribe(
-  //         (data) => {
-  //           this.userInfo = data;
-  //           console.log("USUARIO INFO   " + this.userInfo.id);
-  //
-  //         }
-  //       );
-  //     }
-  //   });
-  //
-  // }
-  //
-  // navTour(tour){
-  //   this.navCtrl.push(TripdetailPage, tour);
-  // }
-  //
-  // navUser(user){
-  //   console.log(user);
-  //   this.navCtrl.push(PerfilPage, user);
-  // }
-  //
-  // navMiPerfil(){
-  //   this.navCtrl.push(LoginPage);
-  // }
+
 
 }
