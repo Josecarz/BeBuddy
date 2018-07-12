@@ -47,7 +47,12 @@ import {TourCarrouselComponent} from "../components/tour-carrousel/tour-carrouse
 
 
 export const FirebaseConfig = {
-  //include the keys from firebase
+  apiKey: "AIzaSyBx1SlVPc12DQP6qhxAadMNGNtzMTvEoMU",
+  authDomain: "bebuddy-73e89.firebaseapp.com",
+  databaseURL: "https://bebuddy-73e89.firebaseio.com",
+  projectId: "bebuddy-73e89",
+  storageBucket: "bebuddy-73e89.appspot.com",
+  messagingSenderId: "804805585543"
 };
 
 @NgModule({
